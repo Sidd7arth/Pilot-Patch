@@ -1,3 +1,11 @@
 // packages/decision-engine/src/index.ts
-// Pure deterministic decision engine (implemented in Phase 4)
-export const ENGINE_VERSION = '1.0.0';
+export * from './types.js';
+export * from './canonical.js';
+export * from './eligibility.js';
+export * from './criteria.js';
+export * from './ranking.js';
+export * from './selection.js';
+export * from './variants.js';
+export * from './explanations.js';
+export * from './diff.js';
+export * from './engine.js';

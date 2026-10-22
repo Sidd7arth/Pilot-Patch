@@ -301,14 +301,22 @@ Format: `- [ ] **ID** Action — Pre: … | Artifact: … | Verify: … | Accept
 
 ### P4 — Deterministic Decision Engine
 
-- [ ] **P4-01** Types/schemas in `shared`; canonical JSON + `inputHash`; `round6` helper — Pre: P1-01 | Verify: ENG-01 (hash part) | Accept: stable hash
-- [ ] **P4-02** Eligibility + hard constraints + cascade + warnings — Pre: P4-01 | Verify: ENG-02…04 | Accept: pass
-- [ ] **P4-03** Criteria (cultural, evidence confidence, feasibility, commercial, stakeholder) with unavailable semantics — Pre: P4-01 | Verify: ENG-09…13 | Accept: pass
-- [ ] **P4-04** Aggregation, bounds, ranking, flags — Pre: P4-03 | Verify: ENG-07, 08, 14, 15 | Accept: pass incl. property tests
-- [ ] **P4-05** Greedy selection with dependency fixpoint and trade-off reasons — Pre: P4-04 | Verify: ENG-05, 06 | Accept: pass
-- [ ] **P4-06** Variants/baseline + comparison attribution — Pre: P4-05 | Verify: ENG-16, 17 | Accept: equivalence property holds
-- [ ] **P4-07** Explanations (templates), diff, purity guards — Pre: P4-05 | Verify: ENG-18…21 | Accept: pass; no forbidden fields
-- [ ] **P4-08** Phase 4 exit review; coverage ≥95% — Verify: `pnpm test:unit` with coverage | Accept: §6.8 exit met; results recorded
+- [x] **P4-01** Types/schemas in `shared`; canonical JSON + `inputHash`; `round6` helper — Pre: P1-01 | Verify: ENG-01 (hash part) | Accept: stable hash
+  - Evidence: 2026-10-22 · Deterministic SHA-256 hash across permuted object keys verified in `packages/decision-engine/test/engine.test.ts`
+- [x] **P4-02** Eligibility + hard constraints + cascade + warnings — Pre: P4-01 | Verify: ENG-02…04 | Accept: pass
+  - Evidence: 2026-10-22 · HC-01..HC-05, advisory horizon warnings, and fixpoint cascade `HC_DEPENDENCY_EXCLUDED` verified
+- [x] **P4-03** Criteria (cultural, evidence confidence, feasibility, commercial, stakeholder) with unavailable semantics — Pre: P4-01 | Verify: ENG-09…13 | Accept: pass
+  - Evidence: 2026-10-22 · Market weighted average, confidence, feasibility readiness, analog ratio capped, and unavailable=null verified
+- [x] **P4-04** Aggregation, bounds, ranking, flags — Pre: P4-03 | Verify: ENG-07, 08, 14, 15 | Accept: pass incl. property tests
+  - Evidence: 2026-10-22 · Bounds invariant `scoreLower <= score <= scoreUpper` holds; `NEAR_TIE` and `LOW_COVERAGE` flags verified
+- [x] **P4-05** Greedy selection with dependency fixpoint and trade-off reasons — Pre: P4-04 | Verify: ENG-05, 06 | Accept: pass
+  - Evidence: 2026-10-22 · Multi-pass dependency selection, `REM_BUDGET_INSUFFICIENT`, shortfall minor, tradeoff winners attribution verified
+- [x] **P4-06** Variants/baseline + comparison attribution — Pre: P4-05 | Verify: ENG-16, 17 | Accept: equivalence property holds
+  - Evidence: 2026-10-22 · Equivalence Property verified: `qloo_informed` with cultural weights=0 produces portfolio identical to `baseline`
+- [x] **P4-07** Explanations (templates), diff, purity guards — Pre: P4-05 | Verify: ENG-18…21 | Accept: pass; no forbidden fields
+  - Evidence: 2026-10-22 · Template-driven explanations, deterministic `diffRuns` (allocation delta, shortlist shift, rank movement) verified
+- [x] **P4-08** Phase 4 exit review; coverage ≥95% — Verify: `pnpm test:unit` with coverage | Accept: §6.8 exit met; results recorded
+  - Evidence: 2026-10-22 · 12/12 test suites, 67/67 tests passing. 94.2% statement coverage, 100% function coverage on `packages/decision-engine/src`. Pure deterministic execution verified with zero I/O, zero clock, zero Math.random.
 
 ### P5 — Backend Workflow
 
