@@ -1,0 +1,13 @@
+{
+  "endpoint": "/",
+  "sanitizedParams": {},
+  "httpStatus": 200,
+  "capturedAt": "2026-10-22T13:16:04.467Z",
+  "durationMs": 1154,
+  "qRegisterReferences": [
+    "Q-01",
+    "Q-02"
+  ],
+  "origin": "test_fixture",
+  "description": "Minimal authenticated call returning Qloo API deployment info"
+}

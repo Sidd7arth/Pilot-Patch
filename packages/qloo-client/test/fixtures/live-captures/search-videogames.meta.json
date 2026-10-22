@@ -1,0 +1,17 @@
+{
+  "endpoint": "/search",
+  "sanitizedParams": {
+    "query": "Cyberpunk 2077",
+    "types": "urn:entity:videogame",
+    "take": 3
+  },
+  "httpStatus": 200,
+  "capturedAt": "2026-10-22T13:16:09.634Z",
+  "durationMs": 1486,
+  "qRegisterReferences": [
+    "Q-03",
+    "Q-08"
+  ],
+  "origin": "test_fixture",
+  "description": "Search resolving video game entities with URN type filter"
+}

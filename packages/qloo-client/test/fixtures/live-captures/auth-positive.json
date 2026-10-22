@@ -1,0 +1,12 @@
+{
+  "title": "Qloo",
+  "description": "Qloo API",
+  "documentation": "https://docs.qloo.com",
+  "contact": {
+    "name": "Qloo Inc.",
+    "url": "http://qloo.com",
+    "email": "info@qloo.com"
+  },
+  "deployment_date": "2026-10-08T14:48:00+0000",
+  "version": "2.1.965"
+}

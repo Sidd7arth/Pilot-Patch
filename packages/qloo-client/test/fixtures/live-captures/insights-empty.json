@@ -1,0 +1,21 @@
+{
+  "success": true,
+  "results": {
+    "entities": []
+  },
+  "query": {
+    "localities": {
+      "signal": {
+        "entity_id": "16C5564F-574F-4833-B34E-14C3109A3950",
+        "name": "Brazil",
+        "subtype": "urn:entity:locality",
+        "location": {
+          "lat": -10.827715437233003,
+          "lon": -52.81663443625763
+        },
+        "popularity": 0.9999947,
+        "disambiguation": "Brasil"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "endpoint": "/",
+  "sanitizedParams": {},
+  "httpStatus": 401,
+  "capturedAt": "2026-10-22T13:16:08.135Z",
+  "durationMs": 3662,
+  "qRegisterReferences": [
+    "Q-02",
+    "Q-12"
+  ],
+  "origin": "test_fixture",
+  "description": "Negative auth test provoking classified 401 unauthorized response"
+}

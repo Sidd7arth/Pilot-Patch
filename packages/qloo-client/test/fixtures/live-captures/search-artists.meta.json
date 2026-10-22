@@ -1,0 +1,16 @@
+{
+  "endpoint": "/search",
+  "sanitizedParams": {
+    "query": "Bad Bunny",
+    "types": "urn:entity:artist",
+    "take": 3
+  },
+  "httpStatus": 200,
+  "capturedAt": "2026-10-22T13:16:10.390Z",
+  "durationMs": 749,
+  "qRegisterReferences": [
+    "Q-03"
+  ],
+  "origin": "test_fixture",
+  "description": "Search resolving musical artist entities"
+}

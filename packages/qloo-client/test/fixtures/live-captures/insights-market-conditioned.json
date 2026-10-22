@@ -1,0 +1,847 @@
+{
+  "success": true,
+  "results": {
+    "entities": [
+      {
+        "name": "Apex Legends",
+        "entity_id": "B2344587-2AF4-4A4A-A018-5CCDE6E3B1A0",
+        "type": "urn:entity",
+        "subtype": "urn:entity:videogame",
+        "properties": {
+          "akas": [
+            {
+              "value": "Apex Legends",
+              "languages": [
+                "pt_pt",
+                "pl",
+                "pt",
+                "tl",
+                "tr"
+              ]
+            },
+            {
+              "value": "エーペックスレジェンズ",
+              "languages": [
+                "ja"
+              ]
+            },
+            {
+              "value": "เอเพ็กซ์เลเจนด์",
+              "languages": [
+                "th"
+              ]
+            }
+          ],
+          "slug": "apex-legends",
+          "genre": [
+            "Tactical FPS",
+            "Battle Royale",
+            "Hero Shooter"
+          ],
+          "image": {
+            "url": "https://images.qloo.com/i/B2344587-2AF4-4A4A-A018-5CCDE6E3B1A0-420x-auto.jpg"
+          },
+          "universe": "Titanfall",
+          "art_style": [
+            "3D",
+            "Realistic",
+            "Stylized"
+          ],
+          "developer": "Respawn Entertainment",
+          "platforms": [
+            "PlayStation 4",
+            "PlayStation 5",
+            "Xbox One",
+            "Xbox Series X/S",
+            "PC (Windows)",
+            "Nintendo Switch",
+            "Mobile (Apex Legends Mobile)"
+          ],
+          "publisher": "Electronic Arts",
+          "steam_tags": [
+            "Battle Royale",
+            "Multiplayer",
+            "Free To Play",
+            "Shooter",
+            "Team-Based",
+            "Competitive",
+            "First-Person",
+            "Hero Shooter"
+          ],
+          "description": "Conquer with character in Apex Legends, a free-to-play Battle Royale shooter where legendary characters with powerful abilities team up to battle for fame and fortune on the fringes of the Frontier. Master an ever-growing roster of diverse legends, deep tactical squad play, and bold new innovations that level-up the Battle Royale experience—all within a rugged world where anything goes.",
+          "player_mode": [
+            "Multiplayer (squad-based)"
+          ],
+          "skill_level": [
+            "Competitive"
+          ],
+          "release_date": "2019-02-04",
+          "audience_tags": [
+            "esports-ready",
+            "high skill ceiling",
+            "teamplay",
+            "frequent updates",
+            "strong progression"
+          ],
+          "gameplay_type": [
+            "Battle Royale",
+            "Hero Shooter",
+            "Squad-Based",
+            "Online Multiplayer",
+            "Free-to-Play",
+            "Competitive",
+            "Live Service"
+          ],
+          "content_rating": "T",
+          "emotional_tone": [
+            "intense",
+            "fast-paced",
+            "competitive",
+            "adrenalized"
+          ],
+          "progression_type": [
+            "Live-service",
+            "Seasonal content",
+            "Battle Pass",
+            "Cosmetic unlocks"
+          ],
+          "camera_perspective": [
+            "First-Person"
+          ],
+          "short_descriptions": [
+            {
+              "value": "Legendäre Kämpfer mit einzigartigen Fähigkeiten bilden Squads, kämpfen gegeneinander und versuchen, im schnellen, taktischen Battle-Royale als letztes Team zu überleben.",
+              "languages": [
+                "de"
+              ]
+            },
+            {
+              "value": "Legendary heroes with unique abilities form squads to outfight rival teams and be the last squad standing in a high-speed, tactical battle royale.",
+              "languages": [
+                "en"
+              ]
+            },
+            {
+              "value": "Héroes legendarios con habilidades únicas forman escuadrones para vencer a rivales y ser el último equipo en pie en un trepidante y táctico battle royale.",
+              "languages": [
+                "es"
+              ]
+            },
+            {
+              "value": "Des héros aux capacités uniques forment des escouades pour éliminer leurs rivaux et devenir la dernière équipe debout dans un battle royale tactique et effréné.",
+              "languages": [
+                "fr"
+              ]
+            }
+          ],
+          "player_demographics": {
+            "primarygender": "All",
+            "popularregions": [
+              "North America",
+              "Europe",
+              "Asia"
+            ],
+            "targetagegroup": "Teens"
+          }
+        },
+        "popularity": 0.988444905725653,
+        "tags": [
+          {
+            "id": "urn:tag:art_style:qloo:3d",
+            "name": "3D",
+            "type": "urn:tag:art_style:qloo"
+          },
+          {
+            "id": "urn:tag:art_style:qloo:realistic",
+            "name": "Realistic",
+            "type": "urn:tag:art_style:qloo"
+          },
+          {
+            "id": "urn:tag:art_style:qloo:stylized",
+            "name": "Stylized",
+            "type": "urn:tag:art_style:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:esports_ready",
+            "name": "esports-ready",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:high_skill_ceiling",
+            "name": "high skill ceiling",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:teamplay",
+            "name": "teamplay",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:frequent_updates",
+            "name": "frequent updates",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:strong_progression",
+            "name": "strong progression",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:emotional_tone:qloo:intense",
+            "name": "intense",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "id": "urn:tag:emotional_tone:qloo:fast_paced",
+            "name": "fast-paced",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "id": "urn:tag:emotional_tone:qloo:competitive",
+            "name": "competitive",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "id": "urn:tag:emotional_tone:qloo:adrenalized",
+            "name": "adrenalized",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:battle_royale",
+            "name": "Battle Royale",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:hero_shooter",
+            "name": "Hero Shooter",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:squad_based",
+            "name": "Squad-Based",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:online_multiplayer",
+            "name": "Online Multiplayer",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:free_to_play",
+            "name": "Free-to-Play",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:competitive",
+            "name": "Competitive",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:live_service",
+            "name": "Live Service",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:tactical_fps",
+            "name": "Tactical FPS",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:battle_royale",
+            "name": "Battle Royale",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:hero_shooter",
+            "name": "Hero Shooter",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:platform:qloo:playstation_4",
+            "name": "PlayStation 4",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "id": "urn:tag:platform:qloo:playstation_5",
+            "name": "PlayStation 5",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "id": "urn:tag:platform:qloo:xbox_one",
+            "name": "Xbox One",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "id": "urn:tag:platform:qloo:xbox_series_x_s",
+            "name": "Xbox Series X/S",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "id": "urn:tag:platform:qloo:pc_windows_",
+            "name": "PC (Windows)",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "id": "urn:tag:platform:qloo:nintendo_switch",
+            "name": "Nintendo Switch",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "id": "urn:tag:platform:qloo:mobile_apex_legends_mobile_",
+            "name": "Mobile (Apex Legends Mobile)",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "id": "urn:tag:player_mode:qloo:multiplayer_squad_based_",
+            "name": "Multiplayer (squad-based)",
+            "type": "urn:tag:player_mode:qloo"
+          },
+          {
+            "id": "urn:tag:skill_level:qloo:competitive",
+            "name": "Competitive",
+            "type": "urn:tag:skill_level:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:battle_royale",
+            "name": "Battle Royale",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:multiplayer",
+            "name": "Multiplayer",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:free_to_play",
+            "name": "Free To Play",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:shooter",
+            "name": "Shooter",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:team_based",
+            "name": "Team-Based",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:competitive",
+            "name": "Competitive",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:first_person",
+            "name": "First-Person",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:hero_shooter",
+            "name": "Hero Shooter",
+            "type": "urn:tag:category:qloo"
+          }
+        ],
+        "query": {
+          "affinity": 0.9167882711376997
+        },
+        "disambiguation": "2019-02-04, Respawn Entertainment",
+        "external": {
+          "igdb": [
+            {
+              "id": "apex-legends"
+            }
+          ],
+          "imdb": [
+            {
+              "id": "tt9730966"
+            }
+          ],
+          "steam": [
+            {
+              "id": "1172470"
+            }
+          ],
+          "itunes": [],
+          "twitch": [
+            {
+              "id": "apex legends"
+            }
+          ],
+          "netflix": [],
+          "twitter": [
+            {
+              "id": "playapex"
+            }
+          ],
+          "facebook": [
+            {
+              "id": "playapex"
+            }
+          ],
+          "wikidata": [
+            {
+              "id": "q61478103"
+            }
+          ],
+          "instagram": [
+            {
+              "id": "playapex"
+            }
+          ],
+          "letterboxd": [],
+          "metacritic": [
+            {
+              "id": "1400691334",
+              "critic_rating": 89
+            }
+          ],
+          "google_play": [],
+          "rottentomatoes": []
+        }
+      },
+      {
+        "name": "League of Legends",
+        "entity_id": "8E474FED-3ACD-46B1-A51C-C28B9FA206B1",
+        "type": "urn:entity",
+        "subtype": "urn:entity:videogame",
+        "properties": {
+          "akas": [
+            {
+              "value": "LoL",
+              "languages": [
+                "en_au",
+                "tr"
+              ]
+            },
+            {
+              "value": "ลีกออฟเลเจ็นดส์",
+              "languages": [
+                "th"
+              ]
+            },
+            {
+              "value": "लीग ऑफ लेजेंड्स",
+              "languages": [
+                "hi"
+              ]
+            },
+            {
+              "value": "リーグ・オブ・レジェンド",
+              "languages": [
+                "ja"
+              ]
+            },
+            {
+              "value": "League of Legends",
+              "languages": [
+                "it",
+                "de",
+                "nl",
+                "es",
+                "es_ar",
+                "fr",
+                "pt_pt",
+                "pl",
+                "pt",
+                "tl"
+              ]
+            },
+            {
+              "value": "英雄联盟",
+              "languages": [
+                "zh"
+              ]
+            }
+          ],
+          "slug": "league-of-legends",
+          "genre": [
+            "Multiplayer Online Battle Arena",
+            "Strategy",
+            "Action"
+          ],
+          "image": {
+            "url": "https://images.qloo.com/i/8E474FED-3ACD-46B1-A51C-C28B9FA206B1-420x-auto.jpg"
+          },
+          "universe": "Runeterra",
+          "art_style": [
+            "3D",
+            "Stylized",
+            "High-Fantasy",
+            "Cartoonish"
+          ],
+          "developer": "Riot Games",
+          "platforms": [
+            "PC (Microsoft Windows)",
+            "macOS"
+          ],
+          "publisher": "Riot Games",
+          "steam_tags": [
+            "Multiplayer",
+            "MOBA",
+            "Competitive",
+            "Esports",
+            "Free to Play",
+            "Team-Based",
+            "Strategy"
+          ],
+          "description": "League of Legends is a team-based multiplayer online battle arena where players control unique Champions with distinct abilities to cooperate with allies, outplay opponents, and destroy the enemy Nexus; it blends real-time strategy, action combat and persistent competitive progression in a live-service fantasy universe.",
+          "player_mode": [
+            "Multiplayer (team-based PvP)"
+          ],
+          "skill_level": [
+            "Competitive"
+          ],
+          "release_date": "2009-10-27",
+          "audience_tags": [
+            "high skill ceiling",
+            "large champion roster",
+            "live service",
+            "regular updates",
+            "strong esports scene",
+            "community-driven"
+          ],
+          "gameplay_type": [
+            "Multiplayer",
+            "Team-Based",
+            "PvP",
+            "Competitive",
+            "MOBA",
+            "Esports"
+          ],
+          "content_rating": "T",
+          "emotional_tone": [
+            "competitive",
+            "intense",
+            "tactical",
+            "thrilling",
+            "team-focused"
+          ],
+          "progression_type": [
+            "Match-Based Progression",
+            "Persistent Account Progression (ranked seasons, mastery)"
+          ],
+          "camera_perspective": [
+            "Top-Down",
+            "Isometric"
+          ],
+          "short_descriptions": [
+            {
+              "value": "Dos equipos de campeones se enfrentan en combates estratégicos en tiempo real para destruir la base enemiga y subir posiciones en una liga competitiva en línea.",
+              "languages": [
+                "es"
+              ]
+            },
+            {
+              "value": "Zwei Teams von Champions kämpfen in taktischen Echtzeit-Arenengefechten darum, die feindliche Basis zu zerstören und in einer kompetitiven Online-Liga aufzusteigen.",
+              "languages": [
+                "de"
+              ]
+            },
+            {
+              "value": "Deux équipes de champions s'affrontent en combats d'arène tactiques et en temps réel pour détruire la base ennemie et grimper dans les classements en ligne.",
+              "languages": [
+                "fr"
+              ]
+            },
+            {
+              "value": "Two teams of champions battle in strategic, real-time arena matches to destroy the enemy base and climb competitive ranks.",
+              "languages": [
+                "en"
+              ]
+            }
+          ],
+          "player_demographics": {
+            "primarygender": "All",
+            "popularregions": [
+              "North America",
+              "Europe",
+              "Asia"
+            ],
+            "targetagegroup": "Teens"
+          }
+        },
+        "popularity": 0.9997924234561495,
+        "tags": [
+          {
+            "id": "urn:tag:art_style:qloo:3d",
+            "name": "3D",
+            "type": "urn:tag:art_style:qloo"
+          },
+          {
+            "id": "urn:tag:art_style:qloo:stylized",
+            "name": "Stylized",
+            "type": "urn:tag:art_style:qloo"
+          },
+          {
+            "id": "urn:tag:art_style:qloo:high_fantasy",
+            "name": "High-Fantasy",
+            "type": "urn:tag:art_style:qloo"
+          },
+          {
+            "id": "urn:tag:art_style:qloo:cartoonish",
+            "name": "Cartoonish",
+            "type": "urn:tag:art_style:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:high_skill_ceiling",
+            "name": "high skill ceiling",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:large_champion_roster",
+            "name": "large champion roster",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:live_service",
+            "name": "live service",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:regular_updates",
+            "name": "regular updates",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:strong_esports_scene",
+            "name": "strong esports scene",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:community_driven",
+            "name": "community-driven",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:emotional_tone:qloo:competitive",
+            "name": "competitive",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "id": "urn:tag:emotional_tone:qloo:intense",
+            "name": "intense",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "id": "urn:tag:emotional_tone:qloo:tactical",
+            "name": "tactical",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "id": "urn:tag:emotional_tone:qloo:thrilling",
+            "name": "thrilling",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "id": "urn:tag:emotional_tone:qloo:team_focused",
+            "name": "team-focused",
+            "type": "urn:tag:emotional_tone:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:multiplayer",
+            "name": "Multiplayer",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:team_based",
+            "name": "Team-Based",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:pvp",
+            "name": "PvP",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:competitive",
+            "name": "Competitive",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:moba",
+            "name": "MOBA",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:gameplay_type:qloo:esports",
+            "name": "Esports",
+            "type": "urn:tag:gameplay_type:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:multiplayer_online_battle_arena",
+            "name": "Multiplayer Online Battle Arena",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:strategy",
+            "name": "Strategy",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:action",
+            "name": "Action",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:platform:qloo:pc_microsoft_windows_",
+            "name": "PC (Microsoft Windows)",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "id": "urn:tag:platform:qloo:macos",
+            "name": "macOS",
+            "type": "urn:tag:platform:qloo"
+          },
+          {
+            "id": "urn:tag:player_mode:qloo:multiplayer_team_based_pvp_",
+            "name": "Multiplayer (team-based PvP)",
+            "type": "urn:tag:player_mode:qloo"
+          },
+          {
+            "id": "urn:tag:skill_level:qloo:competitive",
+            "name": "Competitive",
+            "type": "urn:tag:skill_level:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:multiplayer",
+            "name": "Multiplayer",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:moba",
+            "name": "MOBA",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:competitive",
+            "name": "Competitive",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:esports",
+            "name": "Esports",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:free_to_play",
+            "name": "Free to Play",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:team_based",
+            "name": "Team-Based",
+            "type": "urn:tag:category:qloo"
+          },
+          {
+            "id": "urn:tag:category:qloo:strategy",
+            "name": "Strategy",
+            "type": "urn:tag:category:qloo"
+          }
+        ],
+        "query": {
+          "affinity": 0.872258325444578
+        },
+        "disambiguation": "2009-10-27, Riot Games",
+        "external": {
+          "igdb": [
+            {
+              "id": "league-of-legends"
+            }
+          ],
+          "imdb": [
+            {
+              "id": "tt2071507"
+            }
+          ],
+          "steam": [
+            {
+              "id": "20590"
+            }
+          ],
+          "itunes": [],
+          "twitch": [
+            {
+              "id": "league of legends"
+            }
+          ],
+          "netflix": [],
+          "twitter": [
+            {
+              "id": "leagueoflegends"
+            },
+            {
+              "id": "leagueoflegends"
+            },
+            {
+              "id": "lolgermany"
+            },
+            {
+              "id": "lolegendsbr"
+            },
+            {
+              "id": "loleu"
+            },
+            {
+              "id": "lolturkiye"
+            },
+            {
+              "id": "riotgames"
+            }
+          ],
+          "facebook": [
+            {
+              "id": "leagueoflegends"
+            },
+            {
+              "id": "riotgames"
+            },
+            {
+              "id": "leagueoflegendstaiwan"
+            }
+          ],
+          "wikidata": [
+            {
+              "id": "q223341"
+            },
+            {
+              "id": "q1060165"
+            }
+          ],
+          "instagram": [
+            {
+              "id": "leagueoflegends"
+            },
+            {
+              "id": "leagueoflegends"
+            }
+          ],
+          "letterboxd": [],
+          "metacritic": [
+            {
+              "id": "1400056964",
+              "critic_rating": 78
+            }
+          ],
+          "google_play": [],
+          "rottentomatoes": []
+        }
+      }
+    ]
+  },
+  "query": {
+    "localities": {
+      "signal": {
+        "entity_id": "9F618B45-7B08-4027-B955-52F1CB96FC47",
+        "name": "Japan",
+        "subtype": "urn:entity:locality",
+        "location": {
+          "lat": 36.16577099382032,
+          "lon": 136.7573385389969
+        },
+        "popularity": 0.9999854,
+        "disambiguation": "Japan, JGSDF Army"
+      }
+    }
+  }
+}

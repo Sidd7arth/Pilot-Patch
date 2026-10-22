@@ -1,0 +1,1138 @@
+{
+  "results": [
+    {
+      "name": "Cyberpunk 2077",
+      "entity_id": "2575A4C0-5459-42E9-B119-FE7CFC8D558B",
+      "types": [
+        "urn:entity:videogame"
+      ],
+      "properties": {
+        "akas": [
+          {
+            "language": "hi",
+            "value": "सायबरपंक 2077"
+          },
+          {
+            "language": "de",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "es",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "es_ar",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "fr",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "it",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "nl",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "en_au",
+            "value": "Cyberpunk"
+          },
+          {
+            "language": "ar",
+            "value": "سايبر بانك 2077"
+          },
+          {
+            "language": "cs",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "et",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "fi",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "he",
+            "value": "סייברפאנק 2077"
+          },
+          {
+            "language": "ja",
+            "value": "サイバーパンク2077"
+          },
+          {
+            "language": "ko",
+            "value": "사이버펑크 2077"
+          },
+          {
+            "language": "pl",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "pt",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "pt_pt",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "ro",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "ru",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "sv",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "th",
+            "value": "ไซเบอร์พังก์ 2077"
+          },
+          {
+            "language": "tr",
+            "value": "Cyberpunk 2077"
+          },
+          {
+            "language": "zh",
+            "value": "赛博朋克2077"
+          }
+        ],
+        "content_rating": "M",
+        "description": "Cyberpunk 2077 is an open-world action-adventure RPG set in Night City, a neon-drenched megalopolis obsessed with power, glamour and body modification. Players assume the role of V, a customizable mercenary who pursues a prototype implant that promises immortality, shaping the story and world through choices, cyberware customization and varied playstyles.",
+        "developer": "CD Projekt Red Studio",
+        "external": {
+          "facebook": {
+            "id": "cyberpunkgame"
+          },
+          "igdb": {
+            "id": "cyberpunk-2077"
+          },
+          "instagram": {
+            "id": "cyberpunkgame"
+          },
+          "metacritic": {
+            "critic_rating": 86,
+            "id": "1400639456"
+          },
+          "steam": {
+            "id": "1091500"
+          },
+          "twitch": {
+            "id": "cyberpunk 2077"
+          },
+          "twitter": {
+            "id": "cyberpunkgame"
+          },
+          "wikidata": {
+            "id": "q3182559"
+          }
+        },
+        "image": {
+          "url": "https://images.qloo.com/i/2575A4C0-5459-42E9-B119-FE7CFC8D558B-420x-auto.jpg"
+        },
+        "platforms": [
+          "PC",
+          "Xbox One",
+          "PlayStation 4",
+          "Xbox Series X",
+          "PlayStation 5"
+        ],
+        "publisher": "Warner Bros. Interactive Entertainment",
+        "release_date": "2020-12-10",
+        "release_year": 2020,
+        "short_description": "A mercenary in Night City hunts a prototype implant promising immortality while shaping the city and their fate through choices and cybernetic customization.",
+        "short_descriptions": [
+          {
+            "language": "sv",
+            "value": "datorspel från 2020"
+          },
+          {
+            "language": "it",
+            "value": "videogioco del 2020"
+          },
+          {
+            "language": "lv",
+            "value": "2020. gadā videospēle"
+          },
+          {
+            "language": "lb",
+            "value": "Computerspill aus dem Joer 2020"
+          },
+          {
+            "language": "sl",
+            "value": "videoigra iz leta 2020"
+          },
+          {
+            "language": "nn",
+            "value": "dataspel frå 2020"
+          },
+          {
+            "language": "pl",
+            "value": "komputerowa gra fabularna z 2020 roku"
+          },
+          {
+            "language": "et",
+            "value": "2020. aastal videomäng"
+          },
+          {
+            "language": "tr",
+            "value": "CD Projekt RED tarafından geliştirilen rol yapma oyunu"
+          },
+          {
+            "language": "el",
+            "value": "βιντεοπαιχνίδι του 2020"
+          },
+          {
+            "language": "sk",
+            "value": "počítačová hra z 2020"
+          },
+          {
+            "language": "fr",
+            "value": "jeu vidéo de 2020"
+          },
+          {
+            "language": "he",
+            "value": "משחק תפקידים-פעולה ממוחשב מסוג עולם פתוח משנת 2020"
+          },
+          {
+            "language": "mk",
+            "value": "видеоигра од 2020 година"
+          },
+          {
+            "language": "ru",
+            "value": "мультиплатформенная компьютерная игра 2020 года в жанре Action/RPG, разработанная студией CD Projekt RED"
+          },
+          {
+            "language": "eu",
+            "value": "2020 bideo-joko"
+          },
+          {
+            "language": "fi",
+            "value": "vuonna 2020 julkaistu toimintaroolipeli"
+          },
+          {
+            "language": "bn",
+            "value": "২০২০ সালের ভিডিও গেম"
+          },
+          {
+            "language": "da",
+            "value": "computerspil fra 2020"
+          },
+          {
+            "language": "ca",
+            "value": "videojoc de 2020"
+          },
+          {
+            "language": "sr",
+            "value": "видео-игра из 2020. године"
+          },
+          {
+            "language": "oc",
+            "value": "videojòc de 2020"
+          },
+          {
+            "language": "ro",
+            "value": "joc video din 2020"
+          },
+          {
+            "language": "lt",
+            "value": "2020 metų kompiuterinis žaidimas"
+          },
+          {
+            "language": "ja",
+            "value": "2020年に発売されたゲームソフト"
+          },
+          {
+            "language": "en",
+            "value": "2020 role-playing video game developed by CD Projekt RED"
+          },
+          {
+            "language": "nb",
+            "value": "videospill fra 2020"
+          },
+          {
+            "language": "de",
+            "value": "Action-Rollenspiel des Entwicklerstudios CD Projekt RED"
+          },
+          {
+            "language": "su",
+            "value": "kaulinan video"
+          },
+          {
+            "language": "cs",
+            "value": "videohra z roku 2020"
+          },
+          {
+            "language": "be",
+            "value": "камп’ютарная гульня 2020 года"
+          },
+          {
+            "language": "az",
+            "value": "2020-ci ilin video oyunu"
+          },
+          {
+            "language": "hi",
+            "value": "२०२० वीडियो गेममेम0"
+          },
+          {
+            "language": "sq",
+            "value": "video lojë e vitit 2020"
+          },
+          {
+            "language": "nl",
+            "value": "computerspel van CD Projekt RED"
+          },
+          {
+            "language": "sc",
+            "value": "videojòcu de 2020"
+          },
+          {
+            "language": "vi",
+            "value": "trò chơi điện tử hành động nhập vai năm 2020"
+          },
+          {
+            "language": "gl",
+            "value": "videoxogo de 2020"
+          },
+          {
+            "language": "ga",
+            "value": "físchluiche a foilsíodh sa bhliain 2020"
+          },
+          {
+            "language": "ms",
+            "value": "permainan video terbitan tahun 2020"
+          },
+          {
+            "language": "hr",
+            "value": "videoigra iz 2020. godine"
+          },
+          {
+            "language": "uk",
+            "value": "відеогра 2020 року в жанрі action RPG, від студії CD Projekt RED"
+          },
+          {
+            "language": "ka",
+            "value": "2020 წლის ვიდეო თამაში"
+          },
+          {
+            "language": "te",
+            "value": "2020 వీడియో గేమ్"
+          },
+          {
+            "language": "id",
+            "value": "permainan video tahun 2020"
+          },
+          {
+            "language": "fa",
+            "value": "بازی ساخته شرکت سی‌دی پروجکت رد"
+          },
+          {
+            "language": "pt",
+            "value": "jogo eletrônico de 2020 desenvolvido pela CD Projekt Red"
+          },
+          {
+            "language": "es",
+            "value": "videojuego de 2020"
+          },
+          {
+            "language": "hu",
+            "value": "2020-as videójáték"
+          },
+          {
+            "language": "hy",
+            "value": "2020 թվականի համակարգչային խաղ"
+          },
+          {
+            "language": "eo",
+            "value": "videoludo de 2020"
+          },
+          {
+            "language": "zh",
+            "value": "2020年電子遊戲"
+          },
+          {
+            "language": "jv",
+            "value": "gim vidéo"
+          },
+          {
+            "language": "ar",
+            "value": "سايبربانك 2077"
+          },
+          {
+            "language": "is",
+            "value": "2020 tölvuleikur"
+          },
+          {
+            "language": "bg",
+            "value": "видеоигра от 2020 година"
+          },
+          {
+            "language": "de",
+            "value": "In einer dystopischen Zukunft sucht ein Söldner einen Biochip, der Unsterblichkeit verleiht, während er gegen Firmenverschwörungen und einen digitalen Geist kämpft."
+          },
+          {
+            "language": "es",
+            "value": "En un futuro distópico, un mercenario busca un biochip que otorga inmortalidad mientras lucha contra conspiraciones corporativas y un fantasma digital."
+          },
+          {
+            "language": "fr",
+            "value": "Dans un futur dystopique, un mercenaire cherche une puce biologique qui confère l'immortalité tout en combattant des conspirations d'entreprise et un fantôme numérique."
+          },
+          {
+            "language": "en",
+            "value": "In a dystopian future, a mercenary seeks a biochip that grants immortality while battling corporate conspiracies and a digital ghost."
+          }
+        ]
+      },
+      "popularity": 0.9668716008758091,
+      "disambiguation": "2020-12-10, CD Projekt Red Studio",
+      "tags": [
+        {
+          "name": "3D",
+          "tag_id": "urn:tag:art_style:qloo:3d",
+          "type": "urn:tag:art_style:qloo"
+        },
+        {
+          "name": "Realistic",
+          "tag_id": "urn:tag:art_style:qloo:realistic",
+          "type": "urn:tag:art_style:qloo"
+        },
+        {
+          "name": "Cyberpunk aesthetic",
+          "tag_id": "urn:tag:art_style:qloo:cyberpunk_aesthetic",
+          "type": "urn:tag:art_style:qloo"
+        },
+        {
+          "name": "Neon/noir visual style",
+          "tag_id": "urn:tag:art_style:qloo:neon_noir_visual_style",
+          "type": "urn:tag:art_style:qloo"
+        },
+        {
+          "name": "ambitious",
+          "tag_id": "urn:tag:audience:qloo:ambitious",
+          "type": "urn:tag:audience:qloo"
+        },
+        {
+          "name": "controversial at launch",
+          "tag_id": "urn:tag:audience:qloo:controversial_at_launch",
+          "type": "urn:tag:audience:qloo"
+        },
+        {
+          "name": "immersive worldbuilding",
+          "tag_id": "urn:tag:audience:qloo:immersive_worldbuilding",
+          "type": "urn:tag:audience:qloo"
+        },
+        {
+          "name": "graphically impressive",
+          "tag_id": "urn:tag:audience:qloo:graphically_impressive",
+          "type": "urn:tag:audience:qloo"
+        },
+        {
+          "name": "choice-driven narrative",
+          "tag_id": "urn:tag:audience:qloo:choice_driven_narrative",
+          "type": "urn:tag:audience:qloo"
+        },
+        {
+          "name": "gritty",
+          "tag_id": "urn:tag:emotional_tone:qloo:gritty",
+          "type": "urn:tag:emotional_tone:qloo"
+        },
+        {
+          "name": "dark",
+          "tag_id": "urn:tag:emotional_tone:qloo:dark",
+          "type": "urn:tag:emotional_tone:qloo"
+        },
+        {
+          "name": "melancholic",
+          "tag_id": "urn:tag:emotional_tone:qloo:melancholic",
+          "type": "urn:tag:emotional_tone:qloo"
+        },
+        {
+          "name": "tense",
+          "tag_id": "urn:tag:emotional_tone:qloo:tense",
+          "type": "urn:tag:emotional_tone:qloo"
+        },
+        {
+          "name": "stylish",
+          "tag_id": "urn:tag:emotional_tone:qloo:stylish",
+          "type": "urn:tag:emotional_tone:qloo"
+        },
+        {
+          "name": "Single-player",
+          "tag_id": "urn:tag:gameplay_type:qloo:single_player",
+          "type": "urn:tag:gameplay_type:qloo"
+        },
+        {
+          "name": "Open World",
+          "tag_id": "urn:tag:gameplay_type:qloo:open_world",
+          "type": "urn:tag:gameplay_type:qloo"
+        },
+        {
+          "name": "Action Role-Playing",
+          "tag_id": "urn:tag:gameplay_type:qloo:action_role_playing",
+          "type": "urn:tag:gameplay_type:qloo"
+        },
+        {
+          "name": "Action",
+          "tag_id": "urn:tag:genre:qloo:action",
+          "type": "urn:tag:genre:qloo"
+        },
+        {
+          "name": "Role-Playing",
+          "tag_id": "urn:tag:genre:qloo:role_playing",
+          "type": "urn:tag:genre:qloo"
+        },
+        {
+          "name": "PC",
+          "tag_id": "urn:tag:platform:qloo:pc",
+          "type": "urn:tag:platform:qloo"
+        },
+        {
+          "name": "Xbox One",
+          "tag_id": "urn:tag:platform:qloo:xbox_one",
+          "type": "urn:tag:platform:qloo"
+        },
+        {
+          "name": "PlayStation 4",
+          "tag_id": "urn:tag:platform:qloo:playstation_4",
+          "type": "urn:tag:platform:qloo"
+        },
+        {
+          "name": "Xbox Series X",
+          "tag_id": "urn:tag:platform:qloo:xbox_series_x",
+          "type": "urn:tag:platform:qloo"
+        },
+        {
+          "name": "PlayStation 5",
+          "tag_id": "urn:tag:platform:qloo:playstation_5",
+          "type": "urn:tag:platform:qloo"
+        },
+        {
+          "name": "single-player",
+          "tag_id": "urn:tag:player_mode:qloo:single_player",
+          "type": "urn:tag:player_mode:qloo"
+        },
+        {
+          "name": "Moderate",
+          "tag_id": "urn:tag:skill_level:qloo:moderate",
+          "type": "urn:tag:skill_level:qloo"
+        },
+        {
+          "name": "Open World",
+          "tag_id": "urn:tag:category:qloo:open_world",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "RPG",
+          "tag_id": "urn:tag:category:qloo:rpg",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "Action",
+          "tag_id": "urn:tag:category:qloo:action",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "Story Rich",
+          "tag_id": "urn:tag:category:qloo:story_rich",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "First-Person",
+          "tag_id": "urn:tag:category:qloo:first_person",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "Choices Matter",
+          "tag_id": "urn:tag:category:qloo:choices_matter",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "Cyberpunk",
+          "tag_id": "urn:tag:category:qloo:cyberpunk",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "Singleplayer",
+          "tag_id": "urn:tag:category:qloo:singleplayer",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "Exploration",
+          "tag_id": "urn:tag:category:qloo:exploration",
+          "type": "urn:tag:category:qloo"
+        }
+      ]
+    },
+    {
+      "name": "Cyberpunk 2077: Orion",
+      "entity_id": "D4AC2A8C-FE33-4569-9BD1-38C049D0286A",
+      "types": [
+        "urn:entity:videogame"
+      ],
+      "properties": {
+        "akas": [],
+        "content_rating": "",
+        "description": "Orion is a codename for our next Cyberpunk game, which will take the Cyberpunk franchise further and continue harnessing the potential of this dark future universe.",
+        "developer": "CD Projekt Red Studio",
+        "external": {
+          "metacritic": {
+            "id": "1400686695"
+          }
+        },
+        "image": {
+          "url": "https://images.qloo.com/i/D4AC2A8C-FE33-4569-9BD1-38C049D0286A-420x-auto.jpg"
+        },
+        "platforms": [
+          "PC"
+        ],
+        "publisher": "CD Projekt Red Studio",
+        "release_date": "2023-08-03",
+        "release_year": 2023,
+        "short_description": "A new installment in the Cyberpunk franchise explores the dark future universe, expanding its narrative and gameplay possibilities.",
+        "short_descriptions": [
+          {
+            "language": "de",
+            "value": "Ein neuer Teil der Cyberpunk-Reihe erkundet das düstere Zukunftsuniversum und erweitert Erzählung und Spielmöglichkeiten."
+          },
+          {
+            "language": "es",
+            "value": "Una nueva entrega de la franquicia Cyberpunk explora un oscuro futuro, ampliando su narrativa y posibilidades de juego."
+          },
+          {
+            "language": "fr",
+            "value": "Un nouvel opus de la franchise Cyberpunk explore un univers futuriste sombre, élargissant son récit et ses possibilités de jeu."
+          },
+          {
+            "language": "en",
+            "value": "A new installment in the Cyberpunk franchise explores the dark future universe, expanding its narrative and gameplay possibilities."
+          }
+        ]
+      },
+      "popularity": 0.9638197136533334,
+      "disambiguation": "2023-08-03, CD Projekt Red Studio",
+      "tags": [
+        {
+          "name": "Western RPG",
+          "tag_id": "urn:tag:genre:media:western_rpg",
+          "type": "urn:tag:genre:media",
+          "value": "urn:tag:genre:media:western_rpg"
+        }
+      ]
+    },
+    {
+      "name": "Cyberpunk 2077: Phantom Liberty",
+      "entity_id": "E526F305-F1B6-404C-8DCA-101B719EEE36",
+      "types": [
+        "urn:entity:videogame"
+      ],
+      "properties": {
+        "akas": [
+          {
+            "language": "en_au",
+            "value": "Phantom Liberty"
+          },
+          {
+            "language": "fr",
+            "value": "Cyberpunk 2077 : Phantom Liberty"
+          },
+          {
+            "language": "it",
+            "value": "Cyberpunk 2077: Phantom Liberty"
+          },
+          {
+            "language": "de",
+            "value": "Cyberpunk 2077: Phantom Liberty"
+          },
+          {
+            "language": "nl",
+            "value": "Cyberpunk 2077: Phantom Liberty"
+          },
+          {
+            "language": "es",
+            "value": "Cyberpunk 2077: Phantom Liberty"
+          },
+          {
+            "language": "es_ar",
+            "value": "Cyberpunk 2077: Phantom Liberty"
+          },
+          {
+            "language": "cs",
+            "value": "Phantom Liberty"
+          },
+          {
+            "language": "et",
+            "value": "Phantom Liberty"
+          },
+          {
+            "language": "fi",
+            "value": "Phantom Liberty"
+          },
+          {
+            "language": "he",
+            "value": "Cyberpunk 2077: Phantom Liberty"
+          },
+          {
+            "language": "ja",
+            "value": "サイバーパンク2077：仮初めの自由"
+          },
+          {
+            "language": "ko",
+            "value": "사이버펑크 2077: 팬텀 리버티"
+          },
+          {
+            "language": "pl",
+            "value": "Phantom Liberty"
+          },
+          {
+            "language": "pt",
+            "value": "Phantom Liberty"
+          },
+          {
+            "language": "pt_pt",
+            "value": "Phantom Liberty"
+          },
+          {
+            "language": "ro",
+            "value": "Phantom Liberty"
+          },
+          {
+            "language": "ru",
+            "value": "Cyberpunk 2077: Призрачная свобода"
+          },
+          {
+            "language": "sv",
+            "value": "Phantom Liberty"
+          },
+          {
+            "language": "tr",
+            "value": "Phantom Liberty"
+          },
+          {
+            "language": "zh",
+            "value": "赛博朋克2077：往日之影"
+          }
+        ],
+        "content_rating": "",
+        "description": "Phantom Liberty is a spy-thriller expansion for Cyberpunk 2077 in which V must rescue the president of the New United States after her shuttle is shot down over Dogtown, diving into espionage, political intrigue, and violent mercenary-run territories while using new gameplay mechanics, missions, and characters including Solomon Reed (Idris Elba) and Johnny Silverhand (Keanu Reeves).",
+        "developer": "CD Projekt Red Studio",
+        "external": {
+          "igdb": {
+            "id": "cyberpunk-2077-phantom-liberty"
+          },
+          "metacritic": {
+            "critic_rating": 89,
+            "id": "1400683981"
+          },
+          "steam": {
+            "id": "2138330"
+          },
+          "wikidata": {
+            "id": "q113826614"
+          }
+        },
+        "image": {
+          "url": "https://images.qloo.com/i/E526F305-F1B6-404C-8DCA-101B719EEE36-420x-auto.jpg"
+        },
+        "platforms": [
+          "PlayStation 5",
+          "Xbox Series X",
+          "PC"
+        ],
+        "publisher": "CD Projekt Red Studio",
+        "release_date": "2023-09-26",
+        "release_year": 2023,
+        "short_description": "A spy‑thriller expansion where V must rescue the NUSA president in Dogtown, uncovering espionage, betrayals, and high‑stakes political intrigue.",
+        "short_descriptions": [
+          {
+            "language": "sl",
+            "value": "videoigra iz leta 2023"
+          },
+          {
+            "language": "ru",
+            "value": "компьютерная игра 2023 года, разработанная CD Projekt RED"
+          },
+          {
+            "language": "bg",
+            "value": "видеоигра от 2023 година"
+          },
+          {
+            "language": "et",
+            "value": "2023. aastal videomäng"
+          },
+          {
+            "language": "hi",
+            "value": "२०२३ वीडियो गेम"
+          },
+          {
+            "language": "ms",
+            "value": "permainan video terbitan tahun 2023"
+          },
+          {
+            "language": "id",
+            "value": "permainan video tahun 2023"
+          },
+          {
+            "language": "az",
+            "value": "2023-ci ilin video oyunu"
+          },
+          {
+            "language": "nl",
+            "value": "computerspel uit 2023"
+          },
+          {
+            "language": "oc",
+            "value": "videojòc de 2023"
+          },
+          {
+            "language": "uk",
+            "value": "відеогра 2023 року"
+          },
+          {
+            "language": "pl",
+            "value": "gra komputerowa z 2023 roku"
+          },
+          {
+            "language": "fr",
+            "value": "extension de jeu vidéo de 2023"
+          },
+          {
+            "language": "nn",
+            "value": "dataspel frå 2023"
+          },
+          {
+            "language": "hu",
+            "value": "2023-as videójáték"
+          },
+          {
+            "language": "te",
+            "value": "2023 వీడియో గేమ్"
+          },
+          {
+            "language": "ro",
+            "value": "joc video din 2023"
+          },
+          {
+            "language": "sr",
+            "value": "видео-игра из 2023. године"
+          },
+          {
+            "language": "de",
+            "value": "Computerspiel aus dem Jahr 2023"
+          },
+          {
+            "language": "sc",
+            "value": "videojòcu de 2023"
+          },
+          {
+            "language": "eu",
+            "value": "2023 bideo-joko"
+          },
+          {
+            "language": "lb",
+            "value": "Computerspill aus dem Joer 2023"
+          },
+          {
+            "language": "hr",
+            "value": "videoigra iz 2023. godine"
+          },
+          {
+            "language": "sv",
+            "value": "datorspel från 2023"
+          },
+          {
+            "language": "tr",
+            "value": "2023 video oyunu"
+          },
+          {
+            "language": "ca",
+            "value": "videojoc de 2023"
+          },
+          {
+            "language": "ga",
+            "value": "físchluiche a foilsíodh sa bhliain 2023"
+          },
+          {
+            "language": "bn",
+            "value": "২০২৩ ভিডিও গেম"
+          },
+          {
+            "language": "pt",
+            "value": "jogo eletrônico de 2023"
+          },
+          {
+            "language": "it",
+            "value": "videogioco del 2023"
+          },
+          {
+            "language": "is",
+            "value": "tölvuleikur frá 2023"
+          },
+          {
+            "language": "es",
+            "value": "videojuego de 2023"
+          },
+          {
+            "language": "he",
+            "value": "חבילת הרחבה משנת 2023 למשחק Cyberpunk 2077"
+          },
+          {
+            "language": "da",
+            "value": "computerspil fra 2023"
+          },
+          {
+            "language": "lt",
+            "value": "2023 metų kompiuterinis žaidimas"
+          },
+          {
+            "language": "hy",
+            "value": "2023 թվականի համակարգչային խաղ"
+          },
+          {
+            "language": "ko",
+            "value": "2023년 비디오 게임 확장팩"
+          },
+          {
+            "language": "eo",
+            "value": "videoludo de 2023"
+          },
+          {
+            "language": "fi",
+            "value": "2023 videopeli"
+          },
+          {
+            "language": "mk",
+            "value": "видеоигра од 2023 година"
+          },
+          {
+            "language": "el",
+            "value": "βιντεοπαιχνίδι του 2023"
+          },
+          {
+            "language": "ka",
+            "value": "2023 წლის ვიდეო თამაში"
+          },
+          {
+            "language": "gl",
+            "value": "videoxogo de 2023"
+          },
+          {
+            "language": "be",
+            "value": "камп’ютарная гульня 2023 года"
+          },
+          {
+            "language": "sk",
+            "value": "počítačová hra z 2023"
+          },
+          {
+            "language": "ar",
+            "value": "لعبة فيديو صدرت سنة 2023"
+          },
+          {
+            "language": "nb",
+            "value": "videospill fra 2023"
+          },
+          {
+            "language": "cs",
+            "value": "rozšíření videohry"
+          },
+          {
+            "language": "sq",
+            "value": "video lojë e vitit 2023"
+          },
+          {
+            "language": "lv",
+            "value": "2023. gadā videospēle"
+          },
+          {
+            "language": "en",
+            "value": "2023 video game expansion developed by CD Projekt RED"
+          },
+          {
+            "language": "de",
+            "value": "Ein Söldner muss Spionage und Verrat meistern, um einen Präsidenten zu retten und dunkle Geheimnisse in einer gesetzlosen Stadt aufzudecken."
+          },
+          {
+            "language": "es",
+            "value": "Un mercenario debe navegar entre espionaje y traición para rescatar a un presidente y descubrir oscuros secretos en una ciudad sin ley."
+          },
+          {
+            "language": "fr",
+            "value": "Un mercenaire doit naviguer entre espionnage et trahison pour sauver un président et révéler des secrets sombres dans une ville sans loi."
+          },
+          {
+            "language": "en",
+            "value": "A mercenary must navigate espionage and betrayal to rescue a president and uncover dark secrets in a lawless city."
+          }
+        ]
+      },
+      "popularity": 0.9480917523558872,
+      "disambiguation": "2023-09-26, CD Projekt Red Studio",
+      "tags": [
+        {
+          "name": "3D",
+          "tag_id": "urn:tag:art_style:qloo:3d",
+          "type": "urn:tag:art_style:qloo"
+        },
+        {
+          "name": "Photorealistic",
+          "tag_id": "urn:tag:art_style:qloo:photorealistic",
+          "type": "urn:tag:art_style:qloo"
+        },
+        {
+          "name": "Cyberpunk neon",
+          "tag_id": "urn:tag:art_style:qloo:cyberpunk_neon",
+          "type": "urn:tag:art_style:qloo"
+        },
+        {
+          "name": "story-rich",
+          "tag_id": "urn:tag:audience:qloo:story_rich",
+          "type": "urn:tag:audience:qloo"
+        },
+        {
+          "name": "high production values",
+          "tag_id": "urn:tag:audience:qloo:high_production_values",
+          "type": "urn:tag:audience:qloo"
+        },
+        {
+          "name": "mature themes",
+          "tag_id": "urn:tag:audience:qloo:mature_themes",
+          "type": "urn:tag:audience:qloo"
+        },
+        {
+          "name": "strong voice performances",
+          "tag_id": "urn:tag:audience:qloo:strong_voice_performances",
+          "type": "urn:tag:audience:qloo"
+        },
+        {
+          "name": "immersive worldbuilding",
+          "tag_id": "urn:tag:audience:qloo:immersive_worldbuilding",
+          "type": "urn:tag:audience:qloo"
+        },
+        {
+          "name": "tense",
+          "tag_id": "urn:tag:emotional_tone:qloo:tense",
+          "type": "urn:tag:emotional_tone:qloo"
+        },
+        {
+          "name": "gritty",
+          "tag_id": "urn:tag:emotional_tone:qloo:gritty",
+          "type": "urn:tag:emotional_tone:qloo"
+        },
+        {
+          "name": "suspenseful",
+          "tag_id": "urn:tag:emotional_tone:qloo:suspenseful",
+          "type": "urn:tag:emotional_tone:qloo"
+        },
+        {
+          "name": "dark",
+          "tag_id": "urn:tag:emotional_tone:qloo:dark",
+          "type": "urn:tag:emotional_tone:qloo"
+        },
+        {
+          "name": "melancholic",
+          "tag_id": "urn:tag:emotional_tone:qloo:melancholic",
+          "type": "urn:tag:emotional_tone:qloo"
+        },
+        {
+          "name": "Single-player",
+          "tag_id": "urn:tag:gameplay_type:qloo:single_player",
+          "type": "urn:tag:gameplay_type:qloo"
+        },
+        {
+          "name": "Expansion / DLC",
+          "tag_id": "urn:tag:gameplay_type:qloo:expansion_dlc",
+          "type": "urn:tag:gameplay_type:qloo"
+        },
+        {
+          "name": "Open world",
+          "tag_id": "urn:tag:gameplay_type:qloo:open_world",
+          "type": "urn:tag:gameplay_type:qloo"
+        },
+        {
+          "name": "Action RPG",
+          "tag_id": "urn:tag:gameplay_type:qloo:action_rpg",
+          "type": "urn:tag:gameplay_type:qloo"
+        },
+        {
+          "name": "Action",
+          "tag_id": "urn:tag:genre:qloo:action",
+          "type": "urn:tag:genre:qloo"
+        },
+        {
+          "name": "Role-Playing",
+          "tag_id": "urn:tag:genre:qloo:role_playing",
+          "type": "urn:tag:genre:qloo"
+        },
+        {
+          "name": "PlayStation 5",
+          "tag_id": "urn:tag:platform:qloo:playstation_5",
+          "type": "urn:tag:platform:qloo"
+        },
+        {
+          "name": "Xbox Series X",
+          "tag_id": "urn:tag:platform:qloo:xbox_series_x",
+          "type": "urn:tag:platform:qloo"
+        },
+        {
+          "name": "PC",
+          "tag_id": "urn:tag:platform:qloo:pc",
+          "type": "urn:tag:platform:qloo"
+        },
+        {
+          "name": "single-player",
+          "tag_id": "urn:tag:player_mode:qloo:single_player",
+          "type": "urn:tag:player_mode:qloo"
+        },
+        {
+          "name": "Moderate",
+          "tag_id": "urn:tag:skill_level:qloo:moderate",
+          "type": "urn:tag:skill_level:qloo"
+        },
+        {
+          "name": "Open World",
+          "tag_id": "urn:tag:category:qloo:open_world",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "RPG",
+          "tag_id": "urn:tag:category:qloo:rpg",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "Action",
+          "tag_id": "urn:tag:category:qloo:action",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "Story Rich",
+          "tag_id": "urn:tag:category:qloo:story_rich",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "Singleplayer",
+          "tag_id": "urn:tag:category:qloo:singleplayer",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "Cyberpunk",
+          "tag_id": "urn:tag:category:qloo:cyberpunk",
+          "type": "urn:tag:category:qloo"
+        },
+        {
+          "name": "Adventure",
+          "tag_id": "urn:tag:category:qloo:adventure",
+          "type": "urn:tag:category:qloo"
+        }
+      ]
+    }
+  ]
+}

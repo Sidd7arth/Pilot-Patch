@@ -1,0 +1,1479 @@
+{
+  "success": true,
+  "results": {
+    "entities": [
+      {
+        "name": "Bad Bunny",
+        "entity_id": "BDA1B73F-10E7-4D09-AC51-B796CCEC5FF3",
+        "type": "urn:entity",
+        "subtype": "urn:entity:artist",
+        "properties": {
+          "image": {
+            "url": "https://images.qloo.com/i/BDA1B73F-10E7-4D09-AC51-B796CCEC5FF3-420x-auto.jpg"
+          },
+          "vocals": "Distinctive lower-register baritone delivery with melodic use of autotune and frequent falsetto; mixes monotone, rhythmic trap flows with sung hooks and emotive phrasing.",
+          "aliases": [
+            "Bad Bunny",
+            "El Conejo Malo",
+            "Benito"
+          ],
+          "members": [],
+          "is_group": false,
+          "biography": "Benito Antonio Martínez Ocasio was born on March 10, 1994 in San Juan, Puerto Rico and grew up on the island. He studied audiovisual communications and worked ordinary jobs while uploading music to SoundCloud; his 2016 breakthrough singles and heavy streaming traction led to major-label attention. Bad Bunny's early success came from a mix of trap-inflected singles and high-profile collaborations; subsequent albums established him as a global headliner. He is noted for blending reggaeton, Latin trap and pop, for his outspoken public persona and for using fashion and performance to challenge norms.",
+          "known_for": "Popularizing Latin trap and modern reggaeton globally, genre-blending production, distinctive vocal tone and a fashion-forward, outspoken public image.",
+          "start_year": 2016,
+          "voice_type": [
+            "Baritone"
+          ],
+          "description": "Bad Bunny (Benito Antonio Martínez Ocasio) is a Puerto Rican singer, rapper and songwriter who helped bring Latin trap and contemporary reggaeton to a global audience. Known for genre-blending production, distinctive vocal delivery and bold fashion, he rose from SoundCloud uploads to mainstream crossover success through high-profile collaborations and multiple chart-topping albums.",
+          "instruments": [
+            "Vocals",
+            "Guitar (occasional)"
+          ],
+          "collaborators": [
+            "Cardi B",
+            "J Balvin",
+            "Drake",
+            "Rosalía",
+            "Anuel AA",
+            "Jhay Cortez",
+            "Tainy",
+            "Sech"
+          ],
+          "date_of_birth": "1994-03-10",
+          "influenced_by": [
+            "Daddy Yankee",
+            "Tego Calderón",
+            "Don Omar",
+            "Arcángel",
+            "Drake"
+          ],
+          "notable_songs": [
+            "Soy Peor",
+            "I Like It",
+            "MIA",
+            "Callaíta",
+            "Vete",
+            "Safaera",
+            "Yo Perreo Sola",
+            "Dakiti",
+            "Tití Me Preguntó"
+          ],
+          "lyrical_themes": [
+            "Love",
+            "Heartbreak",
+            "Partying",
+            "Desire",
+            "Street Life",
+            "Identity",
+            "Masculinity",
+            "Sexuality",
+            "Social Commentary",
+            "Mental Health"
+          ],
+          "place_of_birth": "San Juan, Puerto Rico",
+          "primary_genres": [
+            "Latin Trap",
+            "Reggaeton",
+            "Latin Urban",
+            "Trap Latino",
+            "Latin Pop"
+          ],
+          "characteristics": [
+            "Innovative",
+            "Genre-Bending",
+            "Trendsetting",
+            "Outspoken",
+            "Fashion-Forward",
+            "Experimental",
+            "Charismatic",
+            "Playful"
+          ],
+          "cultural_impact": "Bad Bunny helped bring Latin trap and a modern reggaeton sound to global mainstream streaming and charts, breaking language barriers via high-profile collaborations and record-setting Spanish-language albums; he has influenced fashion, challenged gender norms on stage and become a major cultural figure for younger, bilingual Latinx audiences.",
+          "obscurity_scale": [
+            "1"
+          ],
+          "complexity_scale": [
+            "5"
+          ],
+          "secondary_genres": [
+            "Hip Hop",
+            "R&B",
+            "Dembow",
+            "Bachata",
+            "Rock",
+            "Ballad"
+          ],
+          "associated_brands": [
+            "Crocs",
+            "Adidas"
+          ],
+          "genres_influenced": [
+            "Latin Trap",
+            "Reggaeton",
+            "Latin Pop",
+            "Urban Latin",
+            "Mainstream Pop"
+          ],
+          "performance_style": "High-energy, visually driven shows that blend live band elements with DJ/track production, bold costume and fashion statements, direct crowd interaction and moments of intimacy; performances often mix choreography, theatrical staging and spontaneous moments.",
+          "artists_influenced": [
+            "Rauw Alejandro",
+            "Feid",
+            "Myke Towers",
+            "Sech"
+          ],
+          "short_descriptions": [
+            {
+              "value": "Puerto-ricanischer Sänger, Rapper und Songwriter, bekannt dafür, Latin Trap und Reggaeton weltweit populär gemacht zu haben.",
+              "languages": [
+                "de"
+              ]
+            },
+            {
+              "value": "Chanteur, rappeur et auteur-compositeur portoricain connu pour populariser le trap latino et le reggaeton dans le monde.",
+              "languages": [
+                "fr"
+              ]
+            },
+            {
+              "value": "Puerto Rican singer, rapper, and songwriter known for popularizing Latin trap and reggaeton worldwide.",
+              "languages": [
+                "en"
+              ]
+            },
+            {
+              "value": "Cantante, rapero y compositor puertorriqueño conocido por popularizar el trap latino y el reguetón a nivel mundial.",
+              "languages": [
+                "es"
+              ]
+            }
+          ],
+          "adjectives_for_fans": [
+            "Passionate",
+            "Young",
+            "Bilingual",
+            "Diverse",
+            "Devoted"
+          ],
+          "adjectives_for_music": [
+            "Catchy",
+            "Rhythmic",
+            "Genre-Bending",
+            "Danceable",
+            "Melodic",
+            "Raw",
+            "Urban",
+            "Experimental"
+          ],
+          "lyrical_themes_description": "His lyrics move between hedonistic party anthems and intimate reflections on love, heartbreak and identity; he also touches on street life, masculinity and occasional social/political commentary, often delivered with irony or blunt candor.",
+          "adjectives_for_performance_style": [
+            "Energetic",
+            "Theatrical",
+            "Fashion-Forward",
+            "Interactive",
+            "Unconventional"
+          ],
+          "creative_and_specific_adjectives_for_music": [
+            "Latin Trap-Driven",
+            "Reggaeton-Infused",
+            "Bedroom Pop-Textured",
+            "Piano-Forward Balladry",
+            "Dembow-Laced Beats"
+          ]
+        },
+        "popularity": 0.9937937859216588,
+        "tags": [
+          {
+            "id": "urn:tag:theme:qloo:identity",
+            "name": "Identity",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:urban",
+            "name": "Urban",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:dynamic",
+            "name": "Dynamic",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:reggaeton",
+            "name": "Reggaeton",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:latin_trap",
+            "name": "Latin Trap",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:trap_latino",
+            "name": "Trap Latino",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:obscurity:qloo:2",
+            "name": "2",
+            "type": "urn:tag:obscurity:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:daddy_yankee",
+            "name": "Daddy Yankee",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:reggaeton",
+            "name": "Reggaeton",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:latin_pop",
+            "name": "Latin Pop",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:rhythmic",
+            "name": "Rhythmic",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:arcangel",
+            "name": "Arcangel",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:hip_hop",
+            "name": "Hip Hop",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:genre:music:trap",
+            "name": "Trap",
+            "type": "urn:tag:genre:music"
+          },
+          {
+            "id": "urn:tag:audience:qloo:diverse",
+            "name": "Diverse",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:versatile",
+            "name": "Versatile",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:engaging",
+            "name": "Engaging",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:charismatic",
+            "name": "Charismatic",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:genre:music:trap_latino",
+            "name": "Trap Latino",
+            "type": "urn:tag:genre:music"
+          },
+          {
+            "id": "urn:tag:music:qloo:melodic",
+            "name": "Melodic",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:heartbreak",
+            "name": "Heartbreak",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:love",
+            "name": "Love",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:urban_pop",
+            "name": "Urban Pop",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:trap_latino",
+            "name": "Trap Latino",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:latin_urban",
+            "name": "Latin Urban",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:passionate",
+            "name": "Passionate",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:reggaeton",
+            "name": "Reggaeton",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:tego_calderon",
+            "name": "Tego Calderon",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:vico_c",
+            "name": "Vico C",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:cultural",
+            "name": "Cultural",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:melodic_rap",
+            "name": "Melodic Rap",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:genre:music:latin",
+            "name": "Latin",
+            "type": "urn:tag:genre:music"
+          },
+          {
+            "id": "urn:tag:theme:qloo:social_issues",
+            "name": "Social Issues",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:expressive",
+            "name": "Expressive",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:charismatic",
+            "name": "Charismatic",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:empowerment",
+            "name": "Empowerment",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:youthful",
+            "name": "Youthful",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:bold",
+            "name": "Bold",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:instrument:qloo:vocals",
+            "name": "Vocals",
+            "type": "urn:tag:instrument:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:latin_trap",
+            "name": "Latin Trap",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:genre:music:reggaeton",
+            "name": "Reggaeton",
+            "type": "urn:tag:genre:music"
+          },
+          {
+            "id": "urn:tag:genre:music:puerto_rico",
+            "name": "Puerto Rico",
+            "type": "urn:tag:genre:music"
+          },
+          {
+            "id": "urn:tag:audience:qloo:loyal",
+            "name": "Loyal",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:innovative",
+            "name": "Innovative",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:latin_trap",
+            "name": "Latin Trap",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:young",
+            "name": "Young",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:bilingual",
+            "name": "Bilingual",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:devoted",
+            "name": "Devoted",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:catchy",
+            "name": "Catchy",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:genre_bending",
+            "name": "Genre-Bending",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:danceable",
+            "name": "Danceable",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:raw",
+            "name": "Raw",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:experimental",
+            "name": "Experimental",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:energetic",
+            "name": "Energetic",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:theatrical",
+            "name": "Theatrical",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:fashion_forward",
+            "name": "Fashion-Forward",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:interactive",
+            "name": "Interactive",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:unconventional",
+            "name": "Unconventional",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:genre_bending",
+            "name": "Genre-Bending",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:trendsetting",
+            "name": "Trendsetting",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:outspoken",
+            "name": "Outspoken",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:fashion_forward",
+            "name": "Fashion-Forward",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:experimental",
+            "name": "Experimental",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:playful",
+            "name": "Playful",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:complexity_scale:qloo:5",
+            "name": "5",
+            "type": "urn:tag:complexity_scale:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:latin_trap_driven",
+            "name": "Latin Trap-Driven",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:reggaeton_infused",
+            "name": "Reggaeton-Infused",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:bedroom_pop_textured",
+            "name": "Bedroom Pop-Textured",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:piano_forward_balladry",
+            "name": "Piano-Forward Balladry",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:dembow_laced_beats",
+            "name": "Dembow-Laced Beats",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:latin_pop",
+            "name": "Latin Pop",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:urban_latin",
+            "name": "Urban Latin",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:mainstream_pop",
+            "name": "Mainstream Pop",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:tego_calderon",
+            "name": "Tego Calderón",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:don_omar",
+            "name": "Don Omar",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:arcangel",
+            "name": "Arcángel",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:drake",
+            "name": "Drake",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:instrument:qloo:guitar_occasional_",
+            "name": "Guitar (occasional)",
+            "type": "urn:tag:instrument:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:partying",
+            "name": "Partying",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:desire",
+            "name": "Desire",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:street_life",
+            "name": "Street Life",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:masculinity",
+            "name": "Masculinity",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:sexuality",
+            "name": "Sexuality",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:social_commentary",
+            "name": "Social Commentary",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:mental_health",
+            "name": "Mental Health",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:obscurity:qloo:1",
+            "name": "1",
+            "type": "urn:tag:obscurity:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:latin_urban",
+            "name": "Latin Urban",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:trap_latino",
+            "name": "Trap Latino",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:latin_pop",
+            "name": "Latin Pop",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:r_b",
+            "name": "R&B",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:dembow",
+            "name": "Dembow",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:bachata",
+            "name": "Bachata",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:rock",
+            "name": "Rock",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:ballad",
+            "name": "Ballad",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:voice_type:qloo:baritone",
+            "name": "Baritone",
+            "type": "urn:tag:voice_type:qloo"
+          }
+        ],
+        "query": {
+          "affinity": 0.8776283292276974,
+          "measurements": {
+            "audience_growth": 0
+          }
+        },
+        "disambiguation": "Bad Bunny",
+        "external": {
+          "imdb": [
+            {
+              "id": "nm9559545"
+            }
+          ],
+          "lastfm": [
+            {
+              "id": "bad%20bunny",
+              "listeners": 1701793,
+              "scrobbles": 244869967
+            }
+          ],
+          "spotify": [
+            {
+              "id": "4q3ewBCX7sLwd24euuV69X",
+              "verified": true,
+              "followers": 27964189,
+              "last_release": 2020,
+              "first_release": 2016,
+              "monthly_listeners": 51048847
+            }
+          ],
+          "twitter": [
+            {
+              "id": "sanbenito"
+            }
+          ],
+          "facebook": [
+            {
+              "id": "badbunnyofficial"
+            }
+          ],
+          "wikidata": [
+            {
+              "id": "q44333953"
+            }
+          ],
+          "instagram": [
+            {
+              "id": "badbunnypr"
+            }
+          ],
+          "musicbrainz": [
+            {
+              "id": "89aa5ecb-59ad-46f5-b3eb-2d424e941f19",
+              "artist_type": "Person"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Rosalía",
+        "entity_id": "8BE95420-BCDA-4B00-871F-247A55D35594",
+        "type": "urn:entity",
+        "subtype": "urn:entity:artist",
+        "properties": {
+          "vocals": "Flamenco-trained vocal approach blended with contemporary pop techniques: agile, expressive and rhythmically precise. Uses melisma and traditional cante ornamentation alongside breathy, intimate tones and powerful outbursts; capable of both delicate nuance and dramatic delivery suited to stripped acoustic and densely produced electronic contexts.",
+          "aliases": [
+            "Rosalía",
+            "ROSALÍA"
+          ],
+          "members": [],
+          "is_group": false,
+          "biography": "Born in 1992 on the outskirts of Barcelona, Rosalía became fascinated with Spanish folk and flamenco as a teenager. She studied at the Catalonia College of Music (ESMUC), where she trained in flamenco and musicology while performing locally. Early in her career she recorded Los Ángeles with Raül Refree, a modern, stripped-back take on flamenco; she completed her studies with the baccalaureate project that evolved into El Mal Querer, produced with collaborators including El Guincho. El Mal Querer (2018) propelled her to national fame with singles such as \"Malamente\" and \"Pienso en Tu Mirá,\" earning critical acclaim and major awards. She then broadened her palette into urbano and reggaeton-influenced pop with international hits like \"Con Altura\" and continued to innovate on MOTOMAMI (2022), consolidating her global profile and award success.",
+          "known_for": "Reinventing flamenco for a global pop and urbano audience through bold production, strong visuals, striking choreography and genre-blending songwriting.",
+          "start_year": 2010,
+          "voice_type": [
+            "Mezzo-Soprano"
+          ],
+          "description": "Rosalía Vila Tobella (known mononymously as Rosalía) is a Spanish singer and songwriter who blends traditional flamenco with contemporary urban, pop and experimental production. Raised in Catalonia, she trained in music at the Catalonia College of Music and first gained notice with the collaborative cover album Los Ángeles (with Raül Refree) before achieving mainstream and international breakthrough with El Mal Querer, a genre-bending project that fused flamenco song forms with modern pop and hip-hop production. Since then she has explored urbano and reggaeton textures, collaborated with major global artists, and become one of Spain's most awarded and internationally recognized musical exports.",
+          "instruments": [
+            "Vocals"
+          ],
+          "lowest_note": "A3",
+          "vocal_range": "Mezzo-Soprano, approximately A3–C6",
+          "highest_note": "C6",
+          "collaborators": [
+            "Raül Refree",
+            "El Guincho",
+            "J Balvin",
+            "Travis Scott",
+            "Ozuna",
+            "The Weeknd",
+            "C. Tangana"
+          ],
+          "influenced_by": [
+            "Camarón De La Isla",
+            "Enrique Morente",
+            "La Niña De Los Peines",
+            "Traditional Flamenco",
+            "Contemporary Pop And Urban Production"
+          ],
+          "notable_songs": [
+            "Malamente",
+            "Pienso En Tu Mirá",
+            "Di Mi Nombre",
+            "Con Altura",
+            "Yo X Ti, Tu X Mí",
+            "La Fama",
+            "Saoko",
+            "Despechá",
+            "Aute Cuture"
+          ],
+          "lyrical_themes": [
+            "Love",
+            "Heartbreak",
+            "Desire",
+            "Fame",
+            "Identity",
+            "Female Empowerment",
+            "Passion",
+            "Cultural Heritage"
+          ],
+          "primary_genres": [
+            "Flamenco",
+            "Pop",
+            "Latin Pop",
+            "Urbano",
+            "Experimental Pop",
+            "Reggaeton"
+          ],
+          "characteristics": [
+            "Innovative",
+            "Genre-Bending",
+            "Flamenco-Infused",
+            "Experimental",
+            "Theatrical",
+            "Visionary",
+            "Polished",
+            "Cinematic",
+            "Provocative",
+            "Rhythmic",
+            "Fashion-Forward",
+            "Versatile"
+          ],
+          "cultural_impact": "Rosalía helped bring flamenco-derived sounds into mainstream global pop, recontextualizing traditional Spanish music within contemporary urbano, pop and experimental frameworks. Her work has earned major international awards, opened doors for Spanish-language and flamenco-descended music on global stages, inspired conversations about cultural preservation and appropriation, and influenced a new wave of Latin and Spanish artists blending heritage with modern production.",
+          "obscurity_scale": [
+            "1"
+          ],
+          "complexity_scale": [
+            "8"
+          ],
+          "secondary_genres": [
+            "Hip Hop",
+            "Trap",
+            "Electronica",
+            "Alternative R&B",
+            "Industrial Pop"
+          ],
+          "associated_brands": [],
+          "genres_influenced": [
+            "Nuevo Flamenco",
+            "Flamenco Pop",
+            "Urban Latin",
+            "Alternative Latin Pop",
+            "Experimental Pop"
+          ],
+          "performance_style": "Visually driven, highly staged performances that combine choreography, fashion-forward aesthetics and precise rhythmic delivery; blends intimate cante moments with high-energy pop production.",
+          "artists_influenced": [
+            "Aitana",
+            "Nathy Peluso",
+            "Bad Gyal",
+            "Emerging Nuevo Flamenco And Urban Latin Acts"
+          ],
+          "short_descriptions": [
+            {
+              "value": "Chanteuse et auteure-compositrice espagnole, connue pour mêler le flamenco à la pop et aux musiques urbaines contemporaines.",
+              "languages": [
+                "fr"
+              ]
+            },
+            {
+              "value": "Spanische Sängerin und Songwriterin, bekannt für die Verschmelzung von Flamenco mit zeitgenössischem Pop und urbanen Sounds.",
+              "languages": [
+                "de"
+              ]
+            },
+            {
+              "value": "Spanish singer and songwriter known for blending flamenco with contemporary urban and pop music.",
+              "languages": [
+                "en"
+              ]
+            },
+            {
+              "value": "Cantante y compositora española conocida por fusionar el flamenco con la música pop y urbana contemporánea.",
+              "languages": [
+                "es"
+              ]
+            }
+          ],
+          "adjectives_for_fans": [
+            "Passionate",
+            "Diverse",
+            "Fashion-Forward",
+            "Young",
+            "Devoted",
+            "International"
+          ],
+          "adjectives_for_music": [
+            "Flamenco-Infused",
+            "Genre-Bending",
+            "Experimental",
+            "Rhythmic",
+            "Cinematic",
+            "Bold",
+            "Minimalist",
+            "Polished",
+            "Sensual",
+            "Contemporary"
+          ],
+          "lyrical_themes_description": "Rosalía's lyrics frequently navigate romance, longing and heartbreak filtered through flamenco motifs, while also addressing fame, identity and female empowerment. She juxtaposes intimate, traditional cante themes with contemporary urban references and modern relationship dynamics, mixing poetic imagery with candid, sometimes provocative language.",
+          "adjectives_for_performance_style": [
+            "Theatrical",
+            "Choreographed",
+            "Visual",
+            "Intense",
+            "Precise",
+            "Fashion-Forward"
+          ],
+          "creative_and_specific_adjectives_for_music": [
+            "Flamenco-Infused Pop",
+            "Urbano-Experimental",
+            "Reggaeton-Deconstructed",
+            "Cinematic Flamenco",
+            "Art-Pop Minimalism"
+          ],
+          "image": {
+            "url": "https://images.qloo.com/i/8BE95420-BCDA-4B00-871F-247A55D35594-420x-auto.jpg"
+          }
+        },
+        "popularity": 0.9940952493298992,
+        "tags": [
+          {
+            "id": "urn:tag:instrument:qloo:vocals",
+            "name": "Vocals",
+            "type": "urn:tag:instrument:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:latin_urban",
+            "name": "Latin Urban",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:cultural_heritage",
+            "name": "Cultural Heritage",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:bold",
+            "name": "Bold",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:flamenco_infused_pop",
+            "name": "Flamenco-Infused Pop",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:obscurity:qloo:2",
+            "name": "2",
+            "type": "urn:tag:obscurity:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:diverse",
+            "name": "Diverse",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:urban",
+            "name": "Urban",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:passionate",
+            "name": "Passionate",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:dynamic",
+            "name": "Dynamic",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:experimental_trap",
+            "name": "Experimental Trap",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:instrument:qloo:guitar",
+            "name": "Guitar",
+            "type": "urn:tag:instrument:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:youthful",
+            "name": "Youthful",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:reggaeton",
+            "name": "Reggaeton",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:kanye_west",
+            "name": "Kanye West",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:versatile",
+            "name": "Versatile",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:experimental",
+            "name": "Experimental",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:charismatic",
+            "name": "Charismatic",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:travis_scott",
+            "name": "Travis Scott",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:contemporary_pop",
+            "name": "Contemporary Pop",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:expressive",
+            "name": "Expressive",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:flamenco",
+            "name": "Flamenco",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:innovative",
+            "name": "Innovative",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:artistic",
+            "name": "Artistic",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:la_nina_de_los_peines",
+            "name": "La Niña De Los Peines",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:r_b",
+            "name": "R&B",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:trap",
+            "name": "Trap",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:beyonce",
+            "name": "Beyonce",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:camaron_de_la_isla",
+            "name": "Camaron de la Isla",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:loyal",
+            "name": "Loyal",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:love",
+            "name": "Love",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:energetic",
+            "name": "Energetic",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:theatrical",
+            "name": "Theatrical",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:latin_r_b",
+            "name": "Latin R&B",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:latin",
+            "name": "Latin",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:pop",
+            "name": "Pop",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:rhythmic",
+            "name": "Rhythmic",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:empowerment",
+            "name": "Empowerment",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:urban_flamenco",
+            "name": "Urban Flamenco",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:electro_flamenco",
+            "name": "Electro-Flamenco",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:heartbreak",
+            "name": "Heartbreak",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:flamenco_fusion",
+            "name": "Flamenco Fusion",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:expressive",
+            "name": "Expressive",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:identity",
+            "name": "Identity",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:fashion_forward",
+            "name": "Fashion-Forward",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:young",
+            "name": "Young",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:devoted",
+            "name": "Devoted",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:audience:qloo:international",
+            "name": "International",
+            "type": "urn:tag:audience:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:flamenco_infused",
+            "name": "Flamenco-Infused",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:genre_bending",
+            "name": "Genre-Bending",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:experimental",
+            "name": "Experimental",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:cinematic",
+            "name": "Cinematic",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:bold",
+            "name": "Bold",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:minimalist",
+            "name": "Minimalist",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:polished",
+            "name": "Polished",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:sensual",
+            "name": "Sensual",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:music:qloo:contemporary",
+            "name": "Contemporary",
+            "type": "urn:tag:music:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:choreographed",
+            "name": "Choreographed",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:visual",
+            "name": "Visual",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:intense",
+            "name": "Intense",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:precise",
+            "name": "Precise",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:fashion_forward",
+            "name": "Fashion-Forward",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:genre_bending",
+            "name": "Genre-Bending",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:flamenco_infused",
+            "name": "Flamenco-Infused",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:experimental",
+            "name": "Experimental",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:theatrical",
+            "name": "Theatrical",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:visionary",
+            "name": "Visionary",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:polished",
+            "name": "Polished",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:cinematic",
+            "name": "Cinematic",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:provocative",
+            "name": "Provocative",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:rhythmic",
+            "name": "Rhythmic",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:artist:qloo:fashion_forward",
+            "name": "Fashion-Forward",
+            "type": "urn:tag:artist:qloo"
+          },
+          {
+            "id": "urn:tag:complexity_scale:qloo:8",
+            "name": "8",
+            "type": "urn:tag:complexity_scale:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:urbano_experimental",
+            "name": "Urbano-Experimental",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:reggaeton_deconstructed",
+            "name": "Reggaeton-Deconstructed",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:cinematic_flamenco",
+            "name": "Cinematic Flamenco",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:style:qloo:art_pop_minimalism",
+            "name": "Art-Pop Minimalism",
+            "type": "urn:tag:style:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:nuevo_flamenco",
+            "name": "Nuevo Flamenco",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:flamenco_pop",
+            "name": "Flamenco Pop",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:urban_latin",
+            "name": "Urban Latin",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:alternative_latin_pop",
+            "name": "Alternative Latin Pop",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:influence:qloo:experimental_pop",
+            "name": "Experimental Pop",
+            "type": "urn:tag:influence:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:camaron_de_la_isla",
+            "name": "Camarón De La Isla",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:enrique_morente",
+            "name": "Enrique Morente",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:traditional_flamenco",
+            "name": "Traditional Flamenco",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:influenced_by:qloo:contemporary_pop_and_urban_production",
+            "name": "Contemporary Pop And Urban Production",
+            "type": "urn:tag:influenced_by:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:desire",
+            "name": "Desire",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:fame",
+            "name": "Fame",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:female_empowerment",
+            "name": "Female Empowerment",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:theme:qloo:passion",
+            "name": "Passion",
+            "type": "urn:tag:theme:qloo"
+          },
+          {
+            "id": "urn:tag:obscurity:qloo:1",
+            "name": "1",
+            "type": "urn:tag:obscurity:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:latin_pop",
+            "name": "Latin Pop",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:urbano",
+            "name": "Urbano",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:experimental_pop",
+            "name": "Experimental Pop",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:genre:qloo:reggaeton",
+            "name": "Reggaeton",
+            "type": "urn:tag:genre:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:hip_hop",
+            "name": "Hip Hop",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:electronica",
+            "name": "Electronica",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:alternative_r_b",
+            "name": "Alternative R&B",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:subgenre:qloo:industrial_pop",
+            "name": "Industrial Pop",
+            "type": "urn:tag:subgenre:qloo"
+          },
+          {
+            "id": "urn:tag:voice_type:qloo:mezzo_soprano",
+            "name": "Mezzo-Soprano",
+            "type": "urn:tag:voice_type:qloo"
+          }
+        ],
+        "query": {
+          "affinity": 0.8568138498997684,
+          "measurements": {
+            "audience_growth": 0
+          }
+        },
+        "disambiguation": "Rosalía",
+        "external": {
+          "imdb": [
+            {
+              "id": "nm0740998"
+            },
+            {
+              "id": "nm8837492"
+            }
+          ],
+          "lastfm": [
+            {
+              "id": "rosal%C3%ADa",
+              "listeners": 1402583,
+              "scrobbles": 128217503
+            }
+          ],
+          "spotify": [
+            {
+              "id": "7ltDVBr6mKbRvohxheJ9h1",
+              "verified": true,
+              "followers": 4382547,
+              "last_release": 2020,
+              "first_release": 2017,
+              "monthly_listeners": 28415270
+            },
+            {
+              "id": "4fCoiBY4aGWV8t2yqEIhai",
+              "verified": true,
+              "followers": 248,
+              "monthly_listeners": 0
+            }
+          ],
+          "twitter": [
+            {
+              "id": "rosalia"
+            }
+          ],
+          "facebook": [
+            {
+              "id": "rosalia.vt"
+            }
+          ],
+          "wikidata": [
+            {
+              "id": "q28843759"
+            },
+            {
+              "id": "q5394851"
+            }
+          ],
+          "instagram": [
+            {
+              "id": "rosalia.vt"
+            }
+          ],
+          "musicbrainz": [
+            {
+              "id": "3e666715-f92a-4b68-8314-cceb5cd98861",
+              "artist_type": "Group"
+            },
+            {
+              "id": "25f3abd9-63b5-471a-bd25-feb9672dfa11",
+              "artist_type": "Person"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

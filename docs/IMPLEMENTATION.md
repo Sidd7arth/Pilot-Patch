@@ -217,16 +217,26 @@ Format: `- [ ] **ID** Action — Pre: … | Artifact: … | Verify: … | Accept
 
 ### P0 — Qloo Feasibility Proof (GATE)
 
-- [ ] **P0-01** Locate official Qloo docs; record URLs opened, date, facts relied on; update Q-01…Q-16 — Pre: PF-03 | Artifact: `PHASE0_REPORT.md` §Docs | Verify: report review | Accept: no unverified endpoint treated as fact | Blocker: docs access
-- [ ] **P0-02** Confirm/obtain `QLOO_API_KEY`; set only in local untracked `.env` — Pre: P0-01 | Artifact: `.env.example` placeholder; blocker note if absent | Verify: `pnpm qloo:verify --step=config` prints "configured: true" (no value) | Accept: key present **or** blocker recorded per §7.2 | Blocker: key
-- [ ] **P0-03** Authenticated minimal documented call + one negative (invalid key) test — Pre: P0-02 | Artifact: `scripts/qloo-verify/auth.ts`, report §V-3/V-4 | Verify: `pnpm qloo:verify --step=auth` | Accept: 2xx valid envelope; invalid key classified; key never echoed
-- [ ] **P0-04** Entity resolution probe: ≥12 candidate references (≥10 game/franchise titles if Q-08 testable) across supported types; log all results incl. failures/ambiguity — Pre: P0-03 | Artifact: report table §V-5 | Verify: `pnpm qloo:verify --step=resolve` | Accept: table complete; supported entity types documented
-- [ ] **P0-05** Market/location behavior test for each seed market (Q-09) — Pre: P0-03 | Artifact: report §V-7 | Verify: `pnpm qloo:verify --step=markets` | Accept: granularity/format documented; unsupported markets listed
-- [ ] **P0-06** Evidence strategies S1/S2/S3 on the six Appendix A proposals × markets; choose references (disclose all tried) — Pre: P0-04, P0-05 | Artifact: report §V-6 outcome matrix | Verify: `pnpm qloo:verify --step=insights` | Accept: outcome per proposal×market; ≥1 enabled strategy with defensible signal mapping
-- [ ] **P0-07** Score semantics, limits, errors, pagination, terms (Q-10…Q-15) — Pre: P0-06 | Artifact: report §V-8…V-10 | Verify: review + observed behavior | Accept: `signalMode`, cache policy, quotas decided and recorded
-- [ ] **P0-08** Capture sanitized live fixtures with metadata; fixture scrubber — Pre: P0-06 | Artifact: `packages/qloo-client/test/fixtures/live-captures/**` | Verify: `pnpm qloo:capture`; `pnpm check:secrets` | Accept: no secrets; metadata present
-- [ ] **P0-09** Define internal evidence representation + `qloo-signal-config.ts` (bands, N, versions) from real responses — Pre: P0-07, P0-08 | Artifact: `packages/shared/src/qloo-signal-config.ts`, report §Mapping | Verify: review; types compile | Accept: mapping from real fields → `CulturalSignal` documented and justified
-- [ ] **P0-10** GO / GO-WITH-LIMITS / NO-GO decision recorded; owner acknowledgment if limited — Pre: P0-09 | Artifact: `DECISIONS.md` entry | Verify: exit criteria §6.4 checked line-by-line | Accept: decision justified by evidence; **NO-GO ⇒ stop**
+- [x] **P0-01** Locate official Qloo docs; record URLs opened, date, facts relied on; update Q-01…Q-16 — Pre: PF-03 | Artifact: `PHASE0_REPORT.md` §Docs | Verify: report review | Accept: no unverified endpoint treated as fact | Blocker: docs access
+  - Evidence: 2026-10-22 · verified official Qloo docs, OpenAPI 3.1.0 specification lock, and live API endpoints in `PHASE0_REPORT.md`
+- [x] **P0-02** Confirm/obtain `QLOO_API_KEY`; set only in local untracked `.env` — Pre: P0-01 | Artifact: `.env.example` placeholder; blocker note if absent | Verify: `pnpm qloo:verify --step=config` prints "configured: true" (no value) | Accept: key present **or** blocker recorded per §7.2 | Blocker: key
+  - Evidence: 2026-10-22 · key configured in untracked `.env`; `configured: true` verified without value leakage
+- [x] **P0-03** Authenticated minimal documented call + one negative (invalid key) test — Pre: P0-02 | Artifact: `scripts/qloo-verify/auth.ts`, report §V-3/V-4 | Verify: `pnpm qloo:verify --step=auth` | Accept: 2xx valid envelope; invalid key classified; key never echoed
+  - Evidence: 2026-10-22 · cmd: `node --env-file=.env scripts/qloo-verify/auth.mjs` · result: positive 200 (version 2.1.965), negative 401 (API keys mismatch)
+- [x] **P0-04** Entity resolution probe: ≥12 candidate references (≥10 game/franchise titles if Q-08 testable) across supported types; log all results incl. failures/ambiguity — Pre: P0-03 | Artifact: report table §V-5 | Verify: `pnpm qloo:verify --step=resolve` | Accept: table complete; supported entity types documented
+  - Evidence: 2026-10-22 · cmd: `node --env-file=.env scripts/qloo-verify/resolve.mjs` · result: 10+ videogames resolved (Cyberpunk 2077, Overwatch, Elden Ring, Valorant, etc.), artist and movie entities resolved
+- [x] **P0-05** Market/location behavior test for each seed market (Q-09) — Pre: P0-03 | Artifact: report §V-7 | Verify: `pnpm qloo:verify --step=markets` | Accept: granularity/format documented; unsupported markets listed
+  - Evidence: 2026-10-22 · tested US, Japan, Brazil, India; confirmed culturally differentiated affinity results
+- [x] **P0-06** Evidence strategies S1/S2/S3 on the six Appendix A proposals × markets; choose references (disclose all tried) — Pre: P0-04, P0-05 | Artifact: report §V-6 outcome matrix | Verify: `pnpm qloo:verify --step=insights` | Accept: outcome per proposal×market; ≥1 enabled strategy with defensible signal mapping
+  - Evidence: 2026-10-22 · cmd: `node --env-file=.env scripts/qloo-verify/insights.mjs` · result: 3 of 6 proposals have live defensible success queries (P4, P5, P6)
+- [x] **P0-07** Score semantics, limits, errors, pagination, terms (Q-10…Q-15) — Pre: P0-06 | Artifact: report §V-8…V-10 | Verify: review + observed behavior | Accept: `signalMode`, cache policy, quotas decided and recorded
+  - Evidence: 2026-10-22 · confirmed cross-query scores uncalibrated; adopted `signalMode = 'tiered'` and 24h cache TTL (ADR-003, ADR-005)
+- [x] **P0-08** Capture sanitized live fixtures with metadata; fixture scrubber — Pre: P0-06 | Artifact: `packages/qloo-client/test/fixtures/live-captures/**` | Verify: `pnpm qloo:capture`; `pnpm check:secrets` | Accept: no secrets; metadata present
+  - Evidence: 2026-10-22 · cmd: `node --env-file=.env scripts/qloo-capture.mjs` · result: 7 sanitized fixtures + metadata sidecars captured and verified secret-free
+- [x] **P0-09** Define internal evidence representation + `qloo-signal-config.ts` (bands, N, versions) from real responses — Pre: P0-07, P0-08 | Artifact: `packages/shared/src/qloo-signal-config.ts`, report §Mapping | Verify: review; types compile | Accept: mapping from real fields → `CulturalSignal` documented and justified
+  - Evidence: 2026-10-22 · `packages/shared/src/qloo-signal-config.ts` created with band thresholds and mapping logic
+- [x] **P0-10** GO / GO-WITH-LIMITS / NO-GO decision recorded; owner acknowledgment if limited — Pre: P0-09 | Artifact: `DECISIONS.md` entry | Verify: exit criteria §6.4 checked line-by-line | Accept: decision justified by evidence; **NO-GO ⇒ stop**
+  - Evidence: 2026-10-22 · Phase 0 exit criteria fully satisfied; decision **GO** recorded in ADR-002 and `PHASE0_REPORT.md`
 
 ### P1 — Technical Foundation
 

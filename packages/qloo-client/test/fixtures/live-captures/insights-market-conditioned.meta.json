@@ -1,0 +1,19 @@
+{
+  "endpoint": "/v2/insights",
+  "sanitizedParams": {
+    "signal.interests.entities": "0E018750-0B04-4C65-89E8-DF545A1B13E6",
+    "filter.type": "urn:entity:videogame",
+    "filter.results.entities": "8E474FED-3ACD-46B1-A51C-C28B9FA206B1,B2344587-2AF4-4A4A-A018-5CCDE6E3B1A0",
+    "signal.location.query": "Japan",
+    "take": 2
+  },
+  "httpStatus": 200,
+  "capturedAt": "2026-10-22T13:16:11.372Z",
+  "durationMs": 461,
+  "qRegisterReferences": [
+    "Q-05",
+    "Q-09"
+  ],
+  "origin": "test_fixture",
+  "description": "S2 market-conditioned candidate affinity for Japan"
+}
