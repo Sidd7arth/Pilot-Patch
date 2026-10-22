@@ -7,12 +7,15 @@ import { randomUUID } from 'crypto';
 import type { AppConfig } from '../config/env.js';
 import { createLogger } from '../observability/logger.js';
 import { createErrorHandler } from './error-handler.js';
+import type { QlooService } from '../modules/qloo/index.js';
+import { createQlooRouter } from './routes/qloo.js';
 
 export interface AppDependencies {
   config: AppConfig;
-  logger?: ReturnType<typeof createLogger>;
-  dbCheck?: () => Promise<boolean>;
-  configureRoutes?: (app: Express) => void;
+  logger?: ReturnType<typeof createLogger> | undefined;
+  dbCheck?: (() => Promise<boolean>) | undefined;
+  qlooService?: QlooService | undefined;
+  configureRoutes?: ((app: Express) => void) | undefined;
 }
 
 export function createApp(deps: AppDependencies): Express {
@@ -101,22 +104,26 @@ export function createApp(deps: AppDependencies): Express {
   // 7. API routes mount point (/api/v1)
   const v1Router = express.Router();
 
-  v1Router.get('/qloo/status', (_req: Request, res: Response) => {
-    // Stub for P1-05 StatusPill
-    const isConfigured = Boolean(
-      deps.config.QLOO_API_KEY &&
-      deps.config.QLOO_API_KEY.trim().length > 0 &&
-      !deps.config.QLOO_API_KEY.includes('replace-with'),
-    );
+  if (deps.qlooService) {
+    v1Router.use('/', createQlooRouter(deps.qlooService));
+  } else {
+    v1Router.get('/qloo/status', (_req: Request, res: Response) => {
+      // Stub for P1-05 StatusPill
+      const isConfigured = Boolean(
+        deps.config.QLOO_API_KEY &&
+        deps.config.QLOO_API_KEY.trim().length > 0 &&
+        !deps.config.QLOO_API_KEY.includes('replace-with'),
+      );
 
-    res.status(200).json({
-      configured: isConfigured,
-      baseUrl: deps.config.QLOO_API_BASE_URL,
-      status: isConfigured ? 'connected' : 'not_configured',
-      circuitBreaker: 'closed',
-      timestamp: new Date().toISOString(),
+      res.status(200).json({
+        configured: isConfigured,
+        baseUrl: deps.config.QLOO_API_BASE_URL,
+        status: isConfigured ? 'connected' : 'not_configured',
+        circuitBreaker: 'closed',
+        timestamp: new Date().toISOString(),
+      });
     });
-  });
+  }
 
   app.use('/api/v1', v1Router);
 

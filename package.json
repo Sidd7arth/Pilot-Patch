@@ -28,6 +28,10 @@
     "smoke:deployed": "node scripts/smoke-deployed.mjs"
   },
   "devDependencies": {
+    "@types/pg": "^8.23.1",
+    "drizzle-kit": "^0.31.11",
+    "drizzle-orm": "^0.45.4",
+    "pg": "^8.23.1",
     "prettier": "^3.5.0",
     "turbo": "^2.4.0",
     "typescript": "^5.7.0",

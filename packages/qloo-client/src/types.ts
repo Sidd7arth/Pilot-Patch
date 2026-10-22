@@ -26,10 +26,12 @@ export interface QlooProvenance {
   durationMs: number;
   attempts: number;
   adapterVersion: string;
-  qloo?: {
-    requestId?: string | undefined;
-    apiVersion?: string | undefined;
-  } | undefined;
+  qloo?:
+    | {
+        requestId?: string | undefined;
+        apiVersion?: string | undefined;
+      }
+    | undefined;
   rawResponse?: unknown;
   schemaMismatch?: boolean | undefined;
 }
@@ -94,4 +96,5 @@ export interface QlooClient {
   ): Promise<QlooResult<EntityCandidate[]>>;
   getInsights(req: InsightsRequest, ctx?: CallContext): Promise<QlooResult<InsightItem[]>>;
   probe(ctx?: CallContext): Promise<QlooResult<ProbeInfo>>;
+  getCircuitBreakerState(): string;
 }

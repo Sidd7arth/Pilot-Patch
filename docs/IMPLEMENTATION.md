@@ -273,21 +273,31 @@ Format: `- [ ] **ID** Action — Pre: … | Artifact: … | Verify: … | Accept
   - Evidence: 2026-10-22 · `packages/qloo-client/src/parse/{search,insights,probe}.ts` implemented with Zod permissive envelope + strict item parsing; QC-07..QC-10 verified passing
 - [x] **P2-04** `FixtureTransport` in `test/` only; export-guard + import-graph test — Pre: P2-02 | Artifact: test util | Verify: QC-16, SEC-40 test | Accept: not reachable from composition root
   - Evidence: 2026-10-22 · `packages/qloo-client/test/fixture-transport.ts` created under `test/` only; QC-16 / SEC-40 unit test asserts non-export from production entry point
-- [ ] **P2-05** API Qloo service: resolve + evidence refresh per verified strategies; persist queries/items/resolutions/signals (needs P3 tables; implement after P3-02) — Pre: P2-03, P3-02 | Artifact: `modules/qloo` | Verify: API-03, API-04 | Accept: pass
-- [ ] **P2-06** Cache (fingerprint, TTL, negative TTL, stale labeling) + quota counters — Pre: P2-05 | Artifact: cache/quota | Verify: API-05, API-13 | Accept: pass; stale never `live`
-- [ ] **P2-07** `/qloo/status` (+probe, rate-limited), integration events — Pre: P2-05 | Artifact: endpoint | Verify: API-12, API-17 | Accept: no sensitive data returned
+- [x] **P2-05** API Qloo service: resolve + evidence refresh per verified strategies; persist queries/items/resolutions/signals (needs P3 tables; implement after P3-02) — Pre: P2-03, P3-02 | Artifact: `modules/qloo` | Verify: API-03, API-04 | Accept: pass
+  - Evidence: 2026-10-22 · `apps/api/src/modules/qloo/qloo-service.ts` implemented; verified live entity resolution, manual candidate chooser, and evidence refresh deriving CulturalSignals with linked evidence
+- [x] **P2-06** Cache (fingerprint, TTL, negative TTL, stale labeling) + quota counters — Pre: P2-05 | Artifact: cache/quota | Verify: API-05, API-13 | Accept: pass; stale never `live`
+  - Evidence: 2026-10-22 · SHA-256 request fingerprint cache hit verified (does not increment call counter); workspace daily quota exhaustion enforced (429 QUOTA_EXCEEDED, integration event logged)
+- [x] **P2-07** `/qloo/status` (+probe, rate-limited), integration events — Pre: P2-05 | Artifact: endpoint | Verify: API-12, API-17 | Accept: no sensitive data returned
+  - Evidence: 2026-10-22 · `GET /api/v1/qloo/status` verified; returns sanitized probe status, circuit breaker state, and quota info; logs probe events; 0 secrets leaked
 - [x] **P2-08** Opt-in live suite `pnpm test:live` + `pnpm qloo:verify` using production adapter — Pre: P2-05, P0-02 | Artifact: tests/scripts | Verify: **run live**; record output | Accept: live success recorded; failures honest | Blocker: key
   - Evidence: 2026-10-22 · cmd: `pnpm test:live` · result: 3/3 live integration tests passed against official Qloo hackathon API (probe, searchEntities, negative auth test); `pnpm qloo:verify` passed all steps (13 resolved, 0 failed, 4 success insights queries)
-- [ ] **P2-09** Phase 2 exit review — Verify: §6.6 exit | Accept: reproducible live communication + honest errors demonstrated
+- [x] **P2-09** Phase 2 exit review — Verify: §6.6 exit | Accept: reproducible live communication + honest errors demonstrated
+  - Evidence: 2026-10-22 · Phase 2 exit criteria verified: live adapter, two-stage parsers, DB persistence for evidence & queries, cache & quota enforcement, status probe endpoint all passing in integration test suite
 
 ### P3 — Domain Model and Persistence
 
-- [ ] **P3-01** Drizzle schema for all `DATABASE.md` tables incl. `proposals.deleted_at`; first migration; drift check — Pre: P1-07 | Artifact: `db/schema.ts`, migration | Verify: `pnpm db:migrate` on fresh DB; drift check | Accept: applies cleanly
-- [ ] **P3-02** Workspace-scoped repositories (no unscoped finders); insert-only repos for evidence/queries — Pre: P3-01 | Artifact: repositories | Verify: unit/integration + isolation test (API-14 base) | Accept: pass
-- [ ] **P3-03** Domain validators (cycle detection, windows, currency, weights, ≤12 proposals, enums) — Pre: P3-02 | Artifact: validators | Verify: unit + API-02 | Accept: field-level errors
-- [ ] **P3-04** Seed (Appendix A) via script and `POST /workspaces {seedDemo}`; synthetic-only guarantee — Pre: P3-03 | Artifact: `scripts/seed`, service | Verify: API-01 | Accept: all rows `synthetic_demo`; no evidence/runs seeded
-- [ ] **P3-05** Lifecycle: snapshots, soft-delete, TTL purge — Pre: P3-02 | Artifact: services/job | Verify: API-18, API-19, purge test | Accept: pass
-- [ ] **P3-06** DB invariants tests (`DATABASE.md` §7) — Pre: P3-02, P2-05 | Verify: integration tests | Accept: pass (incl. no `test_fixture` rows in prod mode)
+- [x] **P3-01** Drizzle schema for all `DATABASE.md` tables incl. `proposals.deleted_at`; first migration; drift check — Pre: P1-07 | Artifact: `db/schema.ts`, migration | Verify: `pnpm db:migrate` on fresh DB; drift check | Accept: applies cleanly
+  - Evidence: 2026-10-22 · 19 tables defined in `apps/api/src/db/schema.ts`; migration `0000_wet_daredevil.sql` generated and applied cleanly to Postgres; drift check confirmed 0 drift
+- [x] **P3-02** Workspace-scoped repositories (no unscoped finders); insert-only repos for evidence/queries — Pre: P3-01 | Artifact: repositories | Verify: unit/integration + isolation test (API-14 base) | Accept: pass
+  - Evidence: 2026-10-22 · Workspace-scoped repositories implemented; 4/4 integration tests passed in `repositories.test.ts` (cross-tenant isolation, proposal soft-delete filtering, insert-only Qloo queries/items)
+- [x] **P3-03** Domain validators (cycle detection, windows, currency, weights, ≤12 proposals, enums) — Pre: P3-02 | Artifact: validators | Verify: unit + API-02 | Accept: field-level errors
+  - Evidence: 2026-10-22 · `apps/api/src/domain/validators.ts` implemented; 13/13 unit tests passed (DFS dependency cycle detection, weights sum to 1.0, currency matching, max 12 proposal limit, release window ordering)
+- [x] **P3-04** Seed (Appendix A) via script and `POST /workspaces {seedDemo}`; synthetic-only guarantee — Pre: P3-03 | Artifact: `scripts/seed`, service | Verify: API-01 | Accept: all rows `synthetic_demo`; no evidence/runs seeded
+  - Evidence: 2026-10-22 · `apps/api/src/services/seed-service.ts` and `scripts/seed.mjs` implemented; seeded Ember Arena (4 markets, 6 proposals, 4 historical records, 3 audience anchors); confirmed 0 queries/evidence/signals/runs seeded
+- [x] **P3-05** Lifecycle: snapshots, soft-delete, TTL purge — Pre: P3-02 | Artifact: services/job | Verify: API-18, API-19, purge test | Accept: pass
+  - Evidence: 2026-10-22 · `apps/api/src/services/lifecycle-service.ts` implemented; 4/4 integration tests passed in `lifecycle.test.ts` (referenced proposals soft-deleted, unreferenced hard-deleted, expired workspaces purged, old raw Qloo responses nulled)
+- [x] **P3-06** DB invariants tests (`DATABASE.md` §7) — Pre: P3-02, P2-05 | Verify: integration tests | Accept: pass (incl. no `test_fixture` rows in prod mode)
+  - Evidence: 2026-10-22 · 6/6 tests passed in `db-invariants.test.ts` (referential integrity, >=1 evidence link per signal, snapshot integrity, test_fixture rejection, currency consistency, no secret patterns in DB)
 
 ### P4 — Deterministic Decision Engine
 

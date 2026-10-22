@@ -286,6 +286,10 @@ export class DefaultQlooClient implements QlooClient {
     }
   }
 
+  getCircuitBreakerState(): string {
+    return this.breaker.getState();
+  }
+
   private createProvenance(
     endpoint: string,
     sanitizedParams: Record<string, string | string[]>,

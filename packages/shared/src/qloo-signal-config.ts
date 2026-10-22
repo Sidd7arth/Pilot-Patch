@@ -93,3 +93,34 @@ export function calculateStrengthBand(
   if (rank <= 3) return 'moderate';
   return 'weak';
 }
+
+/**
+ * Maps insight items and optional affinity to signal direction, band, and value
+ */
+export function mapInsightsToSignal(
+  items: unknown[],
+  affinity?: number,
+  config: SignalConfig = DEFAULT_SIGNAL_CONFIG,
+): {
+  direction: SignalDirection;
+  strengthBand: StrengthBand | null;
+  strengthValue: number | null;
+} {
+  if (items.length === 0) {
+    return {
+      direction: 'not_observed',
+      strengthBand: null,
+      strengthValue: null,
+    };
+  }
+
+  const band = calculateStrengthBand(affinity ?? null, 1, config);
+  const value =
+    config.signalMode === 'score_normalized' ? (affinity ?? config.bandValues[band]) : null;
+
+  return {
+    direction: 'supports',
+    strengthBand: band,
+    strengthValue: value,
+  };
+}
