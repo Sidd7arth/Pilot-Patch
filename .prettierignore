@@ -1,0 +1,9 @@
+node_modules
+.next
+dist
+build
+.turbo
+packages/qloo-client/test/fixtures/**
+.agents/**
+docs/**
+AGENTS.md

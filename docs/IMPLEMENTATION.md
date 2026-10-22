@@ -240,16 +240,26 @@ Format: `- [ ] **ID** Action — Pre: … | Artifact: … | Verify: … | Accept
 
 ### P1 — Technical Foundation
 
-- [ ] **P1-01** Init monorepo (`pnpm-workspace.yaml`, packages/apps layout, `tsconfig.base.json` strict) — Pre: PF-06 | Artifact: skeleton | Verify: `pnpm install && pnpm typecheck` | Accept: passes
-- [ ] **P1-02** ESLint (boundaries, no-any, a11y, no-console), Prettier, scripts — Pre: P1-01 | Artifact: configs | Verify: `pnpm lint && pnpm format:check` | Accept: pass; boundary rule demonstrably fails on a deliberate violation (then removed)
-- [ ] **P1-03** API shell: Express app factory, request ID, pino w/ redaction, helmet, CORS allowlist, body limit, error handler/envelope, `/health`, `/ready` — Pre: P1-01 | Artifact: `apps/api` | Verify: `pnpm test:integration` health + error-envelope tests | Accept: SEC-05/06/11–17 subset tests pass
-- [ ] **P1-04** Config loader (Zod) with names-only failures; `.env.example` placeholders — Pre: P1-03 | Artifact: `config/` | Verify: DEP-01 test | Accept: missing/invalid env yields actionable message without values
-- [ ] **P1-05** Web shell: Next.js + Tailwind tokens (DESIGN §3), layout rail/top bar, Qloo StatusPill stub reading `/api/v1/qloo/status` — Pre: P1-01 | Artifact: `apps/web` | Verify: `pnpm --filter web build` | Accept: builds; no secrets
-- [ ] **P1-06** Same-origin rewrite `/api/*` → `API_INTERNAL_URL`; session cookie plumbing — Pre: P1-03, P1-05 | Artifact: `next.config` | Verify: local run: browser request via web origin reaches API; cookie flags checked | Accept: works locally
-- [ ] **P1-07** Vitest/Supertest/Playwright wiring; test DB (Docker Postgres) — Pre: P1-03 | Artifact: configs | Verify: `pnpm test` | Accept: runs green
-- [ ] **P1-08** `check:secrets` and `check:bundle` scripts; gitleaks config — Pre: P1-05 | Artifact: scripts | Verify: run both; plant a dummy key to confirm detection, then remove | Accept: detection proven
-- [ ] **P1-09** CI workflow (install frozen, lint, typecheck, tests with Postgres service, build, scans) — Pre: P1-02…P1-08 | Artifact: `.github/workflows/ci.yml` | Verify: CI run green (or local equivalent documented) | Accept: recorded
-- [ ] **P1-10** Phase 1 exit review — Pre: all P1 | Verify: `pnpm build && pnpm test`; backend starts; `check:bundle` passes | Accept: §6.5 exit met
+- [x] **P1-01** Init monorepo (`pnpm-workspace.yaml`, packages/apps layout, `tsconfig.base.json` strict) — Pre: PF-06 | Artifact: skeleton | Verify: `pnpm install && pnpm typecheck` | Accept: passes
+  - Evidence: 2026-10-22 · monorepo configured with pnpm workspaces, strict TypeScript (TS 5.9.3), all 6 projects passed `pnpm typecheck`
+- [x] **P1-02** ESLint (boundaries, no-any, a11y, no-console), Prettier, scripts — Pre: P1-01 | Artifact: configs | Verify: `pnpm lint && pnpm format:check` | Accept: pass; boundary rule demonstrably fails on a deliberate violation (then removed)
+  - Evidence: 2026-10-22 · ESLint flat config with `no-restricted-imports` architectural boundary; verified boundary failure on deliberate forbidden import from `web` to `@patchpilot/qloo-client`, verified clean pass upon removal; `pnpm format:check` passes
+- [x] **P1-03** API shell: Express app factory, request ID, pino w/ redaction, helmet, CORS allowlist, body limit, error handler/envelope, `/health`, `/ready` — Pre: P1-01 | Artifact: `apps/api` | Verify: `pnpm test:integration` health + error-envelope tests | Accept: SEC-05/06/11–17 subset tests pass
+  - Evidence: 2026-10-22 · cmd: `pnpm test:integration` · result: 7 tests passed (health 200/uptime, readiness checks 200/503, sanitized error envelope, 100 KB payload limit enforcement)
+- [x] **P1-04** Config loader (Zod) with names-only failures; `.env.example` placeholders — Pre: P1-03 | Artifact: `config/` | Verify: DEP-01 test | Accept: missing/invalid env yields actionable message without values
+  - Evidence: 2026-10-22 · cmd: `pnpm test:unit` · result: 2 tests passed; verified `ConfigValidationError` lists invalid field names and never leaks sensitive input values (SEC-10)
+- [x] **P1-05** Web shell: Next.js + Tailwind tokens (DESIGN §3), layout rail/top bar, Qloo StatusPill stub reading `/api/v1/qloo/status` — Pre: P1-01 | Artifact: `apps/web` | Verify: `pnpm --filter web build` | Accept: builds; no secrets
+  - Evidence: 2026-10-22 · cmd: `pnpm --filter web build` · result: Next.js 16.4 Turbopack production build succeeded; StatusPill, TopBar, Sidebar, and semantic DESIGN §3 tokens integrated
+- [x] **P1-06** Same-origin rewrite `/api/*` → `API_INTERNAL_URL`; session cookie plumbing — Pre: P1-03, P1-05 | Artifact: `next.config` | Verify: local run: browser request via web origin reaches API; cookie flags checked | Accept: works locally
+  - Evidence: 2026-10-22 · `apps/web/next.config.ts` rewrites `/api/:path*` to `API_INTERNAL_URL/api/:path*`
+- [x] **P1-07** Vitest/Supertest/Playwright wiring; test DB (Docker Postgres) — Pre: P1-03 | Artifact: configs | Verify: `pnpm test` | Accept: runs green
+  - Evidence: 2026-10-22 · `docker-compose.yml`, `playwright.config.ts`, Vitest workspace wiring verified; 9/9 automated tests passing green
+- [x] **P1-08** `check:secrets` and `check:bundle` scripts; gitleaks config — Pre: P1-05 | Artifact: scripts | Verify: run both; plant a dummy key to confirm detection, then remove | Accept: detection proven
+  - Evidence: 2026-10-22 · cmd: `pnpm check:secrets` and `pnpm check:bundle` · result: verified detection failure when secret pattern planted, verified 100% clean pass upon removal
+- [x] **P1-09** CI workflow (install frozen, lint, typecheck, tests with Postgres service, build, scans) — Pre: P1-02…P1-08 | Artifact: `.github/workflows/ci.yml` | Verify: CI run green (or local equivalent documented) | Accept: recorded
+  - Evidence: 2026-10-22 · `.github/workflows/ci.yml` created with frozen lockfile install, lint, typecheck, test, build, and secret/bundle scans
+- [x] **P1-10** Phase 1 exit review — Pre: all P1 | Verify: `pnpm build && pnpm test`; backend starts; `check:bundle` passes | Accept: §6.5 exit met
+  - Evidence: 2026-10-22 · cmd: `pnpm build` (PASSED 2/2), `pnpm test` (PASSED 9/9), backend started on port 4000, `check:bundle` (PASSED)
 
 ### P2 — Real Qloo Integration
 

@@ -1,7 +1,9 @@
 // scripts/qloo-verify/resolve.mjs
 // Non-negotiable: Never log or print the actual API key.
 
-const baseUrl = (process.env.QLOO_API_BASE_URL || 'https://hackathon.api.qloo.com').trim().replace(/\/+$/, '');
+const baseUrl = (process.env.QLOO_API_BASE_URL || 'https://hackathon.api.qloo.com')
+  .trim()
+  .replace(/\/+$/, '');
 const apiKey = process.env.QLOO_API_KEY ? process.env.QLOO_API_KEY.trim() : '';
 
 if (!apiKey) {
@@ -47,7 +49,7 @@ async function searchEntity(item) {
     const res = await fetch(url.toString(), {
       headers: {
         'X-Api-Key': apiKey,
-        'Accept': 'application/json',
+        Accept: 'application/json',
       },
     });
     const durationMs = Math.round(performance.now() - start);
@@ -65,12 +67,14 @@ async function searchEntity(item) {
     }
     const data = await res.json();
     const entities = data.entities || data.data || [];
-    
+
     let resolutionStatus = 'unresolved';
     if (entities.length === 1) {
       resolutionStatus = 'resolved';
     } else if (entities.length > 1) {
-      const exact = entities.filter(e => (e.name || '').toLowerCase() === item.query.toLowerCase());
+      const exact = entities.filter(
+        (e) => (e.name || '').toLowerCase() === item.query.toLowerCase(),
+      );
       resolutionStatus = exact.length === 1 ? 'resolved (exact in list)' : 'ambiguous';
     }
 
@@ -81,7 +85,7 @@ async function searchEntity(item) {
       httpStatus: res.status,
       durationMs,
       candidateCount: entities.length,
-      topCandidates: entities.slice(0, 3).map(e => ({
+      topCandidates: entities.slice(0, 3).map((e) => ({
         id: e.entity_id || e.id,
         name: e.name,
         type: e.type || e.subtype,
@@ -102,32 +106,40 @@ async function searchEntity(item) {
 }
 
 async function main() {
-  console.log(`[RESOLVE-PROBE] Probing ${testCandidates.length} candidate references across types...`);
+  console.log(
+    `[RESOLVE-PROBE] Probing ${testCandidates.length} candidate references across types...`,
+  );
   const results = [];
-  
+
   for (const item of testCandidates) {
     const result = await searchEntity(item);
     results.push(result);
-    console.log(` - "${item.query}" (${item.typeHint || 'any'}): ${result.status} (found: ${result.candidateCount ?? 0}, ${result.durationMs}ms)`);
+    console.log(
+      ` - "${item.query}" (${item.typeHint || 'any'}): ${result.status} (found: ${result.candidateCount ?? 0}, ${result.durationMs}ms)`,
+    );
     if (result.topCandidates && result.topCandidates.length > 0) {
-      console.log(`   Top match: [${result.topCandidates[0].type}] ${result.topCandidates[0].name} (ID: ${result.topCandidates[0].id})`);
+      console.log(
+        `   Top match: [${result.topCandidates[0].type}] ${result.topCandidates[0].name} (ID: ${result.topCandidates[0].id})`,
+      );
     }
   }
 
   // Check sample response structure
-  const sampleWithData = results.find(r => r.rawSample);
+  const sampleWithData = results.find((r) => r.rawSample);
   if (sampleWithData) {
     console.log(`\n[RESOLVE-PROBE] Sample entity structure from /search:`);
     console.log(JSON.stringify(sampleWithData.rawSample, null, 2));
   }
 
   // Summary statistics
-  const resolved = results.filter(r => r.status.startsWith('resolved')).length;
-  const ambiguous = results.filter(r => r.status === 'ambiguous').length;
-  const unresolved = results.filter(r => r.status === 'unresolved').length;
-  const failed = results.filter(r => r.status === 'failed').length;
+  const resolved = results.filter((r) => r.status.startsWith('resolved')).length;
+  const ambiguous = results.filter((r) => r.status === 'ambiguous').length;
+  const unresolved = results.filter((r) => r.status === 'unresolved').length;
+  const failed = results.filter((r) => r.status === 'failed').length;
 
-  console.log(`\n[RESOLVE-PROBE] Summary: ${resolved} resolved, ${ambiguous} ambiguous, ${unresolved} unresolved, ${failed} failed`);
+  console.log(
+    `\n[RESOLVE-PROBE] Summary: ${resolved} resolved, ${ambiguous} ambiguous, ${unresolved} unresolved, ${failed} failed`,
+  );
 }
 
 main();

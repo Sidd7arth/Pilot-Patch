@@ -1,0 +1,36 @@
+{
+  "name": "pilot-patch",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.15.0",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "typecheck": "turbo typecheck",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md,css}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,md,css}\"",
+    "test": "vitest run",
+    "test:unit": "vitest run apps/api/test/unit",
+    "test:integration": "vitest run apps/api/test/integration",
+    "test:contract": "vitest run -t contract",
+    "test:security": "vitest run -t security",
+    "test:e2e": "playwright test",
+    "test:live": "vitest run -t live",
+    "qloo:verify": "node --env-file=.env scripts/qloo-verify.mjs",
+    "qloo:capture": "node --env-file=.env scripts/qloo-capture.mjs",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node scripts/db-migrate.mjs",
+    "seed": "node --env-file=.env scripts/seed.mjs",
+    "check:secrets": "node scripts/check-secrets.mjs",
+    "check:bundle": "node scripts/check-bundle.mjs",
+    "smoke:deployed": "node scripts/smoke-deployed.mjs"
+  },
+  "devDependencies": {
+    "prettier": "^3.5.0",
+    "turbo": "^2.4.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

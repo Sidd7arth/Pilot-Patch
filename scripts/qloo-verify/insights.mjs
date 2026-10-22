@@ -1,7 +1,9 @@
 // scripts/qloo-verify/insights.mjs
 // Test S1 (Anchor co-affinity) and S2 (Market-conditioned affinity)
 
-const baseUrl = (process.env.QLOO_API_BASE_URL || 'https://hackathon.api.qloo.com').trim().replace(/\/+$/, '');
+const baseUrl = (process.env.QLOO_API_BASE_URL || 'https://hackathon.api.qloo.com')
+  .trim()
+  .replace(/\/+$/, '');
 const apiKey = process.env.QLOO_API_KEY ? process.env.QLOO_API_KEY.trim() : '';
 
 if (!apiKey) {
@@ -54,7 +56,10 @@ const proposals = [
     targetMarkets: ['US', 'BR'],
     category: 'seasonal_event',
     filterType: 'urn:entity:artist',
-    candidateEntityIds: ['BDA1B73F-10E7-4D09-AC51-B796CCEC5FF3', '8BE95420-BCDA-4B00-871F-247A55D35594'], // Bad Bunny, Rosalia
+    candidateEntityIds: [
+      'BDA1B73F-10E7-4D09-AC51-B796CCEC5FF3',
+      '8BE95420-BCDA-4B00-871F-247A55D35594',
+    ], // Bad Bunny, Rosalia
   },
   {
     id: 'P5',
@@ -70,7 +75,10 @@ const proposals = [
     targetMarkets: ['US', 'JP'],
     category: 'character_skin',
     filterType: 'urn:entity:videogame',
-    candidateEntityIds: ['8E474FED-3ACD-46B1-A51C-C28B9FA206B1', 'B2344587-2AF4-4A4A-A018-5CCDE6E3B1A0'], // League of Legends, Apex Legends
+    candidateEntityIds: [
+      '8E474FED-3ACD-46B1-A51C-C28B9FA206B1',
+      'B2344587-2AF4-4A4A-A018-5CCDE6E3B1A0',
+    ], // League of Legends, Apex Legends
   },
 ];
 
@@ -98,7 +106,7 @@ async function runInsightQuery(anchorId, filterType, candidateIds, locationQuery
   const start = performance.now();
   try {
     const res = await fetch(url.toString(), {
-      headers: { 'X-Api-Key': apiKey, 'Accept': 'application/json' },
+      headers: { 'X-Api-Key': apiKey, Accept: 'application/json' },
     });
     const durationMs = Math.round(performance.now() - start);
     if (!res.ok) {
@@ -126,7 +134,9 @@ async function runInsightQuery(anchorId, filterType, candidateIds, locationQuery
         affinity: e.query?.affinity ?? null,
         type: e.subtype || e.type,
       })),
-      rawResponseSample: entities[0] ? { name: entities[0].name, entity_id: entities[0].entity_id, query: entities[0].query } : null,
+      rawResponseSample: entities[0]
+        ? { name: entities[0].name, entity_id: entities[0].entity_id, query: entities[0].query }
+        : null,
     };
   } catch (err) {
     return {
@@ -154,12 +164,12 @@ async function main() {
     console.log(` - Candidate Entities: ${proposal.candidateEntityIds.length} resolved`);
 
     for (const marketCode of proposal.targetMarkets) {
-      const market = markets.find(m => m.code === marketCode);
+      const market = markets.find((m) => m.code === marketCode);
       const res = await runInsightQuery(
         ANCHOR_VALORANT,
         proposal.filterType,
         proposal.candidateEntityIds,
-        market?.qlooLocation
+        market?.qlooLocation,
       );
 
       const cell = {
@@ -175,7 +185,9 @@ async function main() {
       matrix.push(cell);
 
       if (res.status === 'success') {
-        const entitySummary = res.entities.map(e => `${e.name} (aff: ${e.affinity ? e.affinity.toFixed(4) : 'N/A'})`).join(', ');
+        const entitySummary = res.entities
+          .map((e) => `${e.name} (aff: ${e.affinity ? e.affinity.toFixed(4) : 'N/A'})`)
+          .join(', ');
         console.log(`   [${marketCode}] SUCCESS (${res.durationMs}ms): ${entitySummary}`);
       } else {
         console.log(`   [${marketCode}] ${res.status.toUpperCase()} (${res.durationMs}ms)`);
@@ -186,21 +198,27 @@ async function main() {
   console.log('\n======================================================================');
   console.log('OUTCOME MATRIX SUMMARY');
   console.log('======================================================================');
-  console.table(matrix.map(m => ({
-    Proposal: m.proposalId + ': ' + m.proposalName.slice(0, 22),
-    Market: m.market,
-    Status: m.status,
-    TopAffinity: m.topResult?.affinity ? m.topResult.affinity.toFixed(4) : 'N/A',
-    Duration: `${m.durationMs}ms`,
-  })));
+  console.table(
+    matrix.map((m) => ({
+      Proposal: m.proposalId + ': ' + m.proposalName.slice(0, 22),
+      Market: m.market,
+      Status: m.status,
+      TopAffinity: m.topResult?.affinity ? m.topResult.affinity.toFixed(4) : 'N/A',
+      Duration: `${m.durationMs}ms`,
+    })),
+  );
 
-  const successCount = matrix.filter(m => m.status === 'success').length;
-  const proposalsWithSuccess = new Set(matrix.filter(m => m.status === 'success').map(m => m.proposalId)).size;
+  const successCount = matrix.filter((m) => m.status === 'success').length;
+  const proposalsWithSuccess = new Set(
+    matrix.filter((m) => m.status === 'success').map((m) => m.proposalId),
+  ).size;
   console.log(`\nProposals with >=1 SUCCESS: ${proposalsWithSuccess} of ${proposals.length}`);
   console.log(`Total queries: ${matrix.length}, Successful queries: ${successCount}`);
 
   if (proposalsWithSuccess >= 3) {
-    console.log('\n>>> PHASE 0 EXIT CRITERION SATISFIED: Decision is GO (>= 3 proposals with defensible signals) <<<');
+    console.log(
+      '\n>>> PHASE 0 EXIT CRITERION SATISFIED: Decision is GO (>= 3 proposals with defensible signals) <<<',
+    );
   } else {
     console.log('\n>>> PHASE 0 OUTCOME: GO-WITH-LIMITS or NO-GO <<<');
   }

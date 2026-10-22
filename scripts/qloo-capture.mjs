@@ -5,7 +5,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const baseUrl = (process.env.QLOO_API_BASE_URL || 'https://hackathon.api.qloo.com').trim().replace(/\/+$/, '');
+const baseUrl = (process.env.QLOO_API_BASE_URL || 'https://hackathon.api.qloo.com')
+  .trim()
+  .replace(/\/+$/, '');
 const apiKey = process.env.QLOO_API_KEY ? process.env.QLOO_API_KEY.trim() : '';
 
 if (!apiKey) {
@@ -34,7 +36,7 @@ async function captureFixture(filename, endpoint, params = {}, options = {}) {
   const sanitizedParams = { ...params };
   const headers = {
     'X-Api-Key': options.invalidKey ? 'deliberate_invalid_key' : apiKey,
-    'Accept': 'application/json',
+    Accept: 'application/json',
   };
 
   const start = performance.now();
@@ -74,77 +76,114 @@ async function run() {
   console.log('[CAPTURE] Starting live Qloo fixture capture...');
 
   // 1. Root API information (auth positive)
-  await captureFixture('auth-positive', '/', {}, {
-    qRefs: ['Q-01', 'Q-02'],
-    description: 'Minimal authenticated call returning Qloo API deployment info',
-  });
+  await captureFixture(
+    'auth-positive',
+    '/',
+    {},
+    {
+      qRefs: ['Q-01', 'Q-02'],
+      description: 'Minimal authenticated call returning Qloo API deployment info',
+    },
+  );
 
   // 2. Auth negative
-  await captureFixture('auth-negative', '/', {}, {
-    invalidKey: true,
-    qRefs: ['Q-02', 'Q-12'],
-    description: 'Negative auth test provoking classified 401 unauthorized response',
-  });
+  await captureFixture(
+    'auth-negative',
+    '/',
+    {},
+    {
+      invalidKey: true,
+      qRefs: ['Q-02', 'Q-12'],
+      description: 'Negative auth test provoking classified 401 unauthorized response',
+    },
+  );
 
   // 3. Entity Search: Videogame
-  await captureFixture('search-videogames', '/search', {
-    query: 'Cyberpunk 2077',
-    types: 'urn:entity:videogame',
-    take: 3,
-  }, {
-    qRefs: ['Q-03', 'Q-08'],
-    description: 'Search resolving video game entities with URN type filter',
-  });
+  await captureFixture(
+    'search-videogames',
+    '/search',
+    {
+      query: 'Cyberpunk 2077',
+      types: 'urn:entity:videogame',
+      take: 3,
+    },
+    {
+      qRefs: ['Q-03', 'Q-08'],
+      description: 'Search resolving video game entities with URN type filter',
+    },
+  );
 
   // 4. Entity Search: Artist
-  await captureFixture('search-artists', '/search', {
-    query: 'Bad Bunny',
-    types: 'urn:entity:artist',
-    take: 3,
-  }, {
-    qRefs: ['Q-03'],
-    description: 'Search resolving musical artist entities',
-  });
+  await captureFixture(
+    'search-artists',
+    '/search',
+    {
+      query: 'Bad Bunny',
+      types: 'urn:entity:artist',
+      take: 3,
+    },
+    {
+      qRefs: ['Q-03'],
+      description: 'Search resolving musical artist entities',
+    },
+  );
 
   // 5. Insights: S1 Ranked Candidate Entities
-  await captureFixture('insights-ranked-entities', '/v2/insights', {
-    'signal.interests.entities': '0E018750-0B04-4C65-89E8-DF545A1B13E6', // Valorant
-    'filter.type': 'urn:entity:artist',
-    'filter.results.entities': 'BDA1B73F-10E7-4D09-AC51-B796CCEC5FF3,8BE95420-BCDA-4B00-871F-247A55D35594',
-    take: 2,
-  }, {
-    qRefs: ['Q-05', 'Q-10'],
-    description: 'S1 candidate option ranking against anchor game with affinity scores',
-  });
+  await captureFixture(
+    'insights-ranked-entities',
+    '/v2/insights',
+    {
+      'signal.interests.entities': '0E018750-0B04-4C65-89E8-DF545A1B13E6', // Valorant
+      'filter.type': 'urn:entity:artist',
+      'filter.results.entities':
+        'BDA1B73F-10E7-4D09-AC51-B796CCEC5FF3,8BE95420-BCDA-4B00-871F-247A55D35594',
+      take: 2,
+    },
+    {
+      qRefs: ['Q-05', 'Q-10'],
+      description: 'S1 candidate option ranking against anchor game with affinity scores',
+    },
+  );
 
   // 6. Insights: S2 Market Conditioned (Japan)
-  await captureFixture('insights-market-conditioned', '/v2/insights', {
-    'signal.interests.entities': '0E018750-0B04-4C65-89E8-DF545A1B13E6',
-    'filter.type': 'urn:entity:videogame',
-    'filter.results.entities': '8E474FED-3ACD-46B1-A51C-C28B9FA206B1,B2344587-2AF4-4A4A-A018-5CCDE6E3B1A0',
-    'signal.location.query': 'Japan',
-    take: 2,
-  }, {
-    qRefs: ['Q-05', 'Q-09'],
-    description: 'S2 market-conditioned candidate affinity for Japan',
-  });
+  await captureFixture(
+    'insights-market-conditioned',
+    '/v2/insights',
+    {
+      'signal.interests.entities': '0E018750-0B04-4C65-89E8-DF545A1B13E6',
+      'filter.type': 'urn:entity:videogame',
+      'filter.results.entities':
+        '8E474FED-3ACD-46B1-A51C-C28B9FA206B1,B2344587-2AF4-4A4A-A018-5CCDE6E3B1A0',
+      'signal.location.query': 'Japan',
+      take: 2,
+    },
+    {
+      qRefs: ['Q-05', 'Q-09'],
+      description: 'S2 market-conditioned candidate affinity for Japan',
+    },
+  );
 
   // 7. Insights: Empty / Not Observed
-  await captureFixture('insights-empty', '/v2/insights', {
-    'signal.interests.entities': '0E018750-0B04-4C65-89E8-DF545A1B13E6',
-    'filter.type': 'urn:entity:movie',
-    'filter.results.entities': '0E84F600-B861-4A93-AC5E-6E1DF4AC5826',
-    'signal.location.query': 'Brazil',
-    take: 1,
-  }, {
-    qRefs: ['Q-05', 'Q-12'],
-    description: 'S2 query resulting in empty entity array (not observed)',
-  });
+  await captureFixture(
+    'insights-empty',
+    '/v2/insights',
+    {
+      'signal.interests.entities': '0E018750-0B04-4C65-89E8-DF545A1B13E6',
+      'filter.type': 'urn:entity:movie',
+      'filter.results.entities': '0E84F600-B861-4A93-AC5E-6E1DF4AC5826',
+      'signal.location.query': 'Brazil',
+      take: 1,
+    },
+    {
+      qRefs: ['Q-05', 'Q-12'],
+      description: 'S2 query resulting in empty entity array (not observed)',
+    },
+  );
 
   console.log('[CAPTURE] Completed successfully. All captured fixtures verified clean of secrets.');
 }
 
-run().catch(err => {
+run().catch((err) => {
   console.error('[CAPTURE] Failed:', err);
   process.exit(1);
 });

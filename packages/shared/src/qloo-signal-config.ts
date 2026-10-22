@@ -37,8 +37,8 @@ export const DEFAULT_SIGNAL_CONFIG: SignalConfig = {
   defaultTopN: 5,
   maxCandidatesPerQuery: 10,
   bandThresholds: {
-    strongMinAffinity: 0.90,
-    moderateMinAffinity: 0.80,
+    strongMinAffinity: 0.9,
+    moderateMinAffinity: 0.8,
   },
   bandValues: {
     strong: 1.0,
@@ -81,7 +81,7 @@ export interface CulturalSignal {
 export function calculateStrengthBand(
   affinity: number | null,
   rank: number,
-  config: SignalConfig = DEFAULT_SIGNAL_CONFIG
+  config: SignalConfig = DEFAULT_SIGNAL_CONFIG,
 ): StrengthBand {
   if (affinity !== null && !isNaN(affinity)) {
     if (affinity >= config.bandThresholds.strongMinAffinity) return 'strong';
