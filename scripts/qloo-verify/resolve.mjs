@@ -41,7 +41,8 @@ async function searchEntity(item) {
   url.searchParams.set('query', item.query);
   url.searchParams.set('take', '5');
   if (item.typeHint) {
-    url.searchParams.set('types', item.typeHint);
+    const urn = item.typeHint.startsWith('urn:') ? item.typeHint : `urn:entity:${item.typeHint}`;
+    url.searchParams.set('types', urn);
   }
 
   const start = performance.now();
@@ -66,7 +67,7 @@ async function searchEntity(item) {
       };
     }
     const data = await res.json();
-    const entities = data.entities || data.data || [];
+    const entities = data.results || data.entities || data.data || [];
 
     let resolutionStatus = 'unresolved';
     if (entities.length === 1) {

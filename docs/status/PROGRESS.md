@@ -1,8 +1,9 @@
 # PatchPilot Implementation Progress
 
-- **Active Phase**: Phase 1 (Foundation) **COMPLETE (ALL TASKS VERIFIED)** · Ready for Phase 2 (Real Qloo Integration)
+- **Active Phase**: Phase 2 (Real Qloo Integration Core) **IN PROGRESS** (P2-01, P2-02, P2-03, P2-04, P2-08 verified; P2-05, P2-06, P2-07 waiting on P3 DB tables)
 - **Phase 0 Gate Status**: **VERIFIED / GO** (3 of 6 proposals verified with real Qloo signals, Q-01…Q-16 resolved)
 - **Phase 1 Status**: **VERIFIED / COMPLETE** (P1-01 through P1-10 verified green)
+- **Phase 2 Status**: **IN PROGRESS** (Adapter core, two-stage parsers, fixture transport, and live suite verified)
 - **Last Updated**: 2026-10-22
 
 ---
@@ -24,18 +25,30 @@
 
 ---
 
-## 2. Latest Test Run Table (TESTING.md §14)
+## 2. Phase 2 Real Qloo Integration Results (P2-01..P2-04, P2-08)
 
-### Test Run: 2026-10-22 (Phase 1 Exit Verification)
+| Task ID | Action | Result | Verdict |
+|---|---|---|---|
+| **P2-01** | Verified constants | `endpoints.ts` created; grep confirms 0 unverified constants | **PASS** |
+| **P2-02** | Adapter core | Fetch transport, auth header, semaphore, breaker, redact, fingerprint passing QC-01..06, 11..15 | **PASS** |
+| **P2-03** | Two-stage parsers | Permissive envelope + strict item parsing for search, insights, probe passing QC-07..10 | **PASS** |
+| **P2-04** | FixtureTransport guard | Test-only fixture transport; QC-16/SEC-40 asserts non-reachability from production exports | **PASS** |
+| **P2-08** | Opt-in live suite | `pnpm test:live` passes 3/3 live against official Qloo hackathon API; `qloo:verify` passes | **PASS** |
+
+---
+
+## 3. Latest Test Run Table (TESTING.md §14)
+
+### Test Run: 2026-10-22 (Phase 2 Adapter Core Verification)
 - **typecheck**: **PASS** (6/6 projects, 0 errors)
 - **lint**: **PASS** (3/3 packages, 0 errors, architectural boundaries enforced)
 - **format:check**: **PASS** (100% Prettier compliant)
-- **unit**: **PASS** (2/2 passed in `apps/api/test/unit`)
+- **unit**: **PASS** (13/13 passed: 2 config tests, 11 adapter tests)
 - **integration**: **PASS** (7/7 passed in `apps/api/test/integration`)
-- **contract**: NOT RUN (P2)
-- **security**: **PASS** (`pnpm check:secrets` 0 leaks, `pnpm check:bundle` 0 leaks, SEC-05/06/10/16 enforced)
+- **contract**: **PASS** (11/11 adapter contract tests in `packages/qloo-client/test/adapter.test.ts`)
+- **security**: **PASS** (`pnpm check:secrets` 0 leaks, `pnpm check:bundle` 0 leaks, SEC-01..06/10/16/40 enforced)
 - **build**: **PASS** (`turbo build` compiled `@patchpilot/api` and `web` in 6.1s)
 - **e2e**: NOT RUN (P7)
-- **live-qloo (manual)**: **PASS** (Phase 0 feasibility verified)
+- **live-qloo**: **PASS** (`pnpm test:live` 3/3 passed; `pnpm qloo:verify` 13 resolved, 0 failed, 4 success insights queries)
 
 **Failures**: None.

@@ -265,14 +265,19 @@ Format: `- [ ] **ID** Action — Pre: … | Artifact: … | Verify: … | Accept
 
 *(Requires P0 = GO/GO-WITH-LIMITS and P1.)*
 
-- [ ] **P2-01** `endpoints.ts` with verified constants (each referencing Q-xx evidence); CI grep for `UNVERIFIED` — Pre: P0-10 | Artifact: file | Verify: `pnpm lint` + grep check | Accept: no unverified constant
-- [ ] **P2-02** Adapter core: transport (fetch), auth header, timeout, retries/backoff/jitter, `Retry-After`, concurrency cap, breaker, redaction, fingerprint — Pre: P2-01 | Artifact: `packages/qloo-client` | Verify: QC-01…QC-06, QC-11…QC-15 | Accept: pass
-- [ ] **P2-03** Two-stage parsers + normalizers from real captures; `empty`/`unsupported`/shape-drift handling — Pre: P0-08, P0-09, P2-02 | Artifact: parse/normalize modules | Verify: QC-07…QC-10 | Accept: all live-captured fixtures parse; drift ⇒ `failed_upstream`
-- [ ] **P2-04** `FixtureTransport` in `test/` only; export-guard + import-graph test — Pre: P2-02 | Artifact: test util | Verify: QC-16, SEC-40 test | Accept: not reachable from composition root
+- [x] **P2-01** `endpoints.ts` with verified constants (each referencing Q-xx evidence); CI grep for `UNVERIFIED` — Pre: P0-10 | Artifact: file | Verify: `pnpm lint` + grep check | Accept: no unverified constant
+  - Evidence: 2026-10-22 · `packages/qloo-client/src/endpoints.ts` created; grep check confirms 0 unverified constants; references Q-01, Q-02, Q-03, Q-04, Q-05, Q-06, Q-08, Q-09, Q-10
+- [x] **P2-02** Adapter core: transport (fetch), auth header, timeout, retries/backoff/jitter, `Retry-After`, concurrency cap, breaker, redaction, fingerprint — Pre: P2-01 | Artifact: `packages/qloo-client` | Verify: QC-01…QC-06, QC-11…QC-15 | Accept: pass
+  - Evidence: 2026-10-22 · `packages/qloo-client/src/{client,transport,semaphore,circuit-breaker,redact,fingerprint}.ts` implemented; QC-01..QC-06, QC-11..QC-15 verified passing
+- [x] **P2-03** Two-stage parsers + normalizers from real captures; `empty`/`unsupported`/shape-drift handling — Pre: P0-08, P0-09, P2-02 | Artifact: parse/normalize modules | Verify: QC-07…QC-10 | Accept: all live-captured fixtures parse; drift ⇒ `failed_upstream`
+  - Evidence: 2026-10-22 · `packages/qloo-client/src/parse/{search,insights,probe}.ts` implemented with Zod permissive envelope + strict item parsing; QC-07..QC-10 verified passing
+- [x] **P2-04** `FixtureTransport` in `test/` only; export-guard + import-graph test — Pre: P2-02 | Artifact: test util | Verify: QC-16, SEC-40 test | Accept: not reachable from composition root
+  - Evidence: 2026-10-22 · `packages/qloo-client/test/fixture-transport.ts` created under `test/` only; QC-16 / SEC-40 unit test asserts non-export from production entry point
 - [ ] **P2-05** API Qloo service: resolve + evidence refresh per verified strategies; persist queries/items/resolutions/signals (needs P3 tables; implement after P3-02) — Pre: P2-03, P3-02 | Artifact: `modules/qloo` | Verify: API-03, API-04 | Accept: pass
 - [ ] **P2-06** Cache (fingerprint, TTL, negative TTL, stale labeling) + quota counters — Pre: P2-05 | Artifact: cache/quota | Verify: API-05, API-13 | Accept: pass; stale never `live`
 - [ ] **P2-07** `/qloo/status` (+probe, rate-limited), integration events — Pre: P2-05 | Artifact: endpoint | Verify: API-12, API-17 | Accept: no sensitive data returned
-- [ ] **P2-08** Opt-in live suite `pnpm test:live` + `pnpm qloo:verify` using production adapter — Pre: P2-05, P0-02 | Artifact: tests/scripts | Verify: **run live**; record output | Accept: live success recorded; failures honest | Blocker: key
+- [x] **P2-08** Opt-in live suite `pnpm test:live` + `pnpm qloo:verify` using production adapter — Pre: P2-05, P0-02 | Artifact: tests/scripts | Verify: **run live**; record output | Accept: live success recorded; failures honest | Blocker: key
+  - Evidence: 2026-10-22 · cmd: `pnpm test:live` · result: 3/3 live integration tests passed against official Qloo hackathon API (probe, searchEntities, negative auth test); `pnpm qloo:verify` passed all steps (13 resolved, 0 failed, 4 success insights queries)
 - [ ] **P2-09** Phase 2 exit review — Verify: §6.6 exit | Accept: reproducible live communication + honest errors demonstrated
 
 ### P3 — Domain Model and Persistence

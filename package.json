@@ -17,7 +17,7 @@
     "test:contract": "vitest run -t contract",
     "test:security": "vitest run -t security",
     "test:e2e": "playwright test",
-    "test:live": "vitest run -t live",
+    "test:live": "node --env-file=.env ./node_modules/vitest/vitest.mjs run packages/qloo-client/test/live.test.ts",
     "qloo:verify": "node --env-file=.env scripts/qloo-verify.mjs",
     "qloo:capture": "node --env-file=.env scripts/qloo-capture.mjs",
     "db:generate": "drizzle-kit generate",

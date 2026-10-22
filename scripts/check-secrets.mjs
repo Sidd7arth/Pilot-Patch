@@ -94,6 +94,7 @@ function scanDirectory(dir) {
           line.toLowerCase().includes('dummy') ||
           line.toLowerCase().includes('sentinel') ||
           line.toLowerCase().includes('mock') ||
+          line.toLowerCase().includes('invalid') ||
           line.toLowerCase().includes('placeholder')
         ) {
           continue;
