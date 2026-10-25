@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Compass, Layers, Search, Sparkles, GitCompare, FileText, Sliders } from 'lucide-react';
+import { Compass, Layers, Search, Sparkles, GitCompare, FileText, Sliders, Activity } from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Overview', href: '/', icon: Compass },
@@ -13,6 +13,7 @@ const NAV_ITEMS = [
   { label: 'Decision Workspace', href: '/decision', icon: Sparkles },
   { label: 'Compare & Replan', href: '/decision/compare', icon: GitCompare },
   { label: 'Briefs', href: '/briefs', icon: FileText },
+  { label: 'Integration', href: '/integration', icon: Activity },
 ];
 
 export function Sidebar() {

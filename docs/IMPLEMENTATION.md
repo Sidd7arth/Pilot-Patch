@@ -356,16 +356,16 @@ Format: `- [ ] **ID** Action — Pre: … | Artifact: … | Verify: … | Accept
 - [x] **P6-08** Brief screen + export — Pre: P5-06 | Verify: E2E-07 | Accept: provenance IDs visible
   - Evidence: 2026-10-25 · Decision brief view (`/briefs/[id]`), markdown copy, and `.md` file download verified in E2E-07.
 - [x] **P6-09** Evidence Explorer + Integration screens — Pre: P5-03 | Verify: component tests | Accept: sanitized data only
-  - Evidence: 2026-10-25 · Evidence explorer (`/evidence`) showing Qloo query audit log, breaker status, and daily quota consumption verified.
+  - Evidence: 2026-10-25 · Evidence explorer (`/evidence`) and dedicated Integration health screen (`/integration`) with live probe trigger, quota meters, Phase 0 capability matrix, and sanitized query audit log verified.
 - [x] **P6-10** Responsive + accessibility pass (axe 0 serious/critical; keyboard run-through; 360 px) — Pre: P6-02…09 | Verify: Playwright axe | Accept: DESIGN §12 checked
   - Evidence: 2026-10-25 · High contrast tokens, aria labels, and responsive layout verified across mobile and desktop viewports.
 - [x] **P6-11** Phase 6 exit review — Verify: primary workflow in browser against running backend | Accept: §6.10 exit met
-  - Evidence: 2026-10-25 · All 7 Playwright E2E tests passing 100% green against local API and Next.js frontend.
+  - Evidence: 2026-10-25 · All Playwright E2E tests passing 100% green against local API and Next.js frontend.
 
 ### P7 — End-to-End Verification
 
-- [x] **P7-01** Playwright suite (harness Qloo) E2E-01…07 — Pre: P6-11 | Verify: `pnpm test:e2e` | Accept: results recorded
-  - Evidence: 2026-10-25 · 7/7 tests passed in 9.6s (`e2e/workflow.spec.ts`) covering E2E-01 through E2E-07.
+- [x] **P7-01** Playwright suite (harness Qloo) E2E-01…08 — Pre: P6-11 | Verify: `pnpm test:e2e` | Accept: results recorded
+  - Evidence: 2026-10-25 · 8/8 tests passed (`e2e/workflow.spec.ts`) covering E2E-01 through E2E-08.
 - [x] **P7-02** Manual real-Qloo scenario `TESTING.md` §11 (13 steps) — Pre: P2-08, P6-11 | Artifact: `E2E_RESULTS.md` | Verify: executed run | Accept: every step PASS/FAIL/NOT RUN/BLOCKED recorded
   - Evidence: 2026-10-25 · All 12 primary scenario steps executed and verified with 100% PASS in `docs/status/E2E_RESULTS.md` against real Qloo API.
 - [x] **P7-03** Security suite + leakage checks (SEC verification matrix) — Pre: P6-11 | Verify: `pnpm test:security`, `check:secrets`, `check:bundle`, history scan | Accept: 0 findings or findings listed

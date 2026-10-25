@@ -96,4 +96,24 @@ test.describe.serial('PatchPilot End-to-End Workflow (E2E-01..07)', () => {
       await expect(page.getByRole('button', { name: /Download .md/i })).toBeVisible();
     }
   });
+
+  test('E2E-08: Qloo Integration screen, live probe, quota meters, and capability matrix', async () => {
+    await page.goto('/integration');
+    await expect(page.locator('h1')).toContainText('Qloo Integration & Health');
+
+    // Verify status, breaker, and quota sections
+    await expect(page.getByText(/Connection Status/i)).toBeVisible();
+    await expect(page.getByText(/Resilience & Breaker/i)).toBeVisible();
+    await expect(page.getByText(/Workspace Daily Quota/i)).toBeVisible();
+
+    // Verify capability matrix and provider limitations
+    await expect(page.getByText(/Phase 0 Verified Capability Matrix/i)).toBeVisible();
+    await expect(page.getByText(/Provider Boundaries & Architectural Invariants/i)).toBeVisible();
+
+    // Trigger live probe
+    const probeBtn = page.getByRole('button', { name: /Probe Live API/i });
+    await expect(probeBtn).toBeVisible();
+    await probeBtn.click();
+    await expect(page.getByText(/Probe successful/i)).toBeVisible({ timeout: 15000 });
+  });
 });

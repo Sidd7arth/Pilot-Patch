@@ -17,9 +17,10 @@
 | **Decision (`/decision`)** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** |
 | **Compare & Replan (`/decision/compare`)** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** |
 | **Evidence Explorer (`/evidence`)** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** |
+| **Integration (`/integration`)** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** |
 | **Briefs (`/briefs`, `[id]`)** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** | **PASS** |
 
-**Total Matrix Checks**: 72 / 72 states evaluated (**100% PASS, 0 FAIL**).
+**Total Matrix Checks**: 81 / 81 states evaluated (**100% PASS, 0 FAIL**).
 
 ---
 

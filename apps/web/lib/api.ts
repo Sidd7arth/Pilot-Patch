@@ -242,15 +242,20 @@ export interface DecisionRunDetail {
 
 export interface QlooStatusData {
   configured: boolean;
-  baseUrl: string;
-  status: 'connected' | 'not_configured' | 'error';
+  reachable?: boolean;
+  latencyMs?: number;
+  baseUrl?: string;
+  status: string;
   circuitBreaker: 'closed' | 'open' | 'half_open';
-  timestamp: string;
+  timestamp?: string;
   quota?: {
-    dailyCallsLimit: number;
-    callsUsedToday: number;
-    callsRemaining: number;
-  };
+    dailyLimit?: number;
+    usedToday?: number;
+    dailyCallsLimit?: number;
+    callsUsedToday?: number;
+    callsRemaining?: number;
+  } | null;
+  adapterVersion?: string;
   lastSuccessAt?: string | null;
   lastError?: string | null;
 }
@@ -267,6 +272,8 @@ export interface QlooQueryData {
   retrievedAt: string;
   durationMs: number | null;
   attempts: number;
+  requestFingerprint?: string;
+  cacheHit?: boolean;
 }
 
 export interface BriefData {

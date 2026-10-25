@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Activity, CheckCircle2, AlertTriangle } from 'lucide-react';
 
 interface QlooStatusResponse {
@@ -67,16 +68,17 @@ export function StatusPill() {
   const isConnected = statusData?.status === 'connected';
 
   return (
-    <div
-      className={`flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border transition-colors ${
+    <Link
+      href="/integration"
+      className={`flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full border transition-all hover:opacity-85 ${
         isConnected
           ? 'bg-cultural/10 text-cultural border-cultural/30'
           : 'bg-warn/10 text-warn border-warn/30'
       }`}
       title={
         statusData
-          ? `Qloo API: ${statusData.baseUrl || 'Unconfigured'} (${statusData.status})`
-          : 'Qloo API Status'
+          ? `Qloo API: ${statusData.baseUrl || 'Unconfigured'} (${statusData.status}) — Click for Integration view`
+          : 'Qloo API Status — Click for Integration view'
       }
     >
       {isConnected ? (
@@ -90,6 +92,6 @@ export function StatusPill() {
           <span>Qloo Not Configured</span>
         </>
       )}
-    </div>
+    </Link>
   );
 }
