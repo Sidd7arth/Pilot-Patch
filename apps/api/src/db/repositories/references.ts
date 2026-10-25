@@ -91,6 +91,27 @@ export class CulturalReferenceRepository {
     return created;
   }
 
+  async listByProposal(workspaceId: string, proposalId: string) {
+    return this.listByWorkspace(workspaceId, { ownerType: 'proposal', ownerId: proposalId });
+  }
+
+  async update(workspaceId: string, id: string, params: Partial<CreateReferenceParams>) {
+    const [row] = await this.db
+      .update(culturalReferences)
+      .set(params)
+      .where(and(eq(culturalReferences.workspaceId, workspaceId), eq(culturalReferences.id, id)))
+      .returning();
+    return row ?? null;
+  }
+
+  async delete(workspaceId: string, id: string): Promise<boolean> {
+    const [row] = await this.db
+      .delete(culturalReferences)
+      .where(and(eq(culturalReferences.workspaceId, workspaceId), eq(culturalReferences.id, id)))
+      .returning();
+    return !!row;
+  }
+
   // Resolutions
   async getResolution(workspaceId: string, referenceId: string) {
     const [row] = await this.db

@@ -14,6 +14,7 @@
     "@patchpilot/decision-engine": "workspace:*",
     "@patchpilot/qloo-client": "workspace:*",
     "@patchpilot/shared": "workspace:*",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "drizzle-orm": "^0.45.4",
     "express": "^4.21.2",
@@ -24,6 +25,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^20",

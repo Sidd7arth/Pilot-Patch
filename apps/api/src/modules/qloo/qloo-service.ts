@@ -432,4 +432,60 @@ export class QlooService {
       adapterVersion: '1.0.0',
     };
   }
+
+  // -------------------------------------------------------------------------
+  // Batch & Evidence Provenance Lookups (API-03..06)
+  // -------------------------------------------------------------------------
+
+  async resolveWorkspaceReferences(workspaceId: string, referenceIds?: string[]) {
+    const refs = await this.referenceRepo.listByWorkspace(workspaceId);
+    const targetRefs =
+      referenceIds && referenceIds.length > 0
+        ? refs.filter((r) => referenceIds.includes(r.id))
+        : refs;
+
+    const results = [];
+    for (const r of targetRefs) {
+      const res = await this.resolveReference(workspaceId, r.id);
+      results.push(res);
+    }
+    return results;
+  }
+
+  async refreshWorkspaceEvidence(workspaceId: string, proposalIds?: string[]) {
+    const proposals = await this.proposalRepo.listByWorkspace(workspaceId, false);
+    const targetProposals =
+      proposalIds && proposalIds.length > 0
+        ? proposals.filter((p) => proposalIds.includes(p.id))
+        : proposals;
+
+    const results = [];
+    for (const p of targetProposals) {
+      const res = await this.refreshProposalEvidence(workspaceId, p.id);
+      results.push(res);
+    }
+    return results;
+  }
+
+  async getProposalEvidence(workspaceId: string, proposalId: string) {
+    const p = await this.proposalRepo.getById(workspaceId, proposalId);
+    if (!p) {
+      throw new Error('Proposal not found');
+    }
+
+    const refs = await this.referenceRepo.listByProposal(workspaceId, proposalId);
+    const signals = await this.signalRepo.listByProposal(workspaceId, proposalId);
+    const allEvidence = await this.qlooRepo.listEvidenceForWorkspace(workspaceId, 100);
+
+    return {
+      proposalId,
+      references: refs,
+      signals,
+      evidenceItems: allEvidence,
+    };
+  }
+
+  async listWorkspaceQueries(workspaceId: string, limit = 50) {
+    return this.qlooRepo.listQueriesByWorkspace(workspaceId, limit);
+  }
 }

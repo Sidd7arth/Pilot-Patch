@@ -37,6 +37,47 @@ export class AppError extends Error {
       this.cause = options.cause;
     }
   }
+
+  static badRequest(message: string, details?: unknown) {
+    return new AppError({
+      code: 'VALIDATION_ERROR',
+      httpStatus: 400,
+      safeMessage: message,
+      details,
+    });
+  }
+
+  static unauthorized(message = 'Unauthorized') {
+    return new AppError({
+      code: 'UNAUTHORIZED',
+      httpStatus: 401,
+      safeMessage: message,
+    });
+  }
+
+  static forbidden(message = 'Forbidden') {
+    return new AppError({
+      code: 'FORBIDDEN',
+      httpStatus: 403,
+      safeMessage: message,
+    });
+  }
+
+  static notFound(message = 'Not Found') {
+    return new AppError({
+      code: 'NOT_FOUND',
+      httpStatus: 404,
+      safeMessage: message,
+    });
+  }
+
+  static internal(message = 'Internal Server Error') {
+    return new AppError({
+      code: 'INTERNAL_ERROR',
+      httpStatus: 500,
+      safeMessage: message,
+    });
+  }
 }
 
 /**

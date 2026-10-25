@@ -169,4 +169,14 @@ export class DecisionRepository {
 
     return row ?? null;
   }
+
+  async getBriefById(workspaceId: string, briefId: string) {
+    const [row] = await this.db
+      .select()
+      .from(briefs)
+      .where(and(eq(briefs.workspaceId, workspaceId), eq(briefs.id, briefId)))
+      .limit(1);
+
+    return row ?? null;
+  }
 }

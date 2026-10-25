@@ -57,4 +57,17 @@ export class MarketRepository {
       .returning({ id: markets.id });
     return deleted.length > 0;
   }
+
+  async update(
+    workspaceId: string,
+    marketId: string,
+    params: Partial<Omit<CreateMarketParams, 'id' | 'gameId'>>,
+  ) {
+    const [updated] = await this.db
+      .update(markets)
+      .set(params)
+      .where(and(eq(markets.workspaceId, workspaceId), eq(markets.id, marketId)))
+      .returning();
+    return updated ?? null;
+  }
 }

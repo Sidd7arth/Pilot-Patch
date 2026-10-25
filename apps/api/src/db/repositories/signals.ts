@@ -28,6 +28,10 @@ export class CulturalSignalRepository {
       );
   }
 
+  async listByWorkspace(workspaceId: string) {
+    return this.listActiveByWorkspace(workspaceId);
+  }
+
   async listActiveForProposal(workspaceId: string, proposalId: string) {
     return this.db
       .select()
@@ -39,6 +43,10 @@ export class CulturalSignalRepository {
           isNull(culturalSignals.supersededBy),
         ),
       );
+  }
+
+  async listByProposal(workspaceId: string, proposalId: string) {
+    return this.listActiveForProposal(workspaceId, proposalId);
   }
 
   async getSignalById(workspaceId: string, signalId: string) {

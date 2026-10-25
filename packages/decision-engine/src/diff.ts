@@ -49,7 +49,9 @@ export function diffRuns(a: DecisionOutput, b: DecisionOutput): RunDiff {
     }
   }
 
-  const budgetDeltaMinor = qB.portfolio.budgetUsedMinor - qA.portfolio.budgetUsedMinor;
+  const bUsedA = BigInt(qA.portfolio.budgetUsedMinor);
+  const bUsedB = BigInt(qB.portfolio.budgetUsedMinor);
+  const budgetDeltaMinor = bUsedB - bUsedA;
   const budgetDeltaFmt = (Number(budgetDeltaMinor) / 100).toFixed(2);
   const summarySentence = `Re-plan adjusted budget allocation by $${budgetDeltaFmt}, with ${enteredShortlist.length} proposals entering and ${leftShortlist.length} leaving the funded shortlist.`;
 
@@ -59,8 +61,8 @@ export function diffRuns(a: DecisionOutput, b: DecisionOutput): RunDiff {
     leftShortlist,
     rankChanges,
     allocationChange: {
-      budgetUsedFromMinor: qA.portfolio.budgetUsedMinor,
-      budgetUsedToMinor: qB.portfolio.budgetUsedMinor,
+      budgetUsedFromMinor: bUsedA,
+      budgetUsedToMinor: bUsedB,
       effortUsedFromDays: qA.portfolio.effortUsedDays,
       effortUsedToDays: qB.portfolio.effortUsedDays,
     },

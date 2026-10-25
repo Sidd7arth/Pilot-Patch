@@ -2,16 +2,24 @@
 import express, { type Express, type Request, type Response } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import { pinoHttp } from 'pino-http';
 import { randomUUID } from 'crypto';
+import type { NodePgDatabase } from 'drizzle-orm/node-postgres';
+import * as schema from '../db/schema.js';
 import type { AppConfig } from '../config/env.js';
 import { createLogger } from '../observability/logger.js';
 import { createErrorHandler } from './error-handler.js';
 import type { QlooService } from '../modules/qloo/index.js';
 import { createQlooRouter } from './routes/qloo.js';
+import { createWorkspaceRoutes } from './routes/workspaces.js';
+import { createDomainRoutes } from './routes/domain.js';
+import { createDecisionRunRoutes } from './routes/decision-runs.js';
+import { createBriefRoutes } from './routes/briefs.js';
 
 export interface AppDependencies {
   config: AppConfig;
+  db?: NodePgDatabase<typeof schema> | undefined;
   logger?: ReturnType<typeof createLogger> | undefined;
   dbCheck?: (() => Promise<boolean>) | undefined;
   qlooService?: QlooService | undefined;
@@ -67,9 +75,10 @@ export function createApp(deps: AppDependencies): Express {
     }),
   );
 
-  // 5. Body parser with 100 KB limit (SEC-16)
+  // 5. Body parser with 100 KB limit (SEC-16) and Cookie Parser (SEC-02)
   app.use(express.json({ limit: '100kb' }));
   app.use(express.urlencoded({ extended: false, limit: '100kb' }));
+  app.use(cookieParser(deps.config.SESSION_SECRET));
 
   // 6. Base Health & Readiness Probes (P1-03)
   app.get('/health', (_req: Request, res: Response) => {
@@ -104,8 +113,15 @@ export function createApp(deps: AppDependencies): Express {
   // 7. API routes mount point (/api/v1)
   const v1Router = express.Router();
 
+  if (deps.db) {
+    v1Router.use('/', createWorkspaceRoutes(deps.db, deps.config));
+    v1Router.use('/', createDomainRoutes(deps.db));
+    v1Router.use('/', createDecisionRunRoutes(deps.db));
+    v1Router.use('/', createBriefRoutes(deps.db));
+  }
+
   if (deps.qlooService) {
-    v1Router.use('/', createQlooRouter(deps.qlooService));
+    v1Router.use('/', createQlooRouter(deps.qlooService, deps.db));
   } else {
     v1Router.get('/qloo/status', (_req: Request, res: Response) => {
       // Stub for P1-05 StatusPill

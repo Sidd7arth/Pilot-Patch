@@ -29,6 +29,7 @@ if (
 const app = createApp({
   config,
   logger,
+  db,
   qlooService,
   dbCheck: async () => {
     try {

@@ -236,3 +236,46 @@ export function detectDependencyCycle(
 
   return [];
 }
+
+export function validateHorizonDates(start: string, end: string): void {
+  if (start > end) {
+    throw new Error('releaseWindowEnd/horizonEnd must be greater than or equal to horizonStart');
+  }
+}
+
+export function validateBudget(budgetTotal: bigint, contingency: bigint): void {
+  if (budgetTotal < 0n || contingency < 0n) {
+    throw new Error('Budget and contingency must be non-negative');
+  }
+  if (contingency > budgetTotal) {
+    throw new Error('Contingency reserve cannot exceed total budget');
+  }
+}
+
+export function validateProposalLimits(count: number): void {
+  const errs = validateProposalCount(count);
+  if (errs.length > 0 && errs[0]) {
+    throw new Error(errs[0].message);
+  }
+}
+
+export function validateDependencyGraph(
+  deps: Array<{ proposalId: string; dependsOnProposalId?: string | null }>
+): void {
+  const existingEdges: DependencyEdge[] = [];
+  for (const dep of deps) {
+    if (dep.dependsOnProposalId) {
+      const errs = detectDependencyCycle(existingEdges, {
+        proposalId: dep.proposalId,
+        dependsOnProposalId: dep.dependsOnProposalId,
+      });
+      if (errs.length > 0 && errs[0]) {
+        throw new Error(errs[0].message);
+      }
+      existingEdges.push({
+        proposalId: dep.proposalId,
+        dependsOnProposalId: dep.dependsOnProposalId,
+      });
+    }
+  }
+}

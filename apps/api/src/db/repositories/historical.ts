@@ -4,17 +4,29 @@ import type { Database } from '../index.js';
 import { historicalRecords } from '../schema.js';
 
 export interface CreateHistoricalRecordParams {
-  id?: string;
+  id?: string | undefined;
   title: string;
   contentCategory: string;
-  releaseDate?: string | null;
+  releaseDate?: string | null | undefined;
   metricName: string;
   metricUnit: string;
   metricValue: string;
   baselineValue: string;
-  periodNote?: string | null;
-  notes?: string | null;
+  periodNote?: string | null | undefined;
+  notes?: string | null | undefined;
   dataOrigin: string; // 'user_supplied' | 'synthetic_demo'
+}
+
+export interface UpdateHistoricalRecordParams {
+  title?: string | undefined;
+  contentCategory?: string | undefined;
+  releaseDate?: string | null | undefined;
+  metricName?: string | undefined;
+  metricUnit?: string | undefined;
+  metricValue?: string | undefined;
+  baselineValue?: string | undefined;
+  periodNote?: string | null | undefined;
+  notes?: string | null | undefined;
 }
 
 export class HistoricalRecordRepository {
@@ -55,5 +67,22 @@ export class HistoricalRecordRepository {
       })
       .returning();
     return created;
+  }
+
+  async update(workspaceId: string, id: string, params: UpdateHistoricalRecordParams) {
+    const [updated] = await this.db
+      .update(historicalRecords)
+      .set(params)
+      .where(and(eq(historicalRecords.workspaceId, workspaceId), eq(historicalRecords.id, id)))
+      .returning();
+    return updated ?? null;
+  }
+
+  async delete(workspaceId: string, id: string): Promise<boolean> {
+    const [deleted] = await this.db
+      .delete(historicalRecords)
+      .where(and(eq(historicalRecords.workspaceId, workspaceId), eq(historicalRecords.id, id)))
+      .returning({ id: historicalRecords.id });
+    return !!deleted;
   }
 }

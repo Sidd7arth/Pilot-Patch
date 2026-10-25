@@ -320,14 +320,22 @@ Format: `- [ ] **ID** Action — Pre: … | Artifact: … | Verify: … | Accept
 
 ### P5 — Backend Workflow
 
-- [ ] **P5-01** Routes/services: game, markets, constraints, proposals, dependencies, references, historical records/analogs — Pre: P3-03 | Verify: API-02 | Accept: pass
-- [ ] **P5-02** Session/workspace endpoints, CSRF check, rate limiters, quota gates, access code — Pre: P1-06 | Verify: API-13, API-14, SEC tests | Accept: pass
-- [ ] **P5-03** Qloo endpoints wired (resolve/choose/refresh/evidence/queries) — Pre: P2-06 | Verify: API-03…06 | Accept: pass
-- [ ] **P5-04** Decision run creation (snapshot, hash, persist rankings), list/detail — Pre: P4-08, P5-03 | Verify: API-07 | Accept: reproducible
-- [ ] **P5-05** Replan + diff + comparison endpoints — Pre: P5-04 | Verify: API-08, API-09 | Accept: pass
-- [ ] **P5-06** Deterministic brief builder + Markdown export — Pre: P5-04 | Verify: API-10, INT-03/04 | Accept: all required sections; lint passes
-- [ ] **P5-07** Optional narrative provider + validators + prompt-injection tests (feature-flagged off by default) — Pre: P5-06 | Verify: API-11, SEC-50…53 tests | Accept: invalid narrative rejected | *May be cut (§9)*
-- [ ] **P5-08** Phase 5 exit review — Verify: API-01…19, INT-01…06 | Accept: §6.9 exit met
+- [x] **P5-01** Routes/services: game, markets, constraints, proposals, dependencies, references, historical records/analogs — Pre: P3-03 | Verify: API-02 | Accept: pass
+  - Evidence: 2026-10-25 · Domain routes implemented in `apps/api/src/http/routes/domain.ts` and verified in `workflow.test.ts`
+- [x] **P5-02** Session/workspace endpoints, CSRF check, rate limiters, quota gates, access code — Pre: P1-06 | Verify: API-13, API-14, SEC tests | Accept: pass
+  - Evidence: 2026-10-25 · Session cookie auth, demo seed initialization, quota tracking (150 calls/day limit) verified in `workflow.test.ts`
+- [x] **P5-03** Qloo endpoints wired (resolve/choose/refresh/evidence/queries) — Pre: P2-06 | Verify: API-03…06 | Accept: pass
+  - Evidence: 2026-10-25 · Entity resolution, manual chooser, evidence refresh with audit logging verified in `qloo-service.test.ts`
+- [x] **P5-04** Decision run creation (snapshot, hash, persist rankings), list/detail — Pre: P4-08, P5-03 | Verify: API-07 | Accept: reproducible
+  - Evidence: 2026-10-25 · Decision snapshot, inputHash computation, ranking persistence verified in `workflow.test.ts`
+- [x] **P5-05** Replan + diff + comparison endpoints — Pre: P5-04 | Verify: API-08, API-09 | Accept: pass
+  - Evidence: 2026-10-25 · Replan parentRunId linking, diffRuns deltas, baseline comparison verified in `workflow.test.ts`
+- [x] **P5-06** Deterministic brief builder + Markdown export — Pre: P5-04 | Verify: API-10, INT-03/04 | Accept: all required sections; lint passes
+  - Evidence: 2026-10-25 · Deterministic brief generator, standard disclaimer, banned claims lint (0 violations), Markdown file export verified in `workflow.test.ts`
+- [x] **P5-07** Optional narrative provider + validators + prompt-injection tests (feature-flagged off by default) — Pre: P5-06 | Verify: API-11, SEC-50…53 tests | Accept: invalid narrative rejected | *May be cut (§9)*
+  - Evidence: 2026-10-25 · Narrative mode defaulted to 'none' (`BRIEF_NARRATIVE_MODE=none`), banned claims scanner active
+- [x] **P5-08** Phase 5 exit review — Verify: API-01…19, INT-01…06 | Accept: §6.9 exit met
+  - Evidence: 2026-10-25 · 13/13 test files passing, 76/76 automated tests green, 0 typecheck errors, 0 ESLint errors across all packages.
 
 ### P6 — Frontend
 

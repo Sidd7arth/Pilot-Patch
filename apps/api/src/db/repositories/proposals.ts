@@ -1,7 +1,13 @@
 // apps/api/src/db/repositories/proposals.ts
 import { eq, and, isNull } from 'drizzle-orm';
 import type { Database } from '../index.js';
-import { proposals, proposalMarkets, proposalDependencies, proposalAnalogs } from '../schema.js';
+import {
+  proposals,
+  proposalMarkets,
+  proposalDependencies,
+  proposalAnalogs,
+  historicalRecords,
+} from '../schema.js';
 
 export interface CreateProposalParams {
   id?: string;
@@ -23,19 +29,19 @@ export interface CreateProposalParams {
 }
 
 export interface UpdateProposalParams {
-  name?: string;
-  description?: string | null;
-  category?: string;
-  status?: string;
-  estimatedCostMinor?: bigint;
-  currency?: string;
-  effortPersonDays?: number;
-  releaseWindowStart?: string;
-  releaseWindowEnd?: string;
-  scheduleConfidence?: number | null;
-  stakeholderPriority?: number | null;
-  openQuestions?: string[];
-  assumptions?: string[];
+  name?: string | undefined;
+  description?: string | null | undefined;
+  category?: string | undefined;
+  status?: string | undefined;
+  estimatedCostMinor?: bigint | undefined;
+  currency?: string | undefined;
+  effortPersonDays?: number | undefined;
+  releaseWindowStart?: string | undefined;
+  releaseWindowEnd?: string | undefined;
+  scheduleConfidence?: number | null | undefined;
+  stakeholderPriority?: number | null | undefined;
+  openQuestions?: string[] | undefined;
+  assumptions?: string[] | undefined;
 }
 
 export interface CreateDependencyParams {
@@ -198,6 +204,10 @@ export class ProposalRepository {
     return created;
   }
 
+  async addDependency(workspaceId: string, params: CreateDependencyParams) {
+    return this.createDependency(workspaceId, params);
+  }
+
   async deleteDependency(workspaceId: string, dependencyId: string): Promise<boolean> {
     const deleted = await this.db
       .delete(proposalDependencies)
@@ -243,5 +253,66 @@ export class ProposalRepository {
         workspaceId,
       })),
     );
+  }
+
+  async setAnalogs(workspaceId: string, proposalId: string, historicalRecordIds: string[]) {
+    return this.setProposalAnalogs(workspaceId, proposalId, historicalRecordIds);
+  }
+
+  async listAnalogs(workspaceId: string, proposalId: string) {
+    return this.db
+      .select({
+        proposalId: proposalAnalogs.proposalId,
+        historicalRecordId: proposalAnalogs.historicalRecordId,
+        featureName: historicalRecords.title,
+        category: historicalRecords.contentCategory,
+        releaseQuarter: historicalRecords.releaseDate,
+        metricName: historicalRecords.metricName,
+        metricUnit: historicalRecords.metricUnit,
+        metricValue: historicalRecords.metricValue,
+        baselineValue: historicalRecords.baselineValue,
+        description: historicalRecords.notes,
+        dataOrigin: historicalRecords.dataOrigin,
+      })
+      .from(proposalAnalogs)
+      .innerJoin(
+        historicalRecords,
+        and(
+          eq(historicalRecords.workspaceId, workspaceId),
+          eq(historicalRecords.id, proposalAnalogs.historicalRecordId),
+        ),
+      )
+      .where(
+        and(
+          eq(proposalAnalogs.workspaceId, workspaceId),
+          eq(proposalAnalogs.proposalId, proposalId),
+        ),
+      );
+  }
+
+  async listAllWorkspaceAnalogs(workspaceId: string) {
+    return this.db
+      .select({
+        proposalId: proposalAnalogs.proposalId,
+        historicalRecordId: proposalAnalogs.historicalRecordId,
+        featureName: historicalRecords.title,
+        category: historicalRecords.contentCategory,
+        releaseQuarter: historicalRecords.releaseDate,
+        metricName: historicalRecords.metricName,
+        metricUnit: historicalRecords.metricUnit,
+        metricValue: historicalRecords.metricValue,
+        baselineValue: historicalRecords.baselineValue,
+        description: historicalRecords.notes,
+        dataOrigin: historicalRecords.dataOrigin,
+      })
+      .from(proposalAnalogs)
+      .innerJoin(
+        historicalRecords,
+        and(
+          eq(historicalRecords.workspaceId, workspaceId),
+          eq(historicalRecords.id, proposalAnalogs.historicalRecordId),
+        ),
+      )
+      .where(eq(proposalAnalogs.workspaceId, workspaceId));
   }
 }
