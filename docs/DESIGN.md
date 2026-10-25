@@ -164,7 +164,7 @@ Minimal: 120–180 ms ease-out for drawers/popovers; no looping animations; skel
 ## 11. Frontend Implementation Notes (for Antigravity)
 
 - Tailwind with tokens mapped in `tailwind.config` (CSS variables); dark mode via `class` strategy with system default.
-- Component library: build on accessible primitives (Radix UI/shadcn-style) — only if added per dependency discipline (`CODE_STYLE.md` §11); otherwise native elements.
+- Component library: built on accessible primitives using shadcn/ui and Radix UI primitives (`DEC-UI-001`), owned in `apps/web/components/ui/` per `CODE_STYLE.md` §11 and `pp-build` v2.
 - Data fetching: typed client from `packages/shared`; server state via a small cache layer (TanStack Query acceptable); no global state library beyond that.
 - Every screen consumes **real API responses**; no hardcoded rankings, scores, or Qloo content anywhere in `apps/web` (lint rule bans importing seed/fixture modules; test asserts).
 - Synthetic seed content is created by the **API** (labeled) and is not bundled in the web app.

@@ -148,7 +148,7 @@ packages/decision-engine/src/ # index.ts, eligibility.ts, criteria/, aggregate.t
 ## 11. Dependency Discipline
 
 1. Prefer platform features (`fetch`, `AbortController`, `crypto`, `URL`) over libraries.
-2. Allowed baseline set: `next`, `react`, `react-dom`, `tailwindcss`, `express`, `zod`, `drizzle-orm`, `drizzle-kit`, `pg` (or `postgres`), `pino`, `pino-http`, `helmet`, `cors`, `express-rate-limit`, `cookie-parser` (or signed-cookie helper), `vitest`, `supertest`, `msw` (or undici MockAgent), `@playwright/test`, `@axe-core/playwright`, `eslint` stack, `prettier`, `typescript`, `tsx`, `@tanstack/react-query` (optional), `lucide-react` (optional), Radix primitives (optional).
+2. Allowed baseline set: `next`, `react`, `react-dom`, `tailwindcss`, `express`, `zod`, `drizzle-orm`, `drizzle-kit`, `pg` (or `postgres`), `pino`, `pino-http`, `helmet`, `cors`, `express-rate-limit`, `cookie-parser` (or signed-cookie helper), `vitest`, `supertest`, `msw` (or undici MockAgent), `@playwright/test`, `@axe-core/playwright`, `eslint` stack, `prettier`, `typescript`, `tsx`, `@tanstack/react-query` (optional), `lucide-react` (optional), Radix primitives / shadcn/ui components (`DEC-UI-001`).
 3. Any other dependency requires a `DECISIONS.md` entry (reason, size, maintenance, alternatives, license).
 4. No packages with copyleft licenses incompatible with the chosen OSI license; check licenses (`pnpm licenses list`).
 5. Prefer versions published ≥14 days earlier; pin via lockfile; no `latest` ranges in manifests; no `postinstall` scripts from unvetted packages.

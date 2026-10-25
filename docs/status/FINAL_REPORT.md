@@ -52,7 +52,7 @@ PatchPilot is a decision-support platform designed for live-service game studios
 
 ---
 
-## 5. Security Audit (SEC Matrix)
+## 5. Security Audit (SEC Matrix & pp-build v2 Hardening)
 
 | Control ID | Status | Verification Detail |
 |---|---|---|
@@ -65,6 +65,8 @@ PatchPilot is a decision-support platform designed for live-service game studios
 | **SEC-34: Demo Banner** | **VERIFIED** | Persistent warning banner on entry screen informing users of 7-day session lifetime and advising against confidential inputs. |
 | **SEC-40: Transport Isolation** | **VERIFIED** | `FixtureTransport` is confined to test files and excluded from package production exports. |
 | **SEC-80..83: Sanitized Audit Logs** | **VERIFIED** | Qloo query logs store only sanitized parameters and masked identifiers (`workflow.test.ts`). |
+| **P7H Hardening & CVE Patches** | **VERIFIED** | `pnpm audit --prod` confirmed 0 vulnerabilities. Patched Next.js (16.4.3) and overridden body-parser (>=2.4.0). Detailed in `docs/status/SECURITY_AUDIT.md`. |
+| **P6-14 Screen State Audit** | **VERIFIED** | 72/72 states (loading, empty, error, Qloo failure, cached, quota) verified 100% PASS in `docs/status/STATE_AUDIT.md`. |
 
 ---
 

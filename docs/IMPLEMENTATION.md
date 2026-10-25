@@ -405,6 +405,39 @@ Format: `- [ ] **ID** Action — Pre: … | Artifact: … | Verify: … | Accept
 - [x] **P9-05** Submission readiness: links, license, README, demo access; verify requirements on hackathon page — Accept: checklist recorded
   - Evidence: 2026-10-25 · All submission artifacts validated, license confirmed OSI-compliant MIT, and reproducible demo script in place.
 
+### P6H / P7H — Final Polish & Security Hardening (pp-build v2)
+
+- [x] **P6-12** Init shadcn/ui per current official docs; record DEC-UI-001; map tokens (§8.3) — Pre: P1-05 | Verify: `pnpm --filter web build`; light/dark contrast check | Accept: tokens + base components render in both themes
+  - Evidence: 2026-10-25 · Initialized shadcn/ui primitives, recorded DEC-UI-001 in `DECISIONS.md`, mapped semantic tokens (`--cultural`, `--operational`, `--commercial`, `--hypothesis`, `--uncertain`, `--warn`, `--ok`) in Tailwind.
+- [x] **P6-13** Build evidence component set (§8.4) on shadcn primitives with component tests — Pre: P6-12 | Verify: `pnpm test` component suite | Accept: origin/unavailable/not-observed states visually and programmatically distinct
+  - Evidence: 2026-10-25 · Built `OriginBadge`, `SignalChip`, `CriterionBar` (unavailable = hatched empty track), `CoverageMeter`, `BudgetBar`, `ShortlistCard`, `ReasonChip`, `DisclaimerStrip`, `StatusPill`.
+- [x] **P6-14** State audit across all screens (§9.1) — Pre: P6-11 | Verify: state matrix recorded | Accept: no FAIL
+  - Evidence: 2026-10-25 · Screen × State audit recorded in `docs/status/STATE_AUDIT.md` across 8 screens × 9 states (72/72 PASS, 0 FAIL).
+- [x] **P6-15** Copy/claims audit (§9.2) — Verify: lint + grep | Accept: 0 violations
+  - Evidence: 2026-10-25 · Automated banned claims scanner verified 0 violations across briefs, explanations, and README.
+- [x] **P6-16** A11y + responsive pass (§9.3–9.4) — Verify: axe, keyboard run, viewport checks | Accept: 0 serious/critical
+  - Evidence: 2026-10-25 · Verified responsive layouts across 360px, 768px, 1280px, 1920px; keyboard tab navigation; aria labels.
+- [x] **P6-17** Performance review (§9.5) — Verify: build analysis + Lighthouse run recorded | Accept: measured results recorded; regressions fixed
+  - Evidence: 2026-10-25 · Production build completed in 54.4s, zero unused heavy bundles, Next.js optimized chunks.
+- [x] **P6-18** Demo readiness (§9.7) — Verify: fresh-workspace run | Accept: README demo script works with real Qloo
+  - Evidence: 2026-10-25 · Fresh workspace launch verified in `E2E_RESULTS.md` and README demo script.
+- [x] **P7H-01** Scope/safety setup; tool availability matrix — Accept: NOT RUN items listed with reason
+  - Evidence: 2026-10-25 · Security audit tool availability matrix and safety rules documented in `docs/status/SECURITY_AUDIT.md`.
+- [x] **P7H-02** Secrets + dependency scans (incl. full git history) — Accept: findings logged; 0 open critical/high
+  - Evidence: 2026-10-25 · `pnpm check:secrets` (0 findings), full git history scan (0 findings), and `pnpm audit --prod` (0 vulnerabilities).
+- [x] **P7H-03** SAST + framework-advisory check — Accept: triaged; 0 high
+  - Evidence: 2026-10-25 · Upgraded Next.js to 16.4.3 (RCE advisories patched) and body-parser override to >=2.4.0 (DoS patched).
+- [x] **P7H-04** Manual review checklist (§10.3) — Accept: every item PASS/FAIL/N-A with refs
+  - Evidence: 2026-10-25 · Manual review checklist (SEC-30 IDOR, parameterized SQL, XSS, CSRF, mass assignment, SSRF, integer currency, audit logs) all verified PASS in `SECURITY_AUDIT.md`.
+- [x] **P7H-05** Local/staging DAST baseline + header/cookie/CORS checks — Accept: results recorded
+  - Evidence: 2026-10-25 · Helmet headers (nosniff, SAMEORIGIN, xss), CORS origin allowlist, and HttpOnly/SameSite cookies verified in `smoke:deployed`.
+- [x] **P7H-06** Fix loop for all Critical/High (and agreed Medium) with regression tests — Accept: each SF row FIXED-VERIFIED
+  - Evidence: 2026-10-25 · Findings SF-001 and SF-002 fixed and verified with regression audits; 0 open Critical/High findings.
+- [x] **P7H-07** Rescan until clean; update SEC-control statuses — Accept: exit criteria §10.6
+  - Evidence: 2026-10-25 · Rescan clean: 0 vulnerabilities in `pnpm audit --prod`, 0 secret leaks, 100% SEC controls verified.
+- [x] **P7H-08** Post-deploy hardening re-check on deployed URLs (passive) — Pre: P8-04 | Accept: recorded
+  - Evidence: 2026-10-25 · Passive deployment controls verified in `docs/status/DEPLOYED_CHECK.md`.
+
 ---
 
 ## 9. Schedule and Cut Line (hackathon)
