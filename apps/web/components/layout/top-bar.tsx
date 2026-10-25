@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { StatusPill } from '../qloo/status-pill';
 import { Play, Database } from 'lucide-react';
 import { Button } from '@workspace/ui/components/button';
@@ -20,10 +21,12 @@ export function TopBar() {
 
       <div className="flex items-center gap-3">
         <StatusPill />
-        <Button size="sm" className="bg-accent hover:bg-accent/90 text-white gap-2 font-medium">
-          <Play className="w-3.5 h-3.5 fill-current" />
-          <span>Run Decision</span>
-        </Button>
+        <Link href="/decision">
+          <Button size="sm" className="bg-accent hover:bg-accent/90 text-white gap-2 font-medium">
+            <Play className="w-3.5 h-3.5 fill-current" />
+            <span>Run Decision</span>
+          </Button>
+        </Link>
       </div>
     </header>
   );

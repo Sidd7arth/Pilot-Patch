@@ -25,7 +25,7 @@ export default defineConfig({
       timeout: 30000,
     },
     {
-      command: 'pnpm --filter web dev',
+      command: 'pnpm --filter web start',
       url: 'http://localhost:3000',
       reuseExistingServer: !process.env.CI,
       timeout: 30000,
