@@ -260,7 +260,7 @@ export function validateProposalLimits(count: number): void {
 }
 
 export function validateDependencyGraph(
-  deps: Array<{ proposalId: string; dependsOnProposalId?: string | null }>
+  deps: Array<{ proposalId: string; dependsOnProposalId?: string | null }>,
 ): void {
   const existingEdges: DependencyEdge[] = [];
   for (const dep of deps) {

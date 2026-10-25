@@ -16,7 +16,12 @@ import {
 import { Button } from '@workspace/ui/components/button';
 import { OriginBadge } from '../../../components/ui/origin-badge';
 import { DisclaimerStrip } from '../../../components/ui/disclaimer-strip';
-import { api, type ComparisonAttribution, type RunDiff, type DecisionRunSummary } from '../../../lib/api';
+import {
+  api,
+  type ComparisonAttribution,
+  type RunDiff,
+  type DecisionRunSummary,
+} from '../../../lib/api';
 
 function CompareContent() {
   const searchParams = useSearchParams();
@@ -80,7 +85,8 @@ function CompareContent() {
           }
         }
       } catch (err: unknown) {
-        if (!ignore) setError(err instanceof Error ? err.message : 'Failed to load comparison data');
+        if (!ignore)
+          setError(err instanceof Error ? err.message : 'Failed to load comparison data');
       } finally {
         if (!ignore) setLoading(false);
       }
@@ -96,7 +102,7 @@ function CompareContent() {
     try {
       setReplanRunning(true);
       setError(null);
-      const budgetMinor = (Math.round(Number(overrideBudget) * 100)).toString();
+      const budgetMinor = Math.round(Number(overrideBudget) * 100).toString();
 
       const res = await api.replanDecisionRun(selectedRunId, {
         label: `Re-plan (Budget $${Number(overrideBudget).toLocaleString()})`,
@@ -145,7 +151,8 @@ function CompareContent() {
             <OriginBadge origin="system_derived" />
           </div>
           <p className="text-xs text-text-muted mt-1">
-            Attribution analysis between Baseline and Qloo-informed variants, plus interactive scenario replanning.
+            Attribution analysis between Baseline and Qloo-informed variants, plus interactive
+            scenario replanning.
           </p>
         </div>
 
@@ -211,7 +218,9 @@ function CompareContent() {
             <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
             <div>
               <span className="font-semibold block">Important Interpretation Notice:</span>
-              Different ranking does not guarantee a better commercial outcome. The Qloo-informed view incorporates cultural-affinity evidence across target geographies, which has not been validated against real revenue or player conversion.
+              Different ranking does not guarantee a better commercial outcome. The Qloo-informed
+              view incorporates cultural-affinity evidence across target geographies, which has not
+              been validated against real revenue or player conversion.
             </div>
           </div>
 
@@ -237,8 +246,12 @@ function CompareContent() {
                     return (
                       <tr key={att.proposalId} className="hover:bg-surface-2/40 transition-colors">
                         <td className="py-3.5 px-4">
-                          <span className="font-semibold text-text text-sm">{att.proposalName}</span>
-                          <span className="block text-[10px] font-mono text-text-muted">{att.proposalId}</span>
+                          <span className="font-semibold text-text text-sm">
+                            {att.proposalName}
+                          </span>
+                          <span className="block text-[10px] font-mono text-text-muted">
+                            {att.proposalId}
+                          </span>
                         </td>
 
                         <td className="py-3.5 px-4 text-center font-mono text-sm">
@@ -252,8 +265,7 @@ function CompareContent() {
                         <td className="py-3.5 px-4 text-center font-mono">
                           {movedUp && (
                             <span className="inline-flex items-center gap-0.5 text-emerald-600 font-bold">
-                              <ArrowUpRight className="w-3.5 h-3.5" />
-                              +{rankDelta}
+                              <ArrowUpRight className="w-3.5 h-3.5" />+{rankDelta}
                             </span>
                           )}
                           {movedDown && (
@@ -338,7 +350,9 @@ function CompareContent() {
               <div className="space-y-2 pt-2 border-t border-border">
                 <div className="flex justify-between font-semibold text-text">
                   <span>Cultural Relevance Weight</span>
-                  <span className="font-mono text-accent">{(weightRelevance * 100).toFixed(0)}%</span>
+                  <span className="font-mono text-accent">
+                    {(weightRelevance * 100).toFixed(0)}%
+                  </span>
                 </div>
                 <input
                   type="range"
@@ -354,7 +368,9 @@ function CompareContent() {
               <div className="space-y-2">
                 <div className="flex justify-between font-semibold text-text">
                   <span>Feasibility Weight</span>
-                  <span className="font-mono text-accent">{(weightFeasibility * 100).toFixed(0)}%</span>
+                  <span className="font-mono text-accent">
+                    {(weightFeasibility * 100).toFixed(0)}%
+                  </span>
                 </div>
                 <input
                   type="range"
@@ -373,7 +389,9 @@ function CompareContent() {
                 disabled={replanRunning}
                 className="w-full bg-accent hover:bg-accent/90 text-white gap-2 font-medium"
               >
-                <Play className={`w-3.5 h-3.5 fill-current ${replanRunning ? 'animate-spin' : ''}`} />
+                <Play
+                  className={`w-3.5 h-3.5 fill-current ${replanRunning ? 'animate-spin' : ''}`}
+                />
                 <span>{replanRunning ? 'Executing Re-plan...' : 'Execute Re-plan Scenario'}</span>
               </Button>
             </div>
@@ -382,7 +400,9 @@ function CompareContent() {
           {/* Right: Live Diff View (7 cols) */}
           <div className="lg:col-span-7 space-y-4">
             <div>
-              <h3 className="text-sm font-semibold text-text">Differential Analysis vs Parent Run</h3>
+              <h3 className="text-sm font-semibold text-text">
+                Differential Analysis vs Parent Run
+              </h3>
               <p className="text-xs text-text-muted mt-0.5">
                 Pure deterministic comparison of shortlist inclusions and rank adjustments.
               </p>
@@ -446,12 +466,17 @@ function CompareContent() {
                       Rank Movement ({diff.rankChanges.length})
                     </div>
                     <div className="divide-y divide-border text-xs">
-                      {diff.rankChanges.map((rc: { proposalId: string; proposalName: string; reason: string }) => (
-                        <div key={rc.proposalId} className="p-3 flex items-center justify-between">
-                          <span className="font-semibold text-text">{rc.proposalName}</span>
-                          <span className="text-text-muted font-mono">{rc.reason}</span>
-                        </div>
-                      ))}
+                      {diff.rankChanges.map(
+                        (rc: { proposalId: string; proposalName: string; reason: string }) => (
+                          <div
+                            key={rc.proposalId}
+                            className="p-3 flex items-center justify-between"
+                          >
+                            <span className="font-semibold text-text">{rc.proposalName}</span>
+                            <span className="text-text-muted font-mono">{rc.reason}</span>
+                          </div>
+                        ),
+                      )}
                     </div>
                   </div>
                 )}
@@ -461,7 +486,8 @@ function CompareContent() {
                 <Sliders className="w-8 h-8 text-text-muted mx-auto" />
                 <p className="font-medium text-text">No Diff Available Yet</p>
                 <p className="max-w-xs mx-auto">
-                  Adjust budget or weights on the left and click &apos;Execute Re-plan Scenario&apos; to generate a real-time delta.
+                  Adjust budget or weights on the left and click &apos;Execute Re-plan
+                  Scenario&apos; to generate a real-time delta.
                 </p>
               </div>
             )}
@@ -476,7 +502,11 @@ function CompareContent() {
 
 export default function ComparePage() {
   return (
-    <Suspense fallback={<div className="p-8 text-center text-xs text-text-muted">Loading compare screen...</div>}>
+    <Suspense
+      fallback={
+        <div className="p-8 text-center text-xs text-text-muted">Loading compare screen...</div>
+      }
+    >
       <CompareContent />
     </Suspense>
   );

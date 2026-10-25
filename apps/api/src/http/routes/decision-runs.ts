@@ -9,7 +9,7 @@ import { createSessionMiddleware } from '../middleware/session.js';
 
 export function createDecisionRunRoutes(
   db: NodePgDatabase<typeof schema>,
-  decisionService?: DecisionService
+  decisionService?: DecisionService,
 ): Router {
   const router = Router();
   const requireSession = createSessionMiddleware(db);
@@ -23,7 +23,13 @@ export function createDecisionRunRoutes(
    */
   router.post('/decision-runs', async (req, res, next) => {
     try {
-      const { label, variants = 'both', weights, constraintsOverride, parentRunId } = req.body ?? {};
+      const {
+        label,
+        variants = 'both',
+        weights,
+        constraintsOverride,
+        parentRunId,
+      } = req.body ?? {};
 
       const result = await service.createRun(req.workspaceId!, {
         label,

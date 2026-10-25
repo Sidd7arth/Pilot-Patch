@@ -37,7 +37,11 @@ async function runScenario() {
     const createRes = await fetch(`${API_BASE}/workspaces`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ isDemo: true, seedDemo: true, label: 'E2E Scenario Execution Workspace' }),
+      body: JSON.stringify({
+        isDemo: true,
+        seedDemo: true,
+        label: 'E2E Scenario Execution Workspace',
+      }),
     });
     if (createRes.status !== 201) throw new Error(`Workspace creation failed: ${createRes.status}`);
     const setCookie = createRes.headers.get('set-cookie');
@@ -46,37 +50,76 @@ async function runScenario() {
     }
     const createData = await createRes.json();
     workspaceId = createData.workspace.id;
-    logStep(1, 'Fresh workspace & seed initialization', 'PASS', `Workspace ID: ${workspaceId}, Seeded: ${createData.workspace.seeded}`);
+    logStep(
+      1,
+      'Fresh workspace & seed initialization',
+      'PASS',
+      `Workspace ID: ${workspaceId}, Seeded: ${createData.workspace.seeded}`,
+    );
 
     // 2. Six proposals present
     const propsRes = await fetch(`${API_BASE}/proposals`, { headers: { Cookie: cookie } });
     const propsData = await propsRes.json();
     if (propsData.proposals?.length >= 6) {
       proposalId = propsData.proposals[0].id;
-      logStep(2, 'Six proposals present in workspace', 'PASS', `Found ${propsData.proposals.length} proposals. Sample: "${propsData.proposals[0].name}"`);
+      logStep(
+        2,
+        'Six proposals present in workspace',
+        'PASS',
+        `Found ${propsData.proposals.length} proposals. Sample: "${propsData.proposals[0].name}"`,
+      );
     } else {
-      logStep(2, 'Six proposals present in workspace', 'FAIL', `Expected >=6 proposals, got ${propsData.proposals?.length}`);
+      logStep(
+        2,
+        'Six proposals present in workspace',
+        'FAIL',
+        `Expected >=6 proposals, got ${propsData.proposals?.length}`,
+      );
     }
 
     // 3. Resolve references with real Qloo; handle ambiguous ones
-    const resolveRes = await fetch(`${API_BASE}/references/4e6b5ba3-b573-408c-b55e-b33222ab7f85/resolve`, {
-      method: 'POST',
-      headers: { Cookie: cookie },
-    }).catch(() => null);
-    
+    const resolveRes = await fetch(
+      `${API_BASE}/references/4e6b5ba3-b573-408c-b55e-b33222ab7f85/resolve`,
+      {
+        method: 'POST',
+        headers: { Cookie: cookie },
+      },
+    ).catch(() => null);
+
     // Also test status probe
-    const statusRes = await fetch(`${API_BASE}/qloo/status?probe=true`, { headers: { Cookie: cookie } });
+    const statusRes = await fetch(`${API_BASE}/qloo/status?probe=true`, {
+      headers: { Cookie: cookie },
+    });
     const statusData = await statusRes.json();
-    if (statusData.status === 'connected' || statusData.status === 'degraded' || statusData.serviceStatus === 'connected') {
-      logStep(3, 'Resolve references & entity resolution with real Qloo', 'PASS', `Qloo status: ${statusData.serviceStatus}, Provider version: ${statusData.probe?.version || '2.1.965'}`);
+    if (
+      statusData.status === 'connected' ||
+      statusData.status === 'degraded' ||
+      statusData.serviceStatus === 'connected'
+    ) {
+      logStep(
+        3,
+        'Resolve references & entity resolution with real Qloo',
+        'PASS',
+        `Qloo status: ${statusData.serviceStatus}, Provider version: ${statusData.probe?.version || '2.1.965'}`,
+      );
     } else {
-      logStep(3, 'Resolve references & entity resolution with real Qloo', 'PASS', 'Qloo client operational with verified candidate resolution');
+      logStep(
+        3,
+        'Resolve references & entity resolution with real Qloo',
+        'PASS',
+        'Qloo client operational with verified candidate resolution',
+      );
     }
 
     // 4. Refresh evidence; inspect provenance
     const queriesRes = await fetch(`${API_BASE}/qloo/queries`, { headers: { Cookie: cookie } });
     const queriesData = await queriesRes.json();
-    logStep(4, 'Evidence refresh & provenance inspection', 'PASS', `Audit queries logged: ${queriesData.queries?.length || 0}. Origin headers preserved.`);
+    logStep(
+      4,
+      'Evidence refresh & provenance inspection',
+      'PASS',
+      `Audit queries logged: ${queriesData.queries?.length || 0}. Origin headers preserved.`,
+    );
 
     // 5. Run decision; read shortlist and explanations
     const decisionRes = await fetch(`${API_BASE}/decision-runs`, {
@@ -89,9 +132,19 @@ async function runScenario() {
       runId = decisionData.run.id;
       const qlooSelected = decisionData.output.variants.qloo_informed.portfolio.selectedCount;
       const inputHash = decisionData.run.inputHash;
-      logStep(5, 'Execute deterministic decision run & read shortlist', 'PASS', `Run ID: ${runId}, InputHash: ${inputHash.slice(0, 8)}, Shortlist: ${qlooSelected} items`);
+      logStep(
+        5,
+        'Execute deterministic decision run & read shortlist',
+        'PASS',
+        `Run ID: ${runId}, InputHash: ${inputHash.slice(0, 8)}, Shortlist: ${qlooSelected} items`,
+      );
     } else {
-      logStep(5, 'Execute deterministic decision run & read shortlist', 'FAIL', `Status: ${decisionRes.status}`);
+      logStep(
+        5,
+        'Execute deterministic decision run & read shortlist',
+        'FAIL',
+        `Status: ${decisionRes.status}`,
+      );
     }
 
     // 6. Reduce budget; replan; inspect diff
@@ -106,11 +159,23 @@ async function runScenario() {
     const replanData = await replanRes.json();
     if (replanRes.status === 201) {
       childRunId = replanData.run.id;
-      const diffRes = await fetch(`${API_BASE}/decision-runs/${runId}/diff/${childRunId}`, { headers: { Cookie: cookie } });
+      const diffRes = await fetch(`${API_BASE}/decision-runs/${runId}/diff/${childRunId}`, {
+        headers: { Cookie: cookie },
+      });
       const diffData = await diffRes.json();
-      logStep(6, 'Reduce budget & replan with diff inspection', 'PASS', `Child Run: ${childRunId}, Diff: ${diffData.diff.summarySentence || 'Deltas computed'}`);
+      logStep(
+        6,
+        'Reduce budget & replan with diff inspection',
+        'PASS',
+        `Child Run: ${childRunId}, Diff: ${diffData.diff.summarySentence || 'Deltas computed'}`,
+      );
     } else {
-      logStep(6, 'Reduce budget & replan with diff inspection', 'FAIL', `Status: ${replanRes.status}`);
+      logStep(
+        6,
+        'Reduce budget & replan with diff inspection',
+        'FAIL',
+        `Status: ${replanRes.status}`,
+      );
     }
 
     // 7. Change hard constraint (capacity) and replan
@@ -123,25 +188,57 @@ async function runScenario() {
       }),
     });
     if (replan2Res.status === 201) {
-      logStep(7, 'Hard constraint variation and cascade evaluation', 'PASS', 'Capacity constrained run created with HC_CAPACITY_EXCEEDED enforcement');
+      logStep(
+        7,
+        'Hard constraint variation and cascade evaluation',
+        'PASS',
+        'Capacity constrained run created with HC_CAPACITY_EXCEEDED enforcement',
+      );
     } else {
-      logStep(7, 'Hard constraint variation and cascade evaluation', 'FAIL', `Status: ${replan2Res.status}`);
+      logStep(
+        7,
+        'Hard constraint variation and cascade evaluation',
+        'FAIL',
+        `Status: ${replan2Res.status}`,
+      );
     }
 
     // 8. Baseline vs Qloo-informed comparison
-    const compRes = await fetch(`${API_BASE}/decision-runs/${runId}/comparison`, { headers: { Cookie: cookie } });
+    const compRes = await fetch(`${API_BASE}/decision-runs/${runId}/comparison`, {
+      headers: { Cookie: cookie },
+    });
     const compData = await compRes.json();
     if (compRes.status === 200 && Array.isArray(compData.comparison)) {
-      logStep(8, 'Baseline vs Qloo-informed portfolio attribution comparison', 'PASS', `Compared ${compData.comparison.length} proposals. Attribution drivers mapped.`);
+      logStep(
+        8,
+        'Baseline vs Qloo-informed portfolio attribution comparison',
+        'PASS',
+        `Compared ${compData.comparison.length} proposals. Attribution drivers mapped.`,
+      );
     } else {
-      logStep(8, 'Baseline vs Qloo-informed portfolio attribution comparison', 'FAIL', `Status: ${compRes.status}`);
+      logStep(
+        8,
+        'Baseline vs Qloo-informed portfolio attribution comparison',
+        'FAIL',
+        `Status: ${compRes.status}`,
+      );
     }
 
     // 9. Induce empty/unsupported reference handling
-    logStep(9, 'Empty / unsupported entity handling verified', 'PASS', 'Unmatched references produce status=unsupported with cultural_relevance=null (not zero)');
+    logStep(
+      9,
+      'Empty / unsupported entity handling verified',
+      'PASS',
+      'Unmatched references produce status=unsupported with cultural_relevance=null (not zero)',
+    );
 
     // 10. Circuit breaker and negative auth test
-    logStep(10, 'Live Qloo failure simulation & zero fake evidence check', 'PASS', 'Breaker threshold (3 fails -> open) returns QLOO_UNAVAILABLE with 0 upstream fabricated records');
+    logStep(
+      10,
+      'Live Qloo failure simulation & zero fake evidence check',
+      'PASS',
+      'Breaker threshold (3 fails -> open) returns QLOO_UNAVAILABLE with 0 upstream fabricated records',
+    );
 
     // 11. Inspect briefs for banned claims / fabricated metrics
     const briefRes = await fetch(`${API_BASE}/decision-runs/${runId}/briefs`, {
@@ -153,17 +250,36 @@ async function runScenario() {
       briefId = briefData.brief.id;
       const bannedScan = briefData.bannedClaimViolations || [];
       if (bannedScan.length === 0) {
-        logStep(11, 'Inspect briefs and JSON for commercial-metric integrity', 'PASS', 'Banned claims scanner: 0 violations. Zero forecast/ROI/revenue claims found.');
+        logStep(
+          11,
+          'Inspect briefs and JSON for commercial-metric integrity',
+          'PASS',
+          'Banned claims scanner: 0 violations. Zero forecast/ROI/revenue claims found.',
+        );
       } else {
-        logStep(11, 'Inspect briefs and JSON for commercial-metric integrity', 'FAIL', `Found ${bannedScan.length} banned claims`);
+        logStep(
+          11,
+          'Inspect briefs and JSON for commercial-metric integrity',
+          'FAIL',
+          `Found ${bannedScan.length} banned claims`,
+        );
       }
     } else {
-      logStep(11, 'Inspect briefs and JSON for commercial-metric integrity', 'FAIL', `Status: ${briefRes.status}`);
+      logStep(
+        11,
+        'Inspect briefs and JSON for commercial-metric integrity',
+        'FAIL',
+        `Status: ${briefRes.status}`,
+      );
     }
 
     // 12. Secret leakage checks
-    logStep(12, 'Secret leakage checks (bundle, DB, responses, history)', 'PASS', 'scripts/check-secrets.mjs passed (0 leaks), scripts/check-bundle.mjs passed (0 leaks)');
-
+    logStep(
+      12,
+      'Secret leakage checks (bundle, DB, responses, history)',
+      'PASS',
+      'scripts/check-secrets.mjs passed (0 leaks), scripts/check-bundle.mjs passed (0 leaks)',
+    );
   } catch (err) {
     console.error('Scenario execution error:', err);
   }

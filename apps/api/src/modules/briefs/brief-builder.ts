@@ -1,9 +1,5 @@
 // apps/api/src/modules/briefs/brief-builder.ts
-import {
-  STANDARD_DISCLAIMER,
-  LIMITATION_DISCLAIMER,
-  checkBannedClaims,
-} from '@patchpilot/shared';
+import { STANDARD_DISCLAIMER, LIMITATION_DISCLAIMER, checkBannedClaims } from '@patchpilot/shared';
 import type { DecisionOutput, ProposalRanking } from '@patchpilot/decision-engine';
 
 export interface BriefInputData {
@@ -66,15 +62,19 @@ export function buildDeterministicBrief(data: BriefInputData): GeneratedBrief {
 
   const selectedRankings = rankings.filter((r: ProposalRanking) => r.status === 'selected');
   const notFundedRankings = rankings.filter((r: ProposalRanking) => r.status === 'not_funded');
-  const deferredRankings = rankings.filter((r: ProposalRanking) => r.status === 'deferred_unmet_dependency');
+  const deferredRankings = rankings.filter(
+    (r: ProposalRanking) => r.status === 'deferred_unmet_dependency',
+  );
   const excludedRankings = rankings.filter((r: ProposalRanking) => r.status === 'excluded');
 
-  const budgetUsedFmt = portfolio && portfolio.budgetUsedMinor
-    ? `$${(Number(portfolio.budgetUsedMinor) / 100).toLocaleString()}`
-    : '$0';
-  const budgetAvailFmt = portfolio && portfolio.availableBudgetMinor
-    ? `$${(Number(portfolio.availableBudgetMinor) / 100).toLocaleString()}`
-    : '$0';
+  const budgetUsedFmt =
+    portfolio && portfolio.budgetUsedMinor
+      ? `$${(Number(portfolio.budgetUsedMinor) / 100).toLocaleString()}`
+      : '$0';
+  const budgetAvailFmt =
+    portfolio && portfolio.availableBudgetMinor
+      ? `$${(Number(portfolio.availableBudgetMinor) / 100).toLocaleString()}`
+      : '$0';
 
   const lines: string[] = [];
 
@@ -86,7 +86,9 @@ export function buildDeterministicBrief(data: BriefInputData): GeneratedBrief {
   lines.push('');
   lines.push(`- **Run ID**: \`${data.run.id}\``);
   lines.push(`- **Date**: ${new Date(data.run.createdAt).toISOString().split('T')[0]}`);
-  lines.push(`- **Engine Version**: \`${data.run.engineVersion}\` · **Signal Config**: \`${data.run.signalConfigVersion}\``);
+  lines.push(
+    `- **Engine Version**: \`${data.run.engineVersion}\` · **Signal Config**: \`${data.run.signalConfigVersion}\``,
+  );
   lines.push(`- **Input Hash**: \`${data.run.inputHash}\``);
   lines.push('');
 
@@ -94,20 +96,23 @@ export function buildDeterministicBrief(data: BriefInputData): GeneratedBrief {
   lines.push('## 1. Executive Summary');
   lines.push('');
   lines.push(
-    `PatchPilot evaluated ${rankings.length} proposed initiatives against planning constraints and target market preferences. A total of **${selectedRankings.length} initiatives** were selected into the funded portfolio, committing **${budgetUsedFmt}** of available ${budgetAvailFmt} budget (**${portfolio?.budgetUtilizationPct ?? 0}%** utilization) and **${portfolio?.effortUsedDays ?? 0} person-days** of studio capacity.`
+    `PatchPilot evaluated ${rankings.length} proposed initiatives against planning constraints and target market preferences. A total of **${selectedRankings.length} initiatives** were selected into the funded portfolio, committing **${budgetUsedFmt}** of available ${budgetAvailFmt} budget (**${portfolio?.budgetUtilizationPct ?? 0}%** utilization) and **${portfolio?.effortUsedDays ?? 0} person-days** of studio capacity.`,
   );
   lines.push('');
 
   // 3. Selected Portfolio
   lines.push('## 2. Selected Initiatives (Shortlist)');
   lines.push('');
-  lines.push('| Rank | Initiative | Category | Estimated Cost | Effort (Days) | Aggregate Score | Rationale Summary |');
+  lines.push(
+    '| Rank | Initiative | Category | Estimated Cost | Effort (Days) | Aggregate Score | Rationale Summary |',
+  );
   lines.push('|---|---|---|---|---|---|---|');
   for (const r of selectedRankings) {
     const costFmt = r.criteria?.feasibility?.notes?.match(/\$[\d,]+/)?.[0] ?? '—';
-    const explanationText = r.explanation?.[0]?.text ?? 'Meets hard constraints and optimizes cultural relevance';
+    const explanationText =
+      r.explanation?.[0]?.text ?? 'Meets hard constraints and optimizes cultural relevance';
     lines.push(
-      `| #${r.rank} | **${r.proposalName}** | \`${r.proposalId}\` | ${costFmt} | ${r.criteria?.feasibility?.notes?.match(/\d+ person-days/)?.[0] ?? '—'} | ${r.score !== null ? r.score.toFixed(4) : '—'} | ${explanationText} |`
+      `| #${r.rank} | **${r.proposalName}** | \`${r.proposalId}\` | ${costFmt} | ${r.criteria?.feasibility?.notes?.match(/\d+ person-days/)?.[0] ?? '—'} | ${r.score !== null ? r.score.toFixed(4) : '—'} | ${explanationText} |`,
     );
   }
   lines.push('');
@@ -121,13 +126,15 @@ export function buildDeterministicBrief(data: BriefInputData): GeneratedBrief {
   if (data.signals.length === 0) {
     lines.push('No cultural signals were queried or attached to this run.');
   } else {
-    lines.push('| Proposal | Market | Signal Category | Strength Band | Evidence Basis | Freshness |');
+    lines.push(
+      '| Proposal | Market | Signal Category | Strength Band | Evidence Basis | Freshness |',
+    );
     lines.push('|---|---|---|---|---|---|');
     for (const s of data.signals) {
       const p = data.proposals.find((prop) => prop.id === s.proposalId);
       const m = data.markets.find((mkt) => mkt.id === s.marketId);
       lines.push(
-        `| ${p?.name ?? s.proposalId} | ${m?.name ?? s.marketId} | \`${s.category}\` | **${s.strengthBand.toUpperCase()}** | ${s.basis} | \`${s.freshness}\` |`
+        `| ${p?.name ?? s.proposalId} | ${m?.name ?? s.marketId} | \`${s.category}\` | **${s.strengthBand.toUpperCase()}** | ${s.basis} | \`${s.freshness}\` |`,
       );
     }
   }
@@ -144,10 +151,12 @@ export function buildDeterministicBrief(data: BriefInputData): GeneratedBrief {
         ? `$${(Number(nf.shortfallMinor) / 100).toLocaleString()}`
         : 'budget limit';
       lines.push(
-        `- **${nf.proposalName}** (Rank #${nf.rank ?? '—'}): Not selected due to **${nf.reasonCodes.join(', ')}** (shortfall: ${shortfallFmt}).`
+        `- **${nf.proposalName}** (Rank #${nf.rank ?? '—'}): Not selected due to **${nf.reasonCodes.join(', ')}** (shortfall: ${shortfallFmt}).`,
       );
       if (nf.tradeoffWinners && nf.tradeoffWinners.length > 0) {
-        lines.push(`  - Budget consumed by higher-priority initiatives: \`${nf.tradeoffWinners.join('`, `')}\``);
+        lines.push(
+          `  - Budget consumed by higher-priority initiatives: \`${nf.tradeoffWinners.join('`, `')}\``,
+        );
       }
     }
     lines.push('');
@@ -158,7 +167,7 @@ export function buildDeterministicBrief(data: BriefInputData): GeneratedBrief {
     lines.push('');
     for (const df of deferredRankings) {
       lines.push(
-        `- **${df.proposalName}**: Deferred because prerequisite dependencies were not funded or satisfied.`
+        `- **${df.proposalName}**: Deferred because prerequisite dependencies were not funded or satisfied.`,
       );
     }
     lines.push('');
@@ -168,9 +177,7 @@ export function buildDeterministicBrief(data: BriefInputData): GeneratedBrief {
     lines.push('### Ineligible Initiatives');
     lines.push('');
     for (const ex of excludedRankings) {
-      lines.push(
-        `- **${ex.proposalName}**: Ineligible due to **${ex.reasonCodes.join(', ')}**.`
-      );
+      lines.push(`- **${ex.proposalName}**: Ineligible due to **${ex.reasonCodes.join(', ')}**.`);
     }
     lines.push('');
   }
@@ -208,7 +215,9 @@ export function buildDeterministicBrief(data: BriefInputData): GeneratedBrief {
   if (data.queries.length > 0) {
     lines.push(`- **Sample Queries**:`);
     for (const q of data.queries.slice(0, 5)) {
-      lines.push(`  - \`${q.endpoint}\` (retrieved: ${new Date(q.retrievedAt).toISOString()}, origin: \`${q.dataOrigin}\`)`);
+      lines.push(
+        `  - \`${q.endpoint}\` (retrieved: ${new Date(q.retrievedAt).toISOString()}, origin: \`${q.dataOrigin}\`)`,
+      );
     }
   }
   lines.push('');

@@ -7,14 +7,15 @@ import { AppError } from '../error-handler.js';
 
 export function createQlooRouter(
   qlooService: QlooService,
-  _db?: NodePgDatabase<typeof schema>
+  _db?: NodePgDatabase<typeof schema>,
 ): Router {
   const router = Router();
 
   // Helper to get workspaceId from params, session, or query
   function getWorkspaceId(req: Request): string {
     const queryWs = typeof req.query?.workspaceId === 'string' ? req.query.workspaceId : undefined;
-    const paramWs = typeof req.params?.workspaceId === 'string' ? req.params.workspaceId : undefined;
+    const paramWs =
+      typeof req.params?.workspaceId === 'string' ? req.params.workspaceId : undefined;
     const wsId = paramWs || req.workspaceId || queryWs;
     if (!wsId) {
       throw AppError.unauthorized('Workspace session required');
@@ -47,7 +48,7 @@ export function createQlooRouter(
             httpStatus: 429,
             code: 'QUOTA_EXCEEDED',
             safeMessage: err.message,
-          })
+          }),
         );
         return;
       }
@@ -65,11 +66,7 @@ export function createQlooRouter(
         throw AppError.badRequest('chosenQlooEntityId is required');
       }
 
-      const resolution = await qlooService.chooseResolution(
-        workspaceId,
-        refId,
-        chosenQlooEntityId
-      );
+      const resolution = await qlooService.chooseResolution(workspaceId, refId, chosenQlooEntityId);
       res.json(resolution);
     } catch (err) {
       next(err);
@@ -90,7 +87,7 @@ export function createQlooRouter(
             httpStatus: 429,
             code: 'QUOTA_EXCEEDED',
             safeMessage: err.message,
-          })
+          }),
         );
         return;
       }
@@ -138,43 +135,40 @@ export function createQlooRouter(
               httpStatus: 429,
               code: 'QUOTA_EXCEEDED',
               safeMessage: err.message,
-            })
+            }),
           );
           return;
         }
         next(err);
       }
-    }
+    },
   );
 
-  router.post(
-    '/workspaces/:workspaceId/references/:referenceId/choose',
-    async (req, res, next) => {
-      try {
-        const { workspaceId, referenceId } = req.params;
-        const { chosenQlooEntityId } = req.body;
-        if (!chosenQlooEntityId) {
-          next(
-            new AppError({
-              httpStatus: 400,
-              code: 'VALIDATION_ERROR',
-              safeMessage: 'chosenQlooEntityId is required',
-            })
-          );
-          return;
-        }
-
-        const resolution = await qlooService.chooseResolution(
-          workspaceId,
-          referenceId,
-          chosenQlooEntityId
+  router.post('/workspaces/:workspaceId/references/:referenceId/choose', async (req, res, next) => {
+    try {
+      const { workspaceId, referenceId } = req.params;
+      const { chosenQlooEntityId } = req.body;
+      if (!chosenQlooEntityId) {
+        next(
+          new AppError({
+            httpStatus: 400,
+            code: 'VALIDATION_ERROR',
+            safeMessage: 'chosenQlooEntityId is required',
+          }),
         );
-        res.json(resolution);
-      } catch (err) {
-        next(err);
+        return;
       }
+
+      const resolution = await qlooService.chooseResolution(
+        workspaceId,
+        referenceId,
+        chosenQlooEntityId,
+      );
+      res.json(resolution);
+    } catch (err) {
+      next(err);
     }
-  );
+  });
 
   router.post(
     '/workspaces/:workspaceId/proposals/:proposalId/refresh-evidence',
@@ -190,13 +184,13 @@ export function createQlooRouter(
               httpStatus: 429,
               code: 'QUOTA_EXCEEDED',
               safeMessage: err.message,
-            })
+            }),
           );
           return;
         }
         next(err);
       }
-    }
+    },
   );
 
   return router;

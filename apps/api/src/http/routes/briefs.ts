@@ -142,7 +142,7 @@ export function createBriefRoutes(db: NodePgDatabase<typeof schema>): Router {
         res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
         res.setHeader(
           'Content-Disposition',
-          `attachment; filename="patchpilot-brief-${brief.id.slice(0, 8)}.md"`
+          `attachment; filename="patchpilot-brief-${brief.id.slice(0, 8)}.md"`,
         );
         res.send(brief.markdown);
         return;

@@ -59,9 +59,7 @@ describe('Phase 5 Complete Workflow Integration Tests (P5-01..P5-08)', () => {
   });
 
   it('P5-01: GET /api/v1/workspace retrieves session info and quota using cookie', async () => {
-    const res = await request(app)
-      .get('/api/v1/workspace')
-      .set('Cookie', sessionCookie);
+    const res = await request(app).get('/api/v1/workspace').set('Cookie', sessionCookie);
 
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty('workspace');
@@ -74,9 +72,7 @@ describe('Phase 5 Complete Workflow Integration Tests (P5-01..P5-08)', () => {
   });
 
   it('P5-02: GET /api/v1/proposals returns seeded Appendix A proposals with domain relations', async () => {
-    const res = await request(app)
-      .get('/api/v1/proposals')
-      .set('Cookie', sessionCookie);
+    const res = await request(app).get('/api/v1/proposals').set('Cookie', sessionCookie);
 
     expect(res.status).toBe(200);
     expect(res.body).toHaveProperty('proposals');
@@ -92,12 +88,9 @@ describe('Phase 5 Complete Workflow Integration Tests (P5-01..P5-08)', () => {
   });
 
   it('P5-03: POST /api/v1/decision-runs executes deterministic decision engine on workspace snapshot', async () => {
-    const res = await request(app)
-      .post('/api/v1/decision-runs')
-      .set('Cookie', sessionCookie)
-      .send({
-        label: 'Q4 2026 Live-Ops Allocation',
-      });
+    const res = await request(app).post('/api/v1/decision-runs').set('Cookie', sessionCookie).send({
+      label: 'Q4 2026 Live-Ops Allocation',
+    });
 
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty('run');
@@ -187,7 +180,9 @@ describe('Phase 5 Complete Workflow Integration Tests (P5-01..P5-08)', () => {
     expect(res.body.brief).toHaveProperty('id');
     expect(res.body.brief).toHaveProperty('markdown');
     expect(res.body.brief.markdown).toContain('PatchPilot Decision Brief');
-    expect(res.body.brief.markdown).toContain('Decision-support hypothesis based on cultural-affinity evidence');
+    expect(res.body.brief.markdown).toContain(
+      'Decision-support hypothesis based on cultural-affinity evidence',
+    );
     expect(res.body.bannedClaimViolations).toHaveLength(0);
 
     briefId = res.body.brief.id;

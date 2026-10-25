@@ -83,12 +83,19 @@ export default function BriefDetailPage({ params }: { params: Promise<{ id: stri
             onClick={handleCopyMarkdown}
             className="text-xs gap-1.5 font-medium"
           >
-            {copied ? <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+            {copied ? (
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+            ) : (
+              <Copy className="w-3.5 h-3.5" />
+            )}
             <span>{copied ? 'Copied Markdown' : 'Copy Markdown'}</span>
           </Button>
 
           <a href={exportUrl} download={`patchpilot-brief-${brief.id.slice(0, 8)}.md`}>
-            <Button size="sm" className="bg-accent hover:bg-accent/90 text-white text-xs gap-1.5 font-medium">
+            <Button
+              size="sm"
+              className="bg-accent hover:bg-accent/90 text-white text-xs gap-1.5 font-medium"
+            >
               <Download className="w-3.5 h-3.5" />
               <span>Export Markdown (.md)</span>
             </Button>

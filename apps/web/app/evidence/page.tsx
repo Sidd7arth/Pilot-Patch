@@ -2,13 +2,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import {
-  Activity,
-  AlertTriangle,
-  ChevronDown,
-  ChevronRight,
-  Filter,
-} from 'lucide-react';
+import { Activity, AlertTriangle, ChevronDown, ChevronRight, Filter } from 'lucide-react';
 import { Button } from '@workspace/ui/components/button';
 import { OriginBadge } from '../../components/ui/origin-badge';
 import { DisclaimerStrip } from '../../components/ui/disclaimer-strip';
@@ -32,7 +26,8 @@ export default function EvidencePage() {
           setQlooStatus(sRes);
         }
       } catch (err: unknown) {
-        if (!ignore) setError(err instanceof Error ? err.message : 'Failed to load evidence explorer');
+        if (!ignore)
+          setError(err instanceof Error ? err.message : 'Failed to load evidence explorer');
       } finally {
         if (!ignore) setLoading(false);
       }
@@ -64,11 +59,14 @@ export default function EvidencePage() {
       {/* Header */}
       <div>
         <div className="flex items-center gap-2.5">
-          <h1 className="text-2xl font-bold tracking-tight text-text">Evidence Explorer & Audit Log</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-text">
+            Evidence Explorer & Audit Log
+          </h1>
           <OriginBadge origin="live_qloo" />
         </div>
         <p className="text-xs text-text-muted mt-1">
-          Complete transparency into all official Qloo API requests, status codes, latencies, and derived signals.
+          Complete transparency into all official Qloo API requests, status codes, latencies, and
+          derived signals.
         </p>
       </div>
 
@@ -120,7 +118,10 @@ export default function EvidencePage() {
           <div className="flex items-center gap-2 pt-0.5">
             <span className="text-base font-bold font-mono text-text">
               {quota?.callsUsedToday ?? 0}
-              <span className="text-xs text-text-muted font-normal"> / {quota?.dailyCallsLimit ?? 150}</span>
+              <span className="text-xs text-text-muted font-normal">
+                {' '}
+                / {quota?.dailyCallsLimit ?? 150}
+              </span>
             </span>
           </div>
           <span className="text-[10px] text-text-muted font-mono block">
@@ -216,7 +217,9 @@ export default function EvidencePage() {
                       </td>
 
                       <td className="py-3 px-4">
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${outcomeStyle}`}>
+                        <span
+                          className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${outcomeStyle}`}
+                        >
                           {q.outcome}
                         </span>
                       </td>
@@ -227,7 +230,11 @@ export default function EvidencePage() {
 
                       <td className="py-3 px-4 text-right">
                         <Button size="sm" variant="ghost" className="h-6 w-6 p-0">
-                          {isExpanded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+                          {isExpanded ? (
+                            <ChevronDown className="w-3.5 h-3.5" />
+                          ) : (
+                            <ChevronRight className="w-3.5 h-3.5" />
+                          )}
                         </Button>
                       </td>
                     </tr>

@@ -639,7 +639,9 @@ describe('Phase 4: Deterministic Decision Engine (ENG-01..ENG-21)', () => {
     };
 
     const depOut = runDecision(depPassInput);
-    const childRank = depOut.variants.qloo_informed!.rankings.find((r) => r.proposalId === 'p-child');
+    const childRank = depOut.variants.qloo_informed!.rankings.find(
+      (r) => r.proposalId === 'p-child',
+    );
     expect(childRank?.status).toBe('deferred_unmet_dependency');
 
     // 3. Diff with rank shift and left/entered shortlist
@@ -655,5 +657,263 @@ describe('Phase 4: Deterministic Decision Engine (ENG-01..ENG-21)', () => {
     };
     const diffRunsOut = diffRuns(runDecision(baseInput), runDecision(rankShiftInput));
     expect(diffRunsOut.rankChanges.length).toBeGreaterThan(0);
+  });
+
+  // -------------------------------------------------------------------------
+  // Issue 5: Missing Evidence is Not Negative Evidence (Empty & Unsupported)
+  // -------------------------------------------------------------------------
+  it('Issue 5 / ENG-03: handles empty results and missing evidence without penalizing with negative affinity scores', () => {
+    const inputWithMissingEvidence: DecisionInput = {
+      engineVersion: '1.0.0',
+      signalConfigVersion: '1.0.0',
+      currency: 'USD',
+      constraints: {
+        currency: 'USD',
+        budgetTotalMinor: 10000000n, // $100k
+        contingencyReserveMinor: 1000000n,
+        horizonStart: '2027-01-01',
+        horizonEnd: '2027-06-30',
+        horizonEnforcement: 'none',
+      },
+      markets: [{ id: 'm-us', name: 'US', countryCode: 'US', weight: 1.0 }],
+      proposals: [
+        {
+          id: 'p-no-qloo',
+          name: 'Niche Regional Initiative (0 Qloo matches)',
+          status: 'candidate',
+          estimatedCostMinor: 2000000n,
+          effortPersonDays: 20,
+          releaseWindowStart: '2027-02-01',
+          releaseWindowEnd: '2027-03-01',
+          scheduleConfidence: 4,
+          stakeholderPriority: 4, // 0.75 score
+        },
+      ],
+      proposalMarkets: [{ proposalId: 'p-no-qloo', marketId: 'm-us' }],
+      // Zero Qloo signals (empty search / unsupported regional entity)
+      signals: [],
+      analogs: [],
+      dependencies: [],
+      weights: {
+        cultural_relevance: 0.35,
+        evidence_confidence: 0.15,
+        feasibility: 0.2,
+        commercial_evidence: 0.15,
+        stakeholder_priority: 0.15,
+      },
+    };
+
+    const result = runDecision(inputWithMissingEvidence);
+    const ranking = result.variants.qloo_informed!.rankings[0];
+
+    // 1. Missing evidence criterion must be null and marked unavailable
+    expect(ranking.criteria.cultural_relevance.value).toBeNull();
+    expect(ranking.criteria.cultural_relevance.available).toBe(false);
+    expect(ranking.criteria.commercial_evidence.value).toBeNull();
+    expect(ranking.criteria.commercial_evidence.available).toBe(false);
+
+    // 2. Score must be strictly positive based on renormalized available criteria (feasibility + stakeholder)
+    expect(ranking.score).not.toBeNull();
+    expect(ranking.score).toBeGreaterThan(0.5);
+
+    // 3. Lower and upper bounds must bracket the point score
+    expect(ranking.scoreLower).toBeLessThanOrEqual(ranking.score!);
+    expect(ranking.scoreUpper).toBeGreaterThanOrEqual(ranking.score!);
+
+    // 4. Status must be selected (fits within budget)
+    expect(ranking.status).toBe('selected');
+  });
+
+  // -------------------------------------------------------------------------
+  // Issue 6: Budget Limits, Contingency Reserves, and Hard Capacity
+  // -------------------------------------------------------------------------
+  it('Issue 6 / ENG-05: strictly enforces budget limits, contingency reserves, and hard capacity constraints', () => {
+    const constraintTestInput: DecisionInput = {
+      engineVersion: '1.0.0',
+      signalConfigVersion: '1.0.0',
+      currency: 'USD',
+      constraints: {
+        currency: 'USD',
+        budgetTotalMinor: 10000000n, // $100,000
+        contingencyReserveMinor: 2000000n, // $20,000 -> Available $80,000
+        capacityPersonDays: 50, // 50 person-days hard ceiling
+        capacityEnforcement: 'hard',
+        horizonStart: '2027-01-01',
+        horizonEnd: '2027-06-30',
+        horizonEnforcement: 'none',
+      },
+      markets: [],
+      proposals: [
+        {
+          id: 'p-first',
+          name: 'First High Priority Feature',
+          status: 'candidate',
+          estimatedCostMinor: 5000000n, // $50k (leaves $30k budget, 25 days capacity)
+          effortPersonDays: 25,
+          releaseWindowStart: '2027-01-01',
+          releaseWindowEnd: '2027-02-01',
+          stakeholderPriority: 5,
+        },
+        {
+          id: 'p-over-budget',
+          name: 'Feature Exceeding Budget',
+          status: 'candidate',
+          estimatedCostMinor: 3500000n, // $35k -> Exceeds remaining $30k
+          effortPersonDays: 10,
+          releaseWindowStart: '2027-01-01',
+          releaseWindowEnd: '2027-02-01',
+          stakeholderPriority: 4,
+        },
+        {
+          id: 'p-over-capacity',
+          name: 'Feature Exceeding Capacity',
+          status: 'candidate',
+          estimatedCostMinor: 1000000n, // $10k (fits in $30k budget)
+          effortPersonDays: 30, // 30 days -> Exceeds remaining 25 days
+          releaseWindowStart: '2027-01-01',
+          releaseWindowEnd: '2027-02-01',
+          stakeholderPriority: 3,
+        },
+        {
+          id: 'p-fits-rest',
+          name: 'Feature Fitting Remaining',
+          status: 'candidate',
+          estimatedCostMinor: 2000000n, // $20k <= $30k
+          effortPersonDays: 15, // 15 days <= 25 days
+          releaseWindowStart: '2027-01-01',
+          releaseWindowEnd: '2027-02-01',
+          stakeholderPriority: 2,
+        },
+      ],
+      proposalMarkets: [],
+      signals: [],
+      analogs: [],
+      dependencies: [],
+      weights: {
+        cultural_relevance: 0,
+        evidence_confidence: 0,
+        feasibility: 0.1,
+        commercial_evidence: 0,
+        stakeholder_priority: 0.9,
+      },
+    };
+
+    const out = runDecision(constraintTestInput);
+    const rankings = out.variants.qloo_informed!.rankings;
+
+    const pFirst = rankings.find((r) => r.proposalId === 'p-first')!;
+    const pBudget = rankings.find((r) => r.proposalId === 'p-over-budget')!;
+    const pCapacity = rankings.find((r) => r.proposalId === 'p-over-capacity')!;
+    const pFits = rankings.find((r) => r.proposalId === 'p-fits-rest')!;
+
+    expect(pFirst.status).toBe('selected');
+    expect(pBudget.status).toBe('not_funded');
+    expect(pBudget.reasonCodes).toContain('REM_BUDGET_INSUFFICIENT');
+
+    expect(pCapacity.status).toBe('not_funded');
+    expect(pCapacity.reasonCodes).toContain('REM_CAPACITY_INSUFFICIENT');
+
+    expect(pFits.status).toBe('selected');
+
+    // Portfolio totals
+    const portfolio = out.variants.qloo_informed!.portfolio;
+    expect(portfolio.selectedIds).toEqual(['p-first', 'p-fits-rest']);
+    expect(portfolio.budgetUsedMinor).toBe(7000000n); // $50k + $20k = $70k <= $80k available
+    expect(portfolio.budgetRemainingMinor).toBe(1000000n); // $80k - $70k = $10k remaining
+    expect(portfolio.effortUsedDays).toBe(40); // 25 + 15 = 40 <= 50 days
+    expect(portfolio.capacityRemainingDays).toBe(10);
+  });
+
+  // -------------------------------------------------------------------------
+  // Issue 6: Greedy Selection vs 0/1 Knapsack Optimal Trade-off
+  // -------------------------------------------------------------------------
+  it('Issue 6 / ENG-KNAPSACK: tests case where greedy selection prioritizes headline score over global 0/1 knapsack density packing', () => {
+    // Classic knapsack counter-example:
+    // Capacity = $100k
+    // Proposal Big: Cost $60k, Score 0.90
+    // Proposal Pack1: Cost $50k, Score 0.80
+    // Proposal Pack2: Cost $50k, Score 0.80
+    //
+    // Greedy algorithm selects Proposal Big (rank 1, score 0.90).
+    // Remaining budget is $40k. Neither Pack1 ($50k) nor Pack2 ($50k) can fit.
+    // Result: Portfolio {Big}, Total Score = 0.90, Budget used = $60k.
+    //
+    // Optimal 0/1 knapsack would select {Pack1, Pack2}, Budget = $100k, Total Score = 1.60.
+    // This test asserts the deterministic behavior and trade-off of the studio-oriented greedy algorithm.
+    const knapsackInput: DecisionInput = {
+      engineVersion: '1.0.0',
+      signalConfigVersion: '1.0.0',
+      currency: 'USD',
+      constraints: {
+        currency: 'USD',
+        budgetTotalMinor: 10000000n, // $100,000
+        contingencyReserveMinor: 0n, // Available $100,000
+        horizonStart: '2027-01-01',
+        horizonEnd: '2027-06-30',
+        horizonEnforcement: 'none',
+      },
+      markets: [],
+      proposals: [
+        {
+          id: 'p-big',
+          name: 'Big Headline Initiative',
+          status: 'candidate',
+          estimatedCostMinor: 6000000n, // $60,000
+          effortPersonDays: 50,
+          releaseWindowStart: '2027-01-01',
+          releaseWindowEnd: '2027-02-01',
+          stakeholderPriority: 5, // Top score ~0.90+
+        },
+        {
+          id: 'p-pack-1',
+          name: 'Modular Pack Alpha',
+          status: 'candidate',
+          estimatedCostMinor: 5000000n, // $50,000
+          effortPersonDays: 40,
+          releaseWindowStart: '2027-01-01',
+          releaseWindowEnd: '2027-02-01',
+          stakeholderPriority: 4, // Medium score ~0.75+
+        },
+        {
+          id: 'p-pack-2',
+          name: 'Modular Pack Beta',
+          status: 'candidate',
+          estimatedCostMinor: 5000000n, // $50,000
+          effortPersonDays: 40,
+          releaseWindowStart: '2027-01-01',
+          releaseWindowEnd: '2027-02-01',
+          stakeholderPriority: 4, // Medium score ~0.75+
+        },
+      ],
+      proposalMarkets: [],
+      signals: [],
+      analogs: [],
+      dependencies: [],
+      weights: baseInput.weights,
+    };
+
+    const out = runDecision(knapsackInput);
+    const rankings = out.variants.qloo_informed!.rankings;
+    const portfolio = out.variants.qloo_informed!.portfolio;
+
+    // Verify greedy selected the top-ranked headline initiative
+    expect(portfolio.selectedIds).toEqual(['p-big']);
+    expect(portfolio.budgetUsedMinor).toBe(6000000n);
+    expect(portfolio.budgetRemainingMinor).toBe(4000000n);
+
+    // Verify the two modular packs are marked not_funded with shortfall reasons
+    const pack1 = rankings.find((r) => r.proposalId === 'p-pack-1')!;
+    const pack2 = rankings.find((r) => r.proposalId === 'p-pack-2')!;
+
+    expect(pack1.status).toBe('not_funded');
+    expect(pack1.reasonCodes).toContain('REM_BUDGET_INSUFFICIENT');
+    expect(pack2.status).toBe('not_funded');
+    expect(pack2.reasonCodes).toContain('REM_BUDGET_INSUFFICIENT');
+
+    // Mathematical verification of the documented trade-off:
+    // Greedy total score: 1 selected item
+    expect(portfolio.selectedCount).toBe(1);
+    // Unallocated margin: $40,000 remaining
+    expect(portfolio.budgetRemainingMinor).toBe(4000000n);
   });
 });

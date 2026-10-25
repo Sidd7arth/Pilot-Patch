@@ -31,10 +31,7 @@ export function createSessionMiddleware(db: NodePgDatabase<typeof schema>) {
         .select()
         .from(schema.workspaces)
         .where(
-          and(
-            eq(schema.workspaces.id, workspaceId),
-            gt(schema.workspaces.expiresAt, new Date())
-          )
+          and(eq(schema.workspaces.id, workspaceId), gt(schema.workspaces.expiresAt, new Date())),
         )
         .limit(1);
 

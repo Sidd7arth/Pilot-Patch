@@ -19,8 +19,10 @@ export function CoverageMeter({
 }: CoverageMeterProps) {
   const coveragePct = Math.round(coverage * 100);
   const pointScore = score !== null ? Math.round(score * 100) : null;
-  const lowerScore = scoreLower !== null && scoreLower !== undefined ? Math.round(scoreLower * 100) : pointScore;
-  const upperScore = scoreUpper !== null && scoreUpper !== undefined ? Math.round(scoreUpper * 100) : pointScore;
+  const lowerScore =
+    scoreLower !== null && scoreLower !== undefined ? Math.round(scoreLower * 100) : pointScore;
+  const upperScore =
+    scoreUpper !== null && scoreUpper !== undefined ? Math.round(scoreUpper * 100) : pointScore;
 
   const whiskerLeft = lowerScore !== null ? Math.max(0, Math.min(100, lowerScore)) : 0;
   const whiskerRight = upperScore !== null ? Math.max(0, Math.min(100, upperScore)) : 100;
@@ -34,8 +36,7 @@ export function CoverageMeter({
           <span>Evidence Coverage</span>
         </div>
         <div className="font-mono text-xs font-semibold text-text">
-          {coveragePct}%
-          <span className="text-[10px] text-text-muted font-normal ml-1">scored</span>
+          {coveragePct}%<span className="text-[10px] text-text-muted font-normal ml-1">scored</span>
         </div>
       </div>
 

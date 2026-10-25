@@ -3,7 +3,16 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Compass, Layers, Search, Sparkles, GitCompare, FileText, Sliders, Activity } from 'lucide-react';
+import {
+  Compass,
+  Layers,
+  Search,
+  Sparkles,
+  GitCompare,
+  FileText,
+  Sliders,
+  Activity,
+} from 'lucide-react';
 
 const NAV_ITEMS = [
   { label: 'Overview', href: '/', icon: Compass },

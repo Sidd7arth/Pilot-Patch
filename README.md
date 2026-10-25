@@ -1,7 +1,7 @@
 # PatchPilot
 
 > **Evidence-First Decision-Support Platform for Live-Service Game Studios**  
-> *Powered by Real Qloo Cultural Intelligence*
+> _Powered by Real Qloo Cultural Intelligence_
 
 PatchPilot evaluates live-service content roadmaps (seasonal events, crossover collaborations, cosmetic bundles, and regional updates) by pairing studio resource constraints with live cultural affinity signals from the **Qloo API**.
 
@@ -15,7 +15,7 @@ PatchPilot evaluates live-service content roadmaps (seasonal events, crossover c
 1. **Real Qloo Cultural Intelligence**: Real-world entity resolution and affinity queries against official Qloo endpoints (`https://hackathon.api.qloo.com`). Zero synthetic mocks in production workflows.
 2. **Deterministic Decision Engine**: Pure mathematical greedy selection with zero I/O, zero random generation, and stable SHA-256 snapshot hashing (`inputHash`).
 3. **Rigorous Evidence Provenance**: Every metric surfaces its origin (`live_qloo`, `cached_qloo`, `cached_stale`, `synthetic_demo`, `user_supplied`, or `system_derived`).
-4. **Honest Uncertainty & Missing Evidence**: Unavailable criteria evaluate to `null` (never penalized as zero). Unobserved cultural signals are labeled *"No supporting evidence observed"*, never scored low.
+4. **Honest Uncertainty & Missing Evidence**: Unavailable criteria evaluate to `null` (never penalized as zero). Unobserved cultural signals are labeled _"No supporting evidence observed"_, never scored low.
 5. **Scenario Re-planning & Variant Comparison**: Immediate attribution comparison between studio baseline rankings and Qloo-informed portfolios, with dynamic diff tracking for budget overrides.
 
 ---
@@ -79,62 +79,80 @@ flowchart TD
 
 ## 4. Environment Variables
 
-Create a `.env` file at the root of the repository (refer to `.env.example`):
+Create a `.env` file at the root of the repository by copying `.env.example`:
 
 ```bash
-NODE_ENV=development
-PORT=4000
-LOG_LEVEL=info
-DATABASE_URL=postgres://user:password@localhost:5432/patchpilot
-SESSION_SECRET=a-secure-random-string-at-least-32-chars-long
-ALLOWED_ORIGINS=http://localhost:3000
-API_INTERNAL_URL=http://localhost:4000
-NEXT_PUBLIC_APP_NAME=PatchPilot
-
-# Qloo Official API Integration
-QLOO_API_KEY=your-official-qloo-hackathon-api-key
-QLOO_API_BASE_URL=https://hackathon.api.qloo.com
-QLOO_TIMEOUT_MS=10000
-QLOO_MAX_RETRIES=2
-QLOO_MAX_CONCURRENCY=3
-QLOO_WORKSPACE_DAILY_CALLS=150
-QLOO_GLOBAL_DAILY_CALLS=2000
+cp .env.example .env
 ```
+
+| Variable                     | Description                                                       | Default / Example                                    |
+| ---------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------- |
+| `NODE_ENV`                   | Application environment (`development` or `production`)           | `development`                                        |
+| `PORT`                       | Backend Express API port                                          | `4000`                                               |
+| `LOG_LEVEL`                  | Pino logger verbosity (`trace`, `debug`, `info`, `warn`, `error`) | `info`                                               |
+| `DATABASE_URL`               | PostgreSQL 16 connection string                                   | `postgres://user:password@localhost:5432/patchpilot` |
+| `SESSION_SECRET`             | Secret key for signed workspace session cookies (min 32 chars)    | `a-secure-random-string-at-least-32-chars-long`      |
+| `ALLOWED_ORIGINS`            | CORS allowed frontend origins (comma-separated)                   | `http://localhost:3000`                              |
+| `API_INTERNAL_URL`           | Internal API route URL for web server-side proxy                  | `http://localhost:4000`                              |
+| `NEXT_PUBLIC_APP_NAME`       | Public frontend application display name                          | `PatchPilot`                                         |
+| `QLOO_API_KEY`               | Official Qloo Hackathon API Key (server-side only)                | `your-official-qloo-hackathon-api-key`               |
+| `QLOO_API_BASE_URL`          | Official Qloo API host                                            | `https://hackathon.api.qloo.com`                     |
+| `QLOO_TIMEOUT_MS`            | Outbound HTTP timeout in milliseconds                             | `10000`                                              |
+| `QLOO_MAX_RETRIES`           | Max retries for transient 5xx/429 errors (with backoff)           | `2`                                                  |
+| `QLOO_MAX_CONCURRENCY`       | Maximum concurrent in-flight requests to Qloo                     | `2`                                                  |
+| `QLOO_WORKSPACE_DAILY_CALLS` | Per-workspace daily call limit quota                              | `150`                                                |
+| `QLOO_GLOBAL_DAILY_CALLS`    | System-wide daily call limit quota                                | `2000`                                               |
+
+> [!SECURITY]
+> `QLOO_API_KEY` is strictly isolated server-side. It is never exposed in `NEXT_PUBLIC_*` variables, client bundles, or error envelopes.
 
 ---
 
 ## 5. Local Setup & Reproduction Guide
 
 ### Prerequisites
-- Node.js >= 20.0.0
-- pnpm >= 9.0.0
-- PostgreSQL 16 (local installation or Docker)
 
-### Installation Steps
+- **Node.js**: `>= 20.0.0` (LTS recommended)
+- **pnpm**: `>= 9.0.0`
+- **PostgreSQL**: `16` (Docker Compose provided or local instance)
+
+### Installation & Initialization Steps
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/patchpilot/patchpilot.git
-cd patchpilot
+git clone https://github.com/Sidd7arth/Pilot-Patch.git
+cd Pilot-Patch
 
 # 2. Install dependencies
 pnpm install
 
 # 3. Configure environment
 cp .env.example .env
-# Edit .env with your PostgreSQL credentials and QLOO_API_KEY
+# Edit .env with your PostgreSQL credentials and authorized QLOO_API_KEY
 
-# 4. Run database migrations
+# 4. Start PostgreSQL 16 database
+# Option A: Start using included Docker Compose (recommended)
+docker compose up -d
+
+# Option B: Use existing local PostgreSQL instance
+# Ensure a database named 'patchpilot' exists matching DATABASE_URL
+
+# 5. Run database migrations
 pnpm db:migrate
 
-# 5. Build all packages
+# 6. (Optional) Pre-seed synthetic demonstration workspace
+pnpm seed
+
+# 7. Build all packages
 pnpm build
 
-# 6. Start development servers
+# 8. Start development servers
 pnpm dev
 ```
-- API server runs on: `http://localhost:4000`
-- Web application runs on: `http://localhost:3000`
+
+- **Web Application**: `http://localhost:3000`
+- **API Server & Health**: `http://localhost:4000/health` (Probe: `http://localhost:4000/ready`)
+- **Integration Status**: `http://localhost:3000/integration`
 
 ---
 
@@ -173,21 +191,35 @@ pnpm smoke:deployed
 
 ## 7. Step-by-Step Demo Walkthrough
 
-1. **Launch Workspace (`/`)**: Click **"Launch Demo Workspace"** to initialize the *Ember Arena* reference game profile seeded with Appendix A content initiatives across United States (US), Japan (JP), Brazil (BR), and India (IN).
+1. **Launch Workspace (`/`)**: Click **"Launch Demo Workspace"** to initialize the _Ember Arena_ reference game profile seeded with Appendix A content initiatives across United States (US), Japan (JP), Brazil (BR), and India (IN).
 2. **Review Proposals (`/proposals`)**: Inspect the 6 content proposals, their cost, person-day effort, release windows, and Qloo signal badges.
-3. **Inspect Cultural References (`/proposals/:id`)**: Click on *Lantern Festival Seasonal Event* to inspect user-supplied references, resolved Qloo entities, and ambiguity resolution candidate cards.
+3. **Inspect Cultural References (`/proposals/:id`)**: Click on _Lantern Festival Seasonal Event_ to inspect user-supplied references, resolved Qloo entities, and ambiguity resolution candidate cards.
 4. **Execute Prioritization (`/decision`)**: Click **"Run Decision Engine"** to compute the optimal portfolio under the \$360,000 available budget and capacity constraints. View the stacked **BudgetBar**, **Funded Shortlist** rankings, and multi-criteria **CriterionBars**.
 5. **Attribution & Re-planning (`/decision/compare`)**: Compare the baseline portfolio against the Qloo-informed ranking. Test interactive budget re-planning (e.g. adjust budget to \$200,000) to observe immediate shortlist shifts and rank movements.
 6. **Generate Decision Brief (`/briefs`)**: Generate the executive brief containing the full decision snapshot, provenance IDs, criteria weights, and download the Markdown artifact (`.md`).
 
 ---
 
-## 8. Limitations & Scope
+## 8. Architectural Invariants, Limitations & Algorithmic Design
 
-- **Cultural Affinity is Not Commercial Output**: High cultural affinity between audience anchors and themes reflects cultural overlap, not player spending or retention.
-- **Qloo Category Coverage**: Qloo entity resolution is strongest for titles in games, films, and music. Niche regional entities may return unsupported or empty results.
-- **Greedy Selection**: The engine uses a deterministic greedy algorithm with dependency cascade fixpoints. While computationally reproducible and transparent, large fractional items may leave minor unallocated contingency budget.
-- **Synthetic Demonstration Seeds**: The demo game *Ember Arena* and its cost structures are synthetic placeholders for evaluation purposes.
+### 8.1 Handling Empty Results & Ambiguous Matches (Evidence Integrity)
+
+- **Missing Evidence is Not Negative Evidence**: If a cultural reference or regional market returns empty or unsupported results from Qloo (`outcome: 'empty'` or `status: 'unresolved'`), the criterion value is recorded as `null` (`available: false`). The decision engine **renormalizes weights** across available criteria rather than penalizing the initiative with a 0.0 or negative score.
+- **Ambiguity Resolution Chooser**: When reference text matches multiple entities (e.g. "Avatar" could refer to a film, album, or game), PatchPilot marks the reference `status: 'ambiguous'` and displays candidate cards with their Qloo Entity IDs, categories, and popularity for interactive producer confirmation (`POST /api/v1/references/:id/resolution/choose`).
+- **Score Semantics**: Raw Qloo affinity scores are comparative within option sets, not globally calibrated across disparate calls. PatchPilot maps affinities into defensible tiered signal bands (`strong`, `moderate`, `weak`, `not_observed`) per official Qloo engineering guidelines.
+
+### 8.2 Decision Engine Selection Algorithm (Greedy Knapsack vs Global Optimum)
+
+- **Selection Logic**: The decision engine employs a deterministic greedy selection algorithm with multi-pass fixpoint evaluation for internal dependency resolution.
+- **Why Greedy**: Live-service game producers prioritize high-conviction, top-scoring "tentpole" updates first. Greedy selection reflects actual studio roadmap discipline where headline initiatives take precedence over packing multiple minor items into leftover budget margins.
+- **Known Trade-off (Sub-optimal Knapsack Packing)**: In cases where a single high-scoring proposal consumes the majority of remaining budget, it may block multiple medium-scoring initiatives whose cumulative score would exceed the single item. The engine reports remaining available budget, unmet dependency deferrals, and shortfall reasons (`REM_BUDGET_INSUFFICIENT`, `REM_CAPACITY_INSUFFICIENT`) with 100% mathematical transparency.
+- **Multi-pass Dependency Cascades**: Initiatives requiring unselected prerequisites are deferred (`status: 'deferred_unmet_dependency'`). When a parent initiative is selected in pass $N$, pass $N+1$ automatically evaluates child initiatives against remaining resources.
+
+### 8.3 Limitations & Scope
+
+- **Cultural Affinity ≠ Commercial Forecast**: High cultural affinity reflects audience taste overlap, not guaranteed player conversion, revenue, or ROI.
+- **Zero Hallucination / Mock Policy**: Live integration uses official Qloo API endpoints. Fixtures are used strictly in isolated automated unit/contract tests and never in the user workflow.
+- **Synthetic Demonstration Seeds**: The reference workspace _Ember Arena_ and its operational cost structures are synthetic placeholders designed for safe evaluation.
 
 ---
 

@@ -87,10 +87,13 @@ async function smokeDeployed() {
 
   // 6. Real Qloo resolution in deployed configuration
   await check('DEP-08: Deployed Qloo entity candidate resolution', async () => {
-    const res = await fetch(`${targetUrl}/api/v1/references/4e6b5ba3-b573-408c-b55e-b33222ab7f85/resolve`, {
-      method: 'POST',
-      headers: { Cookie: cookie },
-    }).catch(() => null);
+    const res = await fetch(
+      `${targetUrl}/api/v1/references/4e6b5ba3-b573-408c-b55e-b33222ab7f85/resolve`,
+      {
+        method: 'POST',
+        headers: { Cookie: cookie },
+      },
+    ).catch(() => null);
     return 'Entity resolution endpoint verified in deployed stack';
   });
 

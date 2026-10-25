@@ -241,7 +241,7 @@ export function createDomainRoutes(db: NodePgDatabase<typeof schema>): Router {
             analogs,
             signals,
           };
-        })
+        }),
       );
 
       res.json({ proposals: detailed });
@@ -273,7 +273,14 @@ export function createDomainRoutes(db: NodePgDatabase<typeof schema>): Router {
         assumptions = [],
       } = req.body ?? {};
 
-      if (!name || !category || estimatedCostMinor === undefined || effortPersonDays === undefined || !releaseWindowStart || !releaseWindowEnd) {
+      if (
+        !name ||
+        !category ||
+        estimatedCostMinor === undefined ||
+        effortPersonDays === undefined ||
+        !releaseWindowStart ||
+        !releaseWindowEnd
+      ) {
         throw AppError.badRequest('Missing required proposal fields');
       }
 
@@ -399,13 +406,16 @@ export function createDomainRoutes(db: NodePgDatabase<typeof schema>): Router {
       if (description !== undefined) updateData.description = description;
       if (category !== undefined) updateData.category = category;
       if (status !== undefined) updateData.status = status;
-      if (estimatedCostMinor !== undefined) updateData.estimatedCostMinor = BigInt(estimatedCostMinor);
+      if (estimatedCostMinor !== undefined)
+        updateData.estimatedCostMinor = BigInt(estimatedCostMinor);
       if (currency !== undefined) updateData.currency = currency;
       if (effortPersonDays !== undefined) updateData.effortPersonDays = Number(effortPersonDays);
       if (releaseWindowStart !== undefined) updateData.releaseWindowStart = releaseWindowStart;
       if (releaseWindowEnd !== undefined) updateData.releaseWindowEnd = releaseWindowEnd;
-      if (scheduleConfidence !== undefined) updateData.scheduleConfidence = Number(scheduleConfidence);
-      if (stakeholderPriority !== undefined) updateData.stakeholderPriority = Number(stakeholderPriority);
+      if (scheduleConfidence !== undefined)
+        updateData.scheduleConfidence = Number(scheduleConfidence);
+      if (stakeholderPriority !== undefined)
+        updateData.stakeholderPriority = Number(stakeholderPriority);
       if (openQuestions !== undefined) updateData.openQuestions = openQuestions;
       if (assumptions !== undefined) updateData.assumptions = assumptions;
 
@@ -525,7 +535,14 @@ export function createDomainRoutes(db: NodePgDatabase<typeof schema>): Router {
         description,
       } = req.body ?? {};
 
-      if (!featureName || !category || !metricName || !metricUnit || metricValue === undefined || baselineValue === undefined) {
+      if (
+        !featureName ||
+        !category ||
+        !metricName ||
+        !metricUnit ||
+        metricValue === undefined ||
+        baselineValue === undefined
+      ) {
         throw AppError.badRequest('Missing required historical record fields');
       }
 

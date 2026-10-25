@@ -290,7 +290,7 @@ class ApiError extends Error {
   constructor(
     message: string,
     public status: number,
-    public code?: string
+    public code?: string,
   ) {
     super(message);
     this.name = 'ApiError';
@@ -339,7 +339,7 @@ export const api = {
       {
         method: 'POST',
         body: JSON.stringify(data),
-      }
+      },
     );
   },
 
@@ -348,7 +348,12 @@ export const api = {
     return fetchJson<{ game: WorkspaceData['game'] }>('/api/v1/game');
   },
 
-  async updateGame(data: { name: string; genreTags?: string[]; platforms?: string[]; description?: string }) {
+  async updateGame(data: {
+    name: string;
+    genreTags?: string[];
+    platforms?: string[];
+    description?: string;
+  }) {
     return fetchJson<{ game: WorkspaceData['game'] }>('/api/v1/game', {
       method: 'PUT',
       body: JSON.stringify(data),
@@ -360,7 +365,10 @@ export const api = {
     return fetchJson<{ markets: MarketData[] }>('/api/v1/markets');
   },
 
-  async updateMarket(id: string, data: { name?: string; countryCode?: string; weight?: number | string }) {
+  async updateMarket(
+    id: string,
+    data: { name?: string; countryCode?: string; weight?: number | string },
+  ) {
     return fetchJson<{ market: MarketData }>(`/api/v1/markets/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
@@ -444,14 +452,14 @@ export const api = {
 
   async chooseResolution(
     referenceId: string,
-    candidate: { id: string; name: string; type: string }
+    candidate: { id: string; name: string; type: string },
   ) {
     return fetchJson<{ success: boolean; reference: CulturalReferenceData }>(
       `/api/v1/references/${referenceId}/resolution/choose`,
       {
         method: 'POST',
         body: JSON.stringify({ candidate }),
-      }
+      },
     );
   },
 
@@ -507,7 +515,7 @@ export const api = {
       variants?: 'qloo_informed' | 'baseline' | 'both';
       weights?: Record<string, number>;
       constraintsOverride?: Record<string, unknown>;
-    }
+    },
   ) {
     return fetchJson<{
       run: DecisionRunSummary;

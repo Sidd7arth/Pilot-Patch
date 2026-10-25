@@ -1,7 +1,10 @@
 // apps/web/components/decision/reason-chip.tsx
 import React from 'react';
 
-const REASON_LABELS: Record<string, { label: string; tooltip: string; variant: 'danger' | 'warning' | 'info' | 'neutral' }> = {
+const REASON_LABELS: Record<
+  string,
+  { label: string; tooltip: string; variant: 'danger' | 'warning' | 'info' | 'neutral' }
+> = {
   // Hard Constraints
   HC_COST_EXCEEDS_BUDGET: {
     label: 'Cost exceeds budget',
@@ -76,7 +79,10 @@ interface ReasonChipProps {
 
 export function ReasonChip({ code, className = '' }: ReasonChipProps) {
   const item = REASON_LABELS[code] ?? {
-    label: code.replace(/^[A-Z]+_/, '').replace(/_/g, ' ').toLowerCase(),
+    label: code
+      .replace(/^[A-Z]+_/, '')
+      .replace(/_/g, ' ')
+      .toLowerCase(),
     tooltip: code,
     variant: 'neutral',
   };

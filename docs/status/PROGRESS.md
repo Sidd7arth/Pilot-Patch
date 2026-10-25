@@ -21,12 +21,12 @@
 - **typecheck**: **PASS** (6/6 projects, 0 errors, TS 5.7/5.9 strict)
 - **lint**: **PASS** (3/3 packages, 0 errors, 0 warnings; architectural boundary rules enforced)
 - **format:check**: **PASS** (100% Prettier compliant)
-- **unit**: **PASS** (27/27 unit tests: config, validators, decision engine)
+- **unit**: **PASS** (30/30 unit tests: config, validators, decision engine + knapsack trade-offs + capacity constraints + missing evidence)
 - **integration**: **PASS** (49/49 integration tests: repositories, seed, db-invariants, lifecycle, health, error envelope, qloo-service, workflow)
 - **e2e (Playwright)**: **PASS** (8/8 tests passed across E2E-01..08 including `/integration` screen & live probe)
 - **e2e (Primary Real Scenario)**: **PASS** (12/12 steps passed with real Qloo API in `docs/status/E2E_RESULTS.md`)
 - **security**: **PASS** (`pnpm check:secrets` 0 leaks, `pnpm check:bundle` 0 leaks, git history regex scan 0 leaks)
 - **live-qloo**: **PASS** (`pnpm test:live` 3/3 passed; `pnpm qloo:verify` 12 queries, 4 success affinities, 3/6 proposals supported)
 
-**Total Automated Suite**: 13 test files passed, 76/76 automated unit/integration tests green.
+**Total Automated Suite**: 13 test files passed, 79/79 automated unit/integration tests green.
 **Failures**: None.

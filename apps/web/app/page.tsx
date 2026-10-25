@@ -49,8 +49,8 @@ export default function HomePage() {
         <ShieldAlert className="w-4 h-4 text-warn shrink-0 mt-0.5" />
         <div>
           <span className="font-semibold text-text">Demo Workspace Environment:</span> Do not enter
-          confidential studio data. Workspace sessions expire after 7 days. All cultural affinity evidence is
-          retrieved live from the official Qloo API.
+          confidential studio data. Workspace sessions expire after 7 days. All cultural affinity
+          evidence is retrieved live from the official Qloo API.
         </div>
       </div>
 
@@ -63,9 +63,9 @@ export default function HomePage() {
           Prioritize Live-Service Content with Real Cultural Evidence
         </h1>
         <p className="text-base text-text-muted leading-relaxed max-w-2xl">
-          PatchPilot connects your game audience taste profiles to proposed live-ops events, bundles,
-          and collabs using verified Qloo cultural intelligence and deterministic budget-constrained
-          prioritization.
+          PatchPilot connects your game audience taste profiles to proposed live-ops events,
+          bundles, and collabs using verified Qloo cultural intelligence and deterministic
+          budget-constrained prioritization.
         </p>
       </div>
 
@@ -113,8 +113,8 @@ export default function HomePage() {
               <OriginBadge origin="user_supplied" />
             </div>
             <p className="text-xs text-text-muted mt-1.5 leading-relaxed">
-              Set up your own game title, define custom target markets, planning horizon, budget caps,
-              and input new content initiatives.
+              Set up your own game title, define custom target markets, planning horizon, budget
+              caps, and input new content initiatives.
             </p>
           </div>
           <Button
@@ -136,7 +136,8 @@ export default function HomePage() {
           Evidence Provenance & Origin Legend
         </h4>
         <p className="text-xs text-text-muted">
-          PatchPilot tracks data origin end-to-end so game executives always know what is real cultural evidence vs synthetic or user inputs.
+          PatchPilot tracks data origin end-to-end so game executives always know what is real
+          cultural evidence vs synthetic or user inputs.
         </p>
         <div className="flex flex-wrap gap-2.5 pt-1">
           <OriginBadge origin="live_qloo" />

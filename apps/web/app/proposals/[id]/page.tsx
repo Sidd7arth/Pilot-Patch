@@ -3,13 +3,7 @@
 
 import React, { useState, useEffect, use } from 'react';
 import Link from 'next/link';
-import {
-  ArrowLeft,
-  Sparkles,
-  RefreshCw,
-  AlertCircle,
-  Check,
-} from 'lucide-react';
+import { ArrowLeft, Sparkles, RefreshCw, AlertCircle, Check } from 'lucide-react';
 import { Button } from '@workspace/ui/components/button';
 import { OriginBadge } from '../../../components/ui/origin-badge';
 import { SignalChip } from '../../../components/ui/signal-chip';
@@ -23,7 +17,9 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
   const [proposal, setProposal] = useState<ProposalData | null>(null);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'references' | 'evidence' | 'dependencies' | 'analogs'>('references');
+  const [activeTab, setActiveTab] = useState<
+    'overview' | 'references' | 'evidence' | 'dependencies' | 'analogs'
+  >('references');
   const [actionMessage, setActionMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -60,7 +56,9 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
       setRefreshing(true);
       setActionMessage('Querying Qloo API to derive cultural signals...');
       const res = await api.refreshProposalEvidence(proposal.workspaceId, proposal.id);
-      setActionMessage(`Updated! ${res.signalsCreated} cultural signals derived from live Qloo calls.`);
+      setActionMessage(
+        `Updated! ${res.signalsCreated} cultural signals derived from live Qloo calls.`,
+      );
       await loadData();
       setTimeout(() => setActionMessage(null), 4000);
     } catch (err: unknown) {
@@ -72,7 +70,7 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
 
   const handleChooseCandidate = async (
     referenceId: string,
-    candidate: { id: string; name: string; type: string }
+    candidate: { id: string; name: string; type: string },
   ) => {
     try {
       setActionMessage(`Resolving "${candidate.name}" with Qloo entity ID ${candidate.id}...`);
@@ -161,22 +159,33 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
               <OriginBadge origin={proposal.dataOrigin} />
             </div>
             <p className="text-xs text-text-muted capitalize mt-1">
-              Category: <span className="text-text font-medium">{proposal.category.replace(/_/g, ' ')}</span>
+              Category:{' '}
+              <span className="text-text font-medium">{proposal.category.replace(/_/g, ' ')}</span>
             </p>
           </div>
 
           <div className="flex items-center gap-4 text-xs font-mono">
             <div className="bg-surface-2 px-3 py-1.5 rounded-lg border border-border">
-              <span className="text-text-muted block text-[10px] uppercase font-semibold">Cost</span>
+              <span className="text-text-muted block text-[10px] uppercase font-semibold">
+                Cost
+              </span>
               <span className="text-base font-bold text-text">{costFmt}</span>
             </div>
             <div className="bg-surface-2 px-3 py-1.5 rounded-lg border border-border">
-              <span className="text-text-muted block text-[10px] uppercase font-semibold">Effort</span>
-              <span className="text-base font-bold text-text">{proposal.effortPersonDays ?? '—'}d</span>
+              <span className="text-text-muted block text-[10px] uppercase font-semibold">
+                Effort
+              </span>
+              <span className="text-base font-bold text-text">
+                {proposal.effortPersonDays ?? '—'}d
+              </span>
             </div>
             <div className="bg-surface-2 px-3 py-1.5 rounded-lg border border-border">
-              <span className="text-text-muted block text-[10px] uppercase font-semibold">Confidence</span>
-              <span className="text-base font-bold text-accent">{proposal.scheduleConfidence}/5</span>
+              <span className="text-text-muted block text-[10px] uppercase font-semibold">
+                Confidence
+              </span>
+              <span className="text-base font-bold text-accent">
+                {proposal.scheduleConfidence}/5
+              </span>
             </div>
           </div>
         </div>
@@ -244,7 +253,8 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
       {activeTab === 'references' && (
         <div className="space-y-4">
           <div className="text-xs text-text-muted">
-            Cultural themes and audience anchors mapped to Qloo entities. User text and Qloo-resolved entities are displayed in visibly separate blocks.
+            Cultural themes and audience anchors mapped to Qloo entities. User text and
+            Qloo-resolved entities are displayed in visibly separate blocks.
           </div>
 
           <div className="space-y-3">
@@ -262,7 +272,8 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
                     <span className="text-base font-semibold text-text">{ref.label}</span>
                     {ref.entityTypeHint && (
                       <span className="text-xs text-text-muted block">
-                        Entity Type Hint: <code className="text-xs font-mono">{ref.entityTypeHint}</code>
+                        Entity Type Hint:{' '}
+                        <code className="text-xs font-mono">{ref.entityTypeHint}</code>
                       </span>
                     )}
                   </div>
@@ -280,8 +291,8 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
                         ref.resolutionStatus === 'resolved'
                           ? 'bg-emerald-100 text-emerald-800'
                           : ref.resolutionStatus === 'ambiguous'
-                          ? 'bg-amber-100 text-amber-800'
-                          : 'bg-slate-100 text-slate-700'
+                            ? 'bg-amber-100 text-amber-800'
+                            : 'bg-slate-100 text-slate-700'
                       }`}
                     >
                       {ref.resolutionStatus}
@@ -294,7 +305,9 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
                         <span className="font-semibold text-text">{ref.resolvedEntityName}</span>
                         <span className="text-text-muted ml-2">({ref.resolvedEntityType})</span>
                       </div>
-                      <span className="text-text-muted text-[11px]">ID: {ref.resolvedEntityId}</span>
+                      <span className="text-text-muted text-[11px]">
+                        ID: {ref.resolvedEntityId}
+                      </span>
                     </div>
                   )}
 
@@ -313,7 +326,9 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
                             <div>
                               <span className="font-semibold text-text">{cand.name}</span>
                               <span className="text-text-muted ml-2 font-mono">({cand.type})</span>
-                              <span className="text-[10px] text-text-muted ml-2 font-mono">ID: {cand.id}</span>
+                              <span className="text-[10px] text-text-muted ml-2 font-mono">
+                                ID: {cand.id}
+                              </span>
                             </div>
                             <Button
                               size="sm"
@@ -348,7 +363,8 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
               <Sparkles className="w-8 h-8 text-[#7048E8] mx-auto" />
               <p className="text-sm font-medium text-text">No Qloo signals derived yet</p>
               <p className="text-xs text-text-muted max-w-sm mx-auto">
-                Click Refresh Evidence to query the live Qloo API using this proposal&apos;s cultural references.
+                Click Refresh Evidence to query the live Qloo API using this proposal&apos;s
+                cultural references.
               </p>
               <Button
                 size="sm"
@@ -369,7 +385,9 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
                       <span className="font-mono text-xs text-text font-semibold uppercase bg-surface-2 px-1.5 py-0.5 rounded">
                         Strategy {sig.strategy}
                       </span>
-                      <OriginBadge origin={sig.freshness === 'live' ? 'live_qloo' : 'cached_qloo'} />
+                      <OriginBadge
+                        origin={sig.freshness === 'live' ? 'live_qloo' : 'cached_qloo'}
+                      />
                     </div>
                     <p className="text-xs text-text-muted">{sig.basis}</p>
                   </div>
@@ -393,7 +411,9 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
       {activeTab === 'overview' && (
         <div className="space-y-4 bg-surface p-6 rounded-xl border border-border">
           <div className="space-y-2">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted">Assumptions</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+              Assumptions
+            </h3>
             <ul className="list-disc list-inside text-xs text-text-muted space-y-1">
               {proposal.assumptions?.length ? (
                 proposal.assumptions.map((a, i) => <li key={i}>{a}</li>)
@@ -404,7 +424,9 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
           </div>
 
           <div className="space-y-2 pt-3 border-t border-border">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted">Open Questions</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted">
+              Open Questions
+            </h3>
             <ul className="list-disc list-inside text-xs text-text-muted space-y-1">
               {proposal.openQuestions?.length ? (
                 proposal.openQuestions.map((q, i) => <li key={i}>{q}</li>)
@@ -423,13 +445,20 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
             Prerequisites & Constraints
           </h3>
           {deps.length === 0 ? (
-            <p className="text-xs text-text-muted">No dependencies registered for this initiative.</p>
+            <p className="text-xs text-text-muted">
+              No dependencies registered for this initiative.
+            </p>
           ) : (
             <div className="space-y-2">
               {deps.map((d) => (
-                <div key={d.id} className="p-3 bg-surface-2 rounded-lg border border-border flex items-center justify-between text-xs">
+                <div
+                  key={d.id}
+                  className="p-3 bg-surface-2 rounded-lg border border-border flex items-center justify-between text-xs"
+                >
                   <div>
-                    <span className="font-semibold text-text capitalize">{d.kind} Dependency: </span>
+                    <span className="font-semibold text-text capitalize">
+                      {d.kind} Dependency:{' '}
+                    </span>
                     <span className="text-text-muted">{d.description ?? d.id}</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -438,7 +467,9 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
                         Hard Blocking
                       </span>
                     )}
-                    <span className="font-mono text-xs capitalize text-text font-medium">{d.status}</span>
+                    <span className="font-mono text-xs capitalize text-text font-medium">
+                      {d.status}
+                    </span>
                   </div>
                 </div>
               ))}
@@ -455,18 +486,26 @@ export default function ProposalDetailPage({ params }: { params: Promise<{ id: s
           </h3>
           {analogs.length === 0 ? (
             <p className="text-xs text-text-muted">
-              No historical analogs linked. Commercial evidence criterion will register as &apos;Unavailable&apos; (not scored).
+              No historical analogs linked. Commercial evidence criterion will register as
+              &apos;Unavailable&apos; (not scored).
             </p>
           ) : (
             <div className="space-y-2">
               {analogs.map((a) => (
-                <div key={a.id} className="p-3 bg-surface-2 rounded-lg border border-border flex items-center justify-between text-xs">
+                <div
+                  key={a.id}
+                  className="p-3 bg-surface-2 rounded-lg border border-border flex items-center justify-between text-xs"
+                >
                   <div>
                     <span className="font-semibold text-text">Analog {a.historicalRecordId}</span>
-                    <p className="text-[11px] text-text-muted">{a.notes ?? 'Performance reference'}</p>
+                    <p className="text-[11px] text-text-muted">
+                      {a.notes ?? 'Performance reference'}
+                    </p>
                   </div>
                   <div className="text-right font-mono">
-                    <span className="font-semibold text-text">Weight: {Number(a.relevanceWeight).toFixed(2)}</span>
+                    <span className="font-semibold text-text">
+                      Weight: {Number(a.relevanceWeight).toFixed(2)}
+                    </span>
                   </div>
                 </div>
               ))}

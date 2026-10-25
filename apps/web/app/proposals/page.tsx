@@ -81,7 +81,9 @@ export default function ProposalsPage() {
       await loadData();
       setTimeout(() => setActionMessage(null), 4000);
     } catch (err: unknown) {
-      setActionMessage(`Error refreshing evidence: ${err instanceof Error ? err.message : 'Failed'}`);
+      setActionMessage(
+        `Error refreshing evidence: ${err instanceof Error ? err.message : 'Failed'}`,
+      );
     } finally {
       setRefreshing(false);
     }
@@ -94,7 +96,7 @@ export default function ProposalsPage() {
         name: newName,
         category: newCategory,
         description: newDesc,
-        estimatedCostMinor: (Math.round(Number(newCost) * 100)).toString(),
+        estimatedCostMinor: Math.round(Number(newCost) * 100).toString(),
         currency: 'USD',
         effortPersonDays: Number(newEffort),
         releaseWindowStart: newStart,
@@ -140,7 +142,8 @@ export default function ProposalsPage() {
             </span>
           </div>
           <p className="text-xs text-text-muted mt-1">
-            Live-service features and events evaluated against budget limits and Qloo cultural affinity.
+            Live-service features and events evaluated against budget limits and Qloo cultural
+            affinity.
           </p>
         </div>
 

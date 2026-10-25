@@ -38,13 +38,15 @@ const CAPABILITY_MATRIX: CapabilityRow[] = [
     entityType: 'urn:entity:videogame',
     category: 'Video Games',
     markets: { us: 'VERIFIED', jp: 'VERIFIED', br: 'VERIFIED', in: 'VERIFIED' },
-    notes: 'Tested on Valorant, Cyberpunk 2077, Elden Ring, Genshin Impact, Apex Legends (Phase 0 V-5).',
+    notes:
+      'Tested on Valorant, Cyberpunk 2077, Elden Ring, Genshin Impact, Apex Legends (Phase 0 V-5).',
   },
   {
     entityType: 'urn:entity:artist',
     category: 'Music & Creators',
     markets: { us: 'VERIFIED', jp: 'VERIFIED', br: 'VERIFIED', in: 'VERIFIED' },
-    notes: 'Tested on Rosalía, Bad Bunny, Studio Ghibli, blackbear with location-conditioned queries.',
+    notes:
+      'Tested on Rosalía, Bad Bunny, Studio Ghibli, blackbear with location-conditioned queries.',
   },
   {
     entityType: 'urn:entity:movie',
@@ -61,7 +63,8 @@ const CAPABILITY_MATRIX: CapabilityRow[] = [
       br: 'VERIFIED-WITH-LIMITS',
       in: 'VERIFIED-WITH-LIMITS',
     },
-    notes: 'Supported for established global lifestyle/tech brands; localized esports gear varies by market.',
+    notes:
+      'Supported for established global lifestyle/tech brands; localized esports gear varies by market.',
   },
   {
     entityType: 'urn:entity:book',
@@ -72,7 +75,8 @@ const CAPABILITY_MATRIX: CapabilityRow[] = [
       br: 'VERIFIED-WITH-LIMITS',
       in: 'UNKNOWN',
     },
-    notes: 'Catalog coverage dense in US/UK; manga/light novels resolved primarily under Japanese romanized titles.',
+    notes:
+      'Catalog coverage dense in US/UK; manga/light novels resolved primarily under Japanese romanized titles.',
   },
 ];
 
@@ -141,14 +145,14 @@ export default function IntegrationPage() {
       const res = await api.getQlooStatus();
       setStatus(res);
       setProbeResult(
-        `Probe successful: Upstream status '${res.status}', latency ${res.latencyMs ?? 0}ms, circuit breaker ${res.circuitBreaker}`
+        `Probe successful: Upstream status '${res.status}', latency ${res.latencyMs ?? 0}ms, circuit breaker ${res.circuitBreaker}`,
       );
       // Refresh query log
       const qRes = await api.getQlooQueries();
       setQueries(qRes.queries);
     } catch (err: unknown) {
       setProbeResult(
-        `Probe failed: ${err instanceof Error ? err.message : 'Unknown network error'}`
+        `Probe failed: ${err instanceof Error ? err.message : 'Unknown network error'}`,
       );
     } finally {
       setProbing(false);
@@ -206,11 +210,14 @@ export default function IntegrationPage() {
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2.5">
-              <h1 className="text-2xl font-bold tracking-tight text-text">Qloo Integration & Health</h1>
+              <h1 className="text-2xl font-bold tracking-tight text-text">
+                Qloo Integration & Health
+              </h1>
               <OriginBadge origin="live_qloo" />
             </div>
             <p className="text-xs text-text-muted mt-1">
-              Live connection telemetry, provider quotas, Phase 0 capability matrix, and verified architectural limits.
+              Live connection telemetry, provider quotas, Phase 0 capability matrix, and verified
+              architectural limits.
             </p>
           </div>
           <Button
@@ -262,9 +269,7 @@ export default function IntegrationPage() {
 
           <div className="flex items-center gap-2">
             <div
-              className={`w-3 h-3 rounded-full ${
-                isConnected ? 'bg-ok animate-pulse' : 'bg-warn'
-              }`}
+              className={`w-3 h-3 rounded-full ${isConnected ? 'bg-ok animate-pulse' : 'bg-warn'}`}
             />
             <span className="text-base font-bold text-text">
               {isConnected ? 'Connected & Healthy' : 'Degraded / Unconfigured'}
@@ -309,8 +314,8 @@ export default function IntegrationPage() {
                 status?.circuitBreaker === 'closed'
                   ? 'bg-ok/10 text-ok border-ok/30'
                   : status?.circuitBreaker === 'half_open'
-                  ? 'bg-warn/10 text-warn border-warn/30'
-                  : 'bg-rose-50 text-rose-700 border-rose-200'
+                    ? 'bg-warn/10 text-warn border-warn/30'
+                    : 'bg-rose-50 text-rose-700 border-rose-200'
               }`}
             >
               Breaker: {status?.circuitBreaker ?? 'closed'}
@@ -370,7 +375,9 @@ export default function IntegrationPage() {
             </div>
             <div className="flex justify-between">
               <span>Remaining Today:</span>
-              <span className="font-mono text-text">{Math.max(0, dailyLimit - usedCalls)} calls</span>
+              <span className="font-mono text-text">
+                {Math.max(0, dailyLimit - usedCalls)} calls
+              </span>
             </div>
             <div className="flex justify-between">
               <span>Cache Strategy:</span>
@@ -391,10 +398,13 @@ export default function IntegrationPage() {
               </h2>
             </div>
             <p className="text-xs text-text-muted mt-0.5">
-              Empirical verification results from live probes against the official hackathon API deployment.
+              Empirical verification results from live probes against the official hackathon API
+              deployment.
             </p>
           </div>
-          <span className="text-[11px] text-text-muted font-mono">docs/qloo-verification/PHASE0_REPORT.md</span>
+          <span className="text-[11px] text-text-muted font-mono">
+            docs/qloo-verification/PHASE0_REPORT.md
+          </span>
         </div>
 
         <div className="overflow-x-auto">
@@ -446,7 +456,8 @@ export default function IntegrationPage() {
 
         {queries.length === 0 ? (
           <div className="py-8 text-center text-xs text-text-muted bg-surface-2/40 rounded-lg border border-dashed border-border">
-            No API queries recorded yet in this workspace session. Click &quot;Probe Live API&quot; or run entity resolution in Proposals.
+            No API queries recorded yet in this workspace session. Click &quot;Probe Live API&quot;
+            or run entity resolution in Proposals.
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -496,8 +507,8 @@ export default function IntegrationPage() {
                               q.outcome === 'success'
                                 ? 'bg-ok/10 text-ok'
                                 : q.outcome === 'empty'
-                                ? 'bg-surface-2 text-text-muted'
-                                : 'bg-rose-50 text-rose-700'
+                                  ? 'bg-surface-2 text-text-muted'
+                                  : 'bg-rose-50 text-rose-700'
                             }`}
                           >
                             {q.outcome}
@@ -525,7 +536,9 @@ export default function IntegrationPage() {
                                 {q.requestFingerprint && (
                                   <span>Fingerprint: {q.requestFingerprint.slice(0, 16)}...</span>
                                 )}
-                                <span>Retrieved: {new Date(q.retrievedAt).toLocaleTimeString()}</span>
+                                <span>
+                                  Retrieved: {new Date(q.retrievedAt).toLocaleTimeString()}
+                                </span>
                               </div>
                               <div className="bg-surface-2 p-2.5 rounded border border-border">
                                 <span className="font-semibold text-text-muted block mb-1">
@@ -559,7 +572,10 @@ export default function IntegrationPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {KNOWN_LIMITATIONS.map((lim) => (
-            <div key={lim.title} className="p-3.5 bg-surface-2/50 rounded-lg border border-border space-y-1.5">
+            <div
+              key={lim.title}
+              className="p-3.5 bg-surface-2/50 rounded-lg border border-border space-y-1.5"
+            >
               <h3 className="text-xs font-bold text-text">{lim.title}</h3>
               <p className="text-xs text-text-muted leading-relaxed">{lim.description}</p>
             </div>

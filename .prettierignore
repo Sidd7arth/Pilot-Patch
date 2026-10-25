@@ -7,3 +7,4 @@ packages/qloo-client/test/fixtures/**
 .agents/**
 docs/**
 AGENTS.md
+**/next-env.d.ts

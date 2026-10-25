@@ -61,7 +61,7 @@ export class DecisionService {
     workspaceId: string,
     weightsOverride?: Partial<EngineWeights>,
     constraintsOverride?: Partial<DecisionConstraints>,
-    variants: VariantType = 'both'
+    variants: VariantType = 'both',
   ): Promise<DecisionInput> {
     const rawConstraints = await this.constraintRepo.getByWorkspace(workspaceId);
     if (!rawConstraints) {
@@ -69,7 +69,8 @@ export class DecisionService {
     }
 
     const budgetTotal = constraintsOverride?.budgetTotalMinor ?? rawConstraints.budgetTotalMinor;
-    const contingency = constraintsOverride?.contingencyReserveMinor ?? rawConstraints.contingencyReserveMinor;
+    const contingency =
+      constraintsOverride?.contingencyReserveMinor ?? rawConstraints.contingencyReserveMinor;
     const horizonStart = constraintsOverride?.horizonStart ?? rawConstraints.horizonStart;
     const horizonEnd = constraintsOverride?.horizonEnd ?? rawConstraints.horizonEnd;
 
@@ -188,10 +189,13 @@ export class DecisionService {
 
     const weights: EngineWeights = {
       cultural_relevance: weightsOverride?.cultural_relevance ?? defaultWeights.cultural_relevance,
-      evidence_confidence: weightsOverride?.evidence_confidence ?? defaultWeights.evidence_confidence,
+      evidence_confidence:
+        weightsOverride?.evidence_confidence ?? defaultWeights.evidence_confidence,
       feasibility: weightsOverride?.feasibility ?? defaultWeights.feasibility,
-      commercial_evidence: weightsOverride?.commercial_evidence ?? defaultWeights.commercial_evidence,
-      stakeholder_priority: weightsOverride?.stakeholder_priority ?? defaultWeights.stakeholder_priority,
+      commercial_evidence:
+        weightsOverride?.commercial_evidence ?? defaultWeights.commercial_evidence,
+      stakeholder_priority:
+        weightsOverride?.stakeholder_priority ?? defaultWeights.stakeholder_priority,
     };
 
     return {
@@ -231,7 +235,7 @@ export class DecisionService {
       workspaceId,
       req.weights,
       req.constraintsOverride,
-      req.variants ?? 'both'
+      req.variants ?? 'both',
     );
 
     const output = runDecision(input);
@@ -273,7 +277,9 @@ export class DecisionService {
     }
 
     const serializedOutput = this.serializeBigInt(output) as DecisionOutput;
-    const serializedDiff = diffFromParent ? (this.serializeBigInt(diffFromParent) as RunDiff) : null;
+    const serializedDiff = diffFromParent
+      ? (this.serializeBigInt(diffFromParent) as RunDiff)
+      : null;
 
     const createdRun = await this.decisionRepo.createRun(
       workspaceId,
@@ -288,7 +294,7 @@ export class DecisionService {
         output: serializedOutput as unknown as Record<string, unknown>,
         diffFromParent: serializedDiff as unknown as Record<string, unknown> | null,
       },
-      rankingRecords
+      rankingRecords,
     );
 
     return {
@@ -319,7 +325,10 @@ export class DecisionService {
       throw AppError.notFound('One or both decision runs not found');
     }
 
-    const rawDiff = diffRuns(runA.output as unknown as DecisionOutput, runB.output as unknown as DecisionOutput);
+    const rawDiff = diffRuns(
+      runA.output as unknown as DecisionOutput,
+      runB.output as unknown as DecisionOutput,
+    );
     return this.serializeBigInt(rawDiff) as RunDiff;
   }
 }

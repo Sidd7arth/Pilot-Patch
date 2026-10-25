@@ -10,7 +10,7 @@ import { createSessionMiddleware } from '../middleware/session.js';
 
 export function createWorkspaceRoutes(
   db: NodePgDatabase<typeof schema>,
-  config: AppConfig
+  config: AppConfig,
 ): Router {
   const router = Router();
   const requireSession = createSessionMiddleware(db);
@@ -99,10 +99,7 @@ export function createWorkspaceRoutes(
         .select({ count: sql<number>`count(*)::int` })
         .from(schema.proposals)
         .where(
-          and(
-            eq(schema.proposals.workspaceId, workspaceId),
-            isNull(schema.proposals.deletedAt)
-          )
+          and(eq(schema.proposals.workspaceId, workspaceId), isNull(schema.proposals.deletedAt)),
         );
 
       // Count calls today
@@ -116,8 +113,8 @@ export function createWorkspaceRoutes(
           and(
             eq(schema.qlooQueries.workspaceId, workspaceId),
             gte(schema.qlooQueries.retrievedAt, startOfDay),
-            eq(schema.qlooQueries.dataOrigin, 'live_qloo')
-          )
+            eq(schema.qlooQueries.dataOrigin, 'live_qloo'),
+          ),
         );
 
       const callsUsedToday = callsRow?.count ?? 0;

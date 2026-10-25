@@ -2,11 +2,7 @@
 import React from 'react';
 
 export type CriterionCategory =
-  | 'cultural'
-  | 'operational'
-  | 'commercial'
-  | 'stakeholder'
-  | 'confidence';
+  'cultural' | 'operational' | 'commercial' | 'stakeholder' | 'confidence';
 
 interface CriterionBarProps {
   label: string;

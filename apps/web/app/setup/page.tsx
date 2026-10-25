@@ -59,7 +59,9 @@ export default function SetupPage() {
         if (workspace.constraints) {
           setCurrency(workspace.constraints.currency);
           setBudgetTotal((Number(workspace.constraints.budgetTotalMinor) / 100).toString());
-          setContingencyReserve((Number(workspace.constraints.contingencyReserveMinor) / 100).toString());
+          setContingencyReserve(
+            (Number(workspace.constraints.contingencyReserveMinor) / 100).toString(),
+          );
           setCapacityDays(workspace.constraints.capacityPersonDays?.toString() ?? '480');
           setCapacityEnforcement(workspace.constraints.capacityEnforcement);
           setHorizonStart(workspace.constraints.horizonStart);
@@ -100,8 +102,8 @@ export default function SetupPage() {
       });
 
       // Save constraints
-      const budgetMinor = (Math.round(Number(budgetTotal) * 100)).toString();
-      const contingencyMinor = (Math.round(Number(contingencyReserve) * 100)).toString();
+      const budgetMinor = Math.round(Number(budgetTotal) * 100).toString();
+      const contingencyMinor = Math.round(Number(contingencyReserve) * 100).toString();
 
       await api.updateConstraints({
         currency,
@@ -241,7 +243,9 @@ export default function SetupPage() {
 
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-text">Genre Tags (comma-separated)</label>
+              <label className="text-xs font-semibold text-text">
+                Genre Tags (comma-separated)
+              </label>
               <input
                 type="text"
                 value={genreTags.join(', ')}
@@ -250,7 +254,7 @@ export default function SetupPage() {
                     e.target.value
                       .split(',')
                       .map((t) => t.trim())
-                      .filter(Boolean)
+                      .filter(Boolean),
                   )
                 }
                 className="w-full text-sm px-3 py-2 rounded-lg border border-border bg-surface-2 focus:border-accent outline-none"
@@ -267,7 +271,7 @@ export default function SetupPage() {
                     e.target.value
                       .split(',')
                       .map((t) => t.trim())
-                      .filter(Boolean)
+                      .filter(Boolean),
                   )
                 }
                 className="w-full text-sm px-3 py-2 rounded-lg border border-border bg-surface-2 focus:border-accent outline-none"
@@ -283,7 +287,9 @@ export default function SetupPage() {
         <div className="space-y-4 bg-surface p-6 rounded-xl border border-border shadow-sm">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-sm font-semibold text-text">Target Geography & Relative Weights</h3>
+              <h3 className="text-sm font-semibold text-text">
+                Target Geography & Relative Weights
+              </h3>
               <p className="text-xs text-text-muted mt-0.5">
                 Relative market importance used in market-weighted cultural resonance aggregation.
               </p>
@@ -315,7 +321,9 @@ export default function SetupPage() {
                       onChange={(e) => {
                         const newWeight = e.target.value;
                         setMarkets((prev) =>
-                          prev.map((item) => (item.id === m.id ? { ...item, weight: newWeight } : item))
+                          prev.map((item) =>
+                            item.id === m.id ? { ...item, weight: newWeight } : item,
+                          ),
                         );
                       }}
                       className="w-full accent-accent"
@@ -374,7 +382,9 @@ export default function SetupPage() {
             </h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-text">Studio Capacity (Person-Days)</label>
+                <label className="text-xs font-semibold text-text">
+                  Studio Capacity (Person-Days)
+                </label>
                 <input
                   type="number"
                   value={capacityDays}
@@ -386,7 +396,9 @@ export default function SetupPage() {
                 <label className="text-xs font-semibold text-text">Capacity Enforcement</label>
                 <select
                   value={capacityEnforcement}
-                  onChange={(e) => setCapacityEnforcement(e.target.value as 'hard' | 'soft' | 'none')}
+                  onChange={(e) =>
+                    setCapacityEnforcement(e.target.value as 'hard' | 'soft' | 'none')
+                  }
                   className="w-full text-sm px-3 py-2 rounded-lg border border-border bg-surface-2 focus:border-accent outline-none"
                 >
                   <option value="hard">Hard constraint (rejects if exceeded)</option>
@@ -427,16 +439,15 @@ export default function SetupPage() {
                   weightsValid ? 'text-emerald-600' : 'text-rose-600'
                 }`}
               >
-                Sum: {(weightsSum * 100).toFixed(0)}% {weightsValid ? '(Balanced 100%)' : '(Must sum to 100%)'}
+                Sum: {(weightsSum * 100).toFixed(0)}%{' '}
+                {weightsValid ? '(Balanced 100%)' : '(Must sum to 100%)'}
               </span>
             </div>
 
             <div className="space-y-3 bg-surface-2/60 p-4 rounded-lg border border-border">
               {Object.entries(weights).map(([k, v]) => (
                 <div key={k} className="flex items-center justify-between text-xs">
-                  <span className="font-medium text-text capitalize">
-                    {k.replace(/_/g, ' ')}
-                  </span>
+                  <span className="font-medium text-text capitalize">{k.replace(/_/g, ' ')}</span>
                   <div className="flex items-center gap-3">
                     <input
                       type="range"

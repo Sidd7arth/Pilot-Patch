@@ -105,17 +105,21 @@ export default function DecisionPage() {
     );
   }
 
-  const primaryVariant = currentRun?.run?.output?.variants?.qloo_informed ?? currentRun?.run?.output?.variants?.baseline;
+  const primaryVariant =
+    currentRun?.run?.output?.variants?.qloo_informed ?? currentRun?.run?.output?.variants?.baseline;
   const portfolio = primaryVariant?.portfolio;
   const allRankings = currentRun?.rankings ?? [];
 
   const selectedRankings = allRankings.filter((r) => r.status === 'selected');
   const notFundedRankings = allRankings.filter((r) => r.status === 'not_funded');
-  const excludedRankings = allRankings.filter((r) => r.status === 'excluded' || r.status === 'deferred_unmet_dependency');
+  const excludedRankings = allRankings.filter(
+    (r) => r.status === 'excluded' || r.status === 'deferred_unmet_dependency',
+  );
 
   const selectedDetail = allRankings.find((r) => r.proposalId === selectedProposalId);
   const inputSnapshot = currentRun?.run?.inputSnapshot as Record<string, unknown> | undefined;
-  const proposalsInSnapshot = (inputSnapshot?.proposals as Array<{ id: string; name: string }>) ?? [];
+  const proposalsInSnapshot =
+    (inputSnapshot?.proposals as Array<{ id: string; name: string }>) ?? [];
 
   const getProposalName = (id: string) => {
     const p = proposalsInSnapshot.find((item) => item.id === id);
@@ -132,7 +136,8 @@ export default function DecisionPage() {
             <OriginBadge origin="system_derived" />
           </div>
           <p className="text-xs text-text-muted mt-1">
-            Deterministic multi-criteria prioritization with real Qloo cultural affinity and budget constraints.
+            Deterministic multi-criteria prioritization with real Qloo cultural affinity and budget
+            constraints.
           </p>
         </div>
 
@@ -142,7 +147,9 @@ export default function DecisionPage() {
             <button
               onClick={() => setVariants('both')}
               className={`px-3 py-1.5 rounded-md font-medium transition-colors ${
-                variants === 'both' ? 'bg-surface text-text shadow-xs' : 'text-text-muted hover:text-text'
+                variants === 'both'
+                  ? 'bg-surface text-text shadow-xs'
+                  : 'text-text-muted hover:text-text'
               }`}
             >
               Both Variants
@@ -160,7 +167,9 @@ export default function DecisionPage() {
             <button
               onClick={() => setVariants('baseline')}
               className={`px-3 py-1.5 rounded-md font-medium transition-colors ${
-                variants === 'baseline' ? 'bg-surface text-text shadow-xs' : 'text-text-muted hover:text-text'
+                variants === 'baseline'
+                  ? 'bg-surface text-text shadow-xs'
+                  : 'text-text-muted hover:text-text'
               }`}
             >
               Baseline Only
@@ -222,7 +231,10 @@ export default function DecisionPage() {
             totalBudgetMinor={portfolio.budgetTotalMinor}
             contingencyMinor={portfolio.contingencyReserveMinor}
             selectedProposals={selectedRankings.map((r) => {
-              const critCost = (r.criteria as Record<string, { notes?: string }>).feasibility?.notes?.match(/\$[\d,]+/)?.[0] ?? '$0';
+              const critCost =
+                (r.criteria as Record<string, { notes?: string }>).feasibility?.notes?.match(
+                  /\$[\d,]+/,
+                )?.[0] ?? '$0';
               const cleanCost = Number(critCost.replace(/[$,]/g, '')) * 100;
               return {
                 id: r.proposalId,
@@ -247,7 +259,8 @@ export default function DecisionPage() {
               </span>
             </h2>
             <span className="text-xs text-text-muted font-mono">
-              Engine v{currentRun?.run.engineVersion} · Hash: {currentRun?.run.inputHash.slice(0, 8)}
+              Engine v{currentRun?.run.engineVersion} · Hash:{' '}
+              {currentRun?.run.inputHash.slice(0, 8)}
             </span>
           </div>
 
@@ -287,7 +300,9 @@ export default function DecisionPage() {
 
                     <div className="text-right font-mono shrink-0 ml-4">
                       <span className="text-base font-bold text-text">{scoreNum}</span>
-                      <span className="text-[10px] text-text-muted block">{coverageNum}% coverage</span>
+                      <span className="text-[10px] text-text-muted block">
+                        {coverageNum}% coverage
+                      </span>
                     </div>
                   </div>
 
@@ -336,7 +351,9 @@ export default function DecisionPage() {
                           {r.reasonCodes.map((c) => (
                             <ReasonChip key={c} code={c} />
                           ))}
-                          <span className="font-mono text-xs font-semibold text-text">{scoreNum}</span>
+                          <span className="font-mono text-xs font-semibold text-text">
+                            {scoreNum}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -353,7 +370,11 @@ export default function DecisionPage() {
                 onClick={() => setShowExcluded(!showExcluded)}
                 className="flex items-center gap-1.5 text-xs text-text-muted hover:text-text font-medium"
               >
-                {showExcluded ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+                {showExcluded ? (
+                  <ChevronDown className="w-3.5 h-3.5" />
+                ) : (
+                  <ChevronRight className="w-3.5 h-3.5" />
+                )}
                 <span>Ineligible & Excluded Initiatives ({excludedRankings.length})</span>
               </button>
 
@@ -366,7 +387,9 @@ export default function DecisionPage() {
                       className="p-3 rounded-lg border border-rose-200 bg-rose-50/50 flex items-center justify-between text-xs cursor-pointer"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-rose-900">{getProposalName(r.proposalId)}</span>
+                        <span className="font-semibold text-rose-900">
+                          {getProposalName(r.proposalId)}
+                        </span>
                         <span className="text-[10px] font-mono text-rose-700 bg-rose-100 px-1.5 py-0.5 rounded">
                           Excluded
                         </span>
@@ -412,8 +435,12 @@ export default function DecisionPage() {
               <CoverageMeter
                 coverage={Number(selectedDetail.coverage)}
                 score={selectedDetail.score !== null ? Number(selectedDetail.score) : null}
-                scoreLower={selectedDetail.scoreLower !== null ? Number(selectedDetail.scoreLower) : null}
-                scoreUpper={selectedDetail.scoreUpper !== null ? Number(selectedDetail.scoreUpper) : null}
+                scoreLower={
+                  selectedDetail.scoreLower !== null ? Number(selectedDetail.scoreLower) : null
+                }
+                scoreUpper={
+                  selectedDetail.scoreUpper !== null ? Number(selectedDetail.scoreUpper) : null
+                }
               />
 
               {/* Criterion Bars Grouped */}
@@ -432,7 +459,7 @@ export default function DecisionPage() {
                       available: boolean;
                       notes?: string;
                     }
-                  >
+                  >,
                 ).map(([key, crit]) => {
                   let cat: CriterionCategory = 'operational';
                   if (key === 'cultural_relevance') cat = 'cultural';
@@ -478,7 +505,8 @@ export default function DecisionPage() {
                   <span>What this score does not tell you</span>
                 </div>
                 <p>
-                  Cultural affinity reflects audience taste correlation. It does not predict monetization, conversion, or purchase intent.
+                  Cultural affinity reflects audience taste correlation. It does not predict
+                  monetization, conversion, or purchase intent.
                 </p>
               </div>
             </div>

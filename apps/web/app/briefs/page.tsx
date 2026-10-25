@@ -45,7 +45,8 @@ export default function BriefsListPage() {
           <FileText className="w-8 h-8 text-text-muted mx-auto" />
           <p className="text-sm font-semibold text-text">No decision runs available</p>
           <p className="text-xs text-text-muted max-w-sm mx-auto">
-            Execute a run in the Decision Workspace to generate executive briefs and exportable reports.
+            Execute a run in the Decision Workspace to generate executive briefs and exportable
+            reports.
           </p>
           <Link href="/decision">
             <Button size="sm" className="bg-accent text-white">
@@ -56,7 +57,10 @@ export default function BriefsListPage() {
       ) : (
         <div className="divide-y divide-border border border-border rounded-xl bg-surface overflow-hidden shadow-xs">
           {runs.map((r) => (
-            <div key={r.id} className="p-4 flex items-center justify-between hover:bg-surface-2/40 transition-colors">
+            <div
+              key={r.id}
+              className="p-4 flex items-center justify-between hover:bg-surface-2/40 transition-colors"
+            >
               <div className="space-y-1">
                 <span className="font-semibold text-sm text-text block">
                   {r.label ?? `Decision Run ${r.id.slice(0, 8)}`}
