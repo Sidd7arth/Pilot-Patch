@@ -6,6 +6,7 @@ import { createApp } from '../../src/http/app.js';
 import { loadConfig } from '../../src/config/env.js';
 import { QlooService } from '../../src/modules/qloo/index.js';
 import { createQlooClient } from '@patchpilot/qloo-client';
+import { createFixtureFetch } from '../../../../packages/qloo-client/test/fixture-transport.js';
 import {
   WorkspaceRepository,
   GameRepository,
@@ -19,13 +20,17 @@ import {
 describe('P2-05, P2-06, P2-07: Qloo Service & HTTP Endpoints (API-03..05, API-12, API-13, API-17)', () => {
   const db = getDb();
   const config = loadConfig();
+  const testApiKey = config.QLOO_API_KEY || 'test-ci-offline-qloo-key';
 
-  const qlooClient = createQlooClient({
-    apiKey: config.QLOO_API_KEY,
-    baseUrl: config.QLOO_API_BASE_URL,
-    timeoutMs: 8000,
-    maxRetries: 1,
-  });
+  const qlooClient = createQlooClient(
+    {
+      apiKey: testApiKey,
+      baseUrl: config.QLOO_API_BASE_URL,
+      timeoutMs: 8000,
+      maxRetries: 1,
+    },
+    createFixtureFetch(),
+  );
 
   const qlooService = new QlooService(db, qlooClient, config);
   const app = createApp({ config, qlooService });
@@ -94,7 +99,10 @@ describe('P2-05, P2-06, P2-07: Qloo Service & HTTP Endpoints (API-03..05, API-12
 
     // SEC-05 / SEC-06: No sensitive fields leaked
     const serialized = JSON.stringify(res.body);
-    expect(serialized).not.toContain(config.QLOO_API_KEY);
+    if (config.QLOO_API_KEY) {
+      expect(serialized).not.toContain(config.QLOO_API_KEY);
+    }
+    expect(serialized).not.toContain(testApiKey);
     expect(serialized).not.toMatch(/api[_-]?key/i);
 
     // Verify integration event logged
@@ -102,8 +110,8 @@ describe('P2-05, P2-06, P2-07: Qloo Service & HTTP Endpoints (API-03..05, API-12
     expect(events.some((e) => e.kind === 'probe_success' || e.kind === 'probe_failure')).toBe(true);
   });
 
-  // P2-05 / API-03: Reference resolution (auto and manual choose)
-  it('POST /workspaces/:ws/references/:ref/resolve resolves reference and supports manual chooser', async () => {
+  // P2-05 / API-03: Reference resolution (auto resolve)
+  it('POST /workspaces/:ws/references/:ref/resolve resolves reference with exact match', async () => {
     // Create reference for Bad Bunny
     const ref = await referenceRepo.create(wsId, {
       ownerType: 'proposal',
@@ -117,24 +125,55 @@ describe('P2-05, P2-06, P2-07: Qloo Service & HTTP Endpoints (API-03..05, API-12
     // Resolve via HTTP endpoint
     const res = await request(app).post(`/api/v1/workspaces/${wsId}/references/${ref.id}/resolve`);
     expect(res.status).toBe(200);
-    expect(res.body.status).toMatch(/resolved|ambiguous/);
+    expect(res.body.status).toBe('resolved');
+    expect(res.body.chosenBy).toBe('auto');
+    expect(res.body.chosenQlooEntityId).toBeDefined();
     expect(res.body.candidates.length).toBeGreaterThan(0);
+  });
 
-    // If ambiguous, test manual chooser endpoint
-    if (res.body.status === 'ambiguous') {
-      const candidateId = res.body.candidates[0].qlooEntityId;
-      const chooseRes = await request(app)
-        .post(`/api/v1/workspaces/${wsId}/references/${ref.id}/choose`)
-        .send({ chosenQlooEntityId: candidateId });
+  // P2-05 / API-03: Ambiguous reference resolution and manual selection
+  it('handles ambiguous entity resolution and manual chooser selection', async () => {
+    const ref = await referenceRepo.create(wsId, {
+      ownerType: 'proposal',
+      proposalId,
+      role: 'cultural_theme',
+      label: 'AmbiguousTopic',
+      entityTypeHint: 'urn:entity:artist',
+      dataOrigin: 'synthetic_demo',
+    });
 
-      expect(chooseRes.status).toBe(200);
-      expect(chooseRes.body.status).toBe('resolved');
-      expect(chooseRes.body.chosenQlooEntityId).toBe(candidateId);
-      expect(chooseRes.body.chosenBy).toBe('user');
-    } else {
-      expect(res.body.status).toBe('resolved');
-      expect(res.body.chosenQlooEntityId).toBeDefined();
-    }
+    const res = await request(app).post(`/api/v1/workspaces/${wsId}/references/${ref.id}/resolve`);
+    expect(res.status).toBe(200);
+    expect(res.body.status).toBe('ambiguous');
+    expect(res.body.candidates.length).toBe(2);
+
+    // Use manual chooser endpoint
+    const chosenCandidateId = res.body.candidates[1].qlooEntityId;
+    const chooseRes = await request(app)
+      .post(`/api/v1/workspaces/${wsId}/references/${ref.id}/choose`)
+      .send({ chosenQlooEntityId: chosenCandidateId });
+
+    expect(chooseRes.status).toBe(200);
+    expect(chooseRes.body.status).toBe('resolved');
+    expect(chooseRes.body.chosenQlooEntityId).toBe(chosenCandidateId);
+    expect(chooseRes.body.chosenBy).toBe('user');
+  });
+
+  // P2-05 / API-03: Unresolved when search returns empty results
+  it('marks reference as unresolved when Qloo search returns empty results', async () => {
+    const ref = await referenceRepo.create(wsId, {
+      ownerType: 'proposal',
+      proposalId,
+      role: 'cultural_theme',
+      label: 'NonExistentEntityEmpty',
+      entityTypeHint: 'urn:entity:artist',
+      dataOrigin: 'synthetic_demo',
+    });
+
+    const res = await request(app).post(`/api/v1/workspaces/${wsId}/references/${ref.id}/resolve`);
+    expect(res.status).toBe(200);
+    expect(res.body.status).toBe('unresolved');
+    expect(res.body.candidates).toHaveLength(0);
   });
 
   // P2-05 / API-04: Evidence refresh derives cultural signals

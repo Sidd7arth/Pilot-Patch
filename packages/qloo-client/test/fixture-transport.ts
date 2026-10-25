@@ -24,6 +24,27 @@ export function createFixtureFetch(): typeof fetch {
         fixtureFile = 'auth-positive.json';
       }
     } else if (pathname === '/search') {
+      const q = url.searchParams.get('query');
+      if (q === 'NonExistentEntityEmpty') {
+        return new Response(JSON.stringify({ results: [] }), {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        });
+      }
+      if (q === 'AmbiguousTopic') {
+        return new Response(
+          JSON.stringify({
+            results: [
+              { entity_id: 'amb-1', name: 'Ambiguous Artist 1', types: ['urn:entity:artist'] },
+              { entity_id: 'amb-2', name: 'Ambiguous Artist 2', types: ['urn:entity:artist'] },
+            ],
+          }),
+          {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' },
+          },
+        );
+      }
       const types = url.searchParams.get('types');
       if (types?.includes('artist')) {
         fixtureFile = 'search-artists.json';

@@ -235,6 +235,95 @@ describe('Qloo Client Adapter (P2-02, P2-03, QC-01..QC-16)', () => {
     expect(fp1.length).toBe(64); // sha256 hex string
   });
 
+  it('QC-04: Classifies HTTP 429 rate limiting as failed_rate_limited', async () => {
+    const rateLimitFetch: typeof fetch = async () => {
+      return new Response(JSON.stringify({ error: { message: 'Too Many Requests', code: 429 } }), {
+        status: 429,
+        headers: { 'Content-Type': 'application/json', 'Retry-After': '1' },
+      });
+    };
+
+    const client = createQlooClient(
+      { apiKey: dummyApiKey, maxRetries: 0, timeoutMs: 1000 },
+      rateLimitFetch,
+    );
+    const result = await client.searchEntities({
+      query: 'Valorant',
+      types: QLOO_ENTITY_TYPES.VIDEOGAME,
+    });
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.status).toBe('failed_rate_limited');
+      expect(result.error.code).toBe('FAILED_RATE_LIMITED');
+    }
+  });
+
+  it('QC-05: Classifies fetch network drop as failed_network', async () => {
+    const networkFailFetch: typeof fetch = async () => {
+      throw new TypeError('fetch failed: ECONNREFUSED');
+    };
+
+    const client = createQlooClient(
+      { apiKey: dummyApiKey, maxRetries: 0, timeoutMs: 1000 },
+      networkFailFetch,
+    );
+    const result = await client.searchEntities({
+      query: 'Valorant',
+      types: QLOO_ENTITY_TYPES.VIDEOGAME,
+    });
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.status).toBe('failed_network');
+      expect(result.error.code).toBe('FAILED_NETWORK');
+    }
+  });
+
+  it('QC-17: Returns multiple entity candidates for ambiguous search queries', async () => {
+    const ambiguousFetch: typeof fetch = async () => {
+      return new Response(
+        JSON.stringify({
+          results: [
+            {
+              entity_id: 'cand-1',
+              name: 'Avatar (Film)',
+              types: ['urn:entity:movie'],
+              popularity: 0.95,
+            },
+            {
+              entity_id: 'cand-2',
+              name: 'Avatar (Game)',
+              types: ['urn:entity:videogame'],
+              popularity: 0.82,
+            },
+            {
+              entity_id: 'cand-3',
+              name: 'Avatar (Band)',
+              types: ['urn:entity:artist'],
+              popularity: 0.71,
+            },
+          ],
+        }),
+        { status: 200, headers: { 'Content-Type': 'application/json' } },
+      );
+    };
+
+    const client = createQlooClient({ apiKey: dummyApiKey }, ambiguousFetch);
+    const result = await client.searchEntities({
+      query: 'Avatar',
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.status).toBe('success');
+      expect(result.data.length).toBe(3);
+      expect(result.data[0].entityId).toBe('cand-1');
+      expect(result.data[1].entityId).toBe('cand-2');
+      expect(result.data[2].entityId).toBe('cand-3');
+    }
+  });
+
   it('QC-16 / SEC-40: Guarantees FixtureTransport is NEVER reachable from production exports', async () => {
     const productionExports = await import('../src/index.js');
     expect(productionExports).not.toHaveProperty('createFixtureFetch');

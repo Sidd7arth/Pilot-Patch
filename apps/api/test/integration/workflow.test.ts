@@ -8,6 +8,7 @@ import { eq } from 'drizzle-orm';
 import { loadConfig } from '../../src/config/env.js';
 import { createQlooClient } from '@patchpilot/qloo-client';
 import { QlooService } from '../../src/modules/qloo/index.js';
+import { createFixtureFetch } from '../../../../packages/qloo-client/test/fixture-transport.js';
 
 describe('Phase 5 Complete Workflow Integration Tests (P5-01..P5-08)', () => {
   let app: ReturnType<typeof createApp>;
@@ -20,12 +21,16 @@ describe('Phase 5 Complete Workflow Integration Tests (P5-01..P5-08)', () => {
   beforeAll(() => {
     const db = getDb();
     const config = loadConfig();
-    const qlooClient = createQlooClient({
-      apiKey: config.QLOO_API_KEY,
-      baseUrl: config.QLOO_API_BASE_URL,
-      timeoutMs: 8000,
-      maxRetries: 1,
-    });
+    const testApiKey = config.QLOO_API_KEY || 'test-ci-offline-qloo-key';
+    const qlooClient = createQlooClient(
+      {
+        apiKey: testApiKey,
+        baseUrl: config.QLOO_API_BASE_URL,
+        timeoutMs: 8000,
+        maxRetries: 1,
+      },
+      createFixtureFetch(),
+    );
     const qlooService = new QlooService(db, qlooClient, config);
     app = createApp({ db, config, qlooService });
   });

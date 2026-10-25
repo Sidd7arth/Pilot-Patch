@@ -17,16 +17,15 @@
 
 ## 1. Latest Test Run Table (TESTING.md §14)
 
-### Test Run: 2026-10-25 (Phase 9 Final Verification)
-- **typecheck**: **PASS** (6/6 projects, 0 errors, TS 5.7/5.9 strict)
+### Test Run: 2026-10-25 (Post-Fix Deterministic Suite & CI Stabilization)
+- **typecheck**: **PASS** (6/6 projects, 0 errors, TS 5.7 strict)
 - **lint**: **PASS** (3/3 packages, 0 errors, 0 warnings; architectural boundary rules enforced)
 - **format:check**: **PASS** (100% Prettier compliant)
 - **unit**: **PASS** (30/30 unit tests: config, validators, decision engine + knapsack trade-offs + capacity constraints + missing evidence)
-- **integration**: **PASS** (49/49 integration tests: repositories, seed, db-invariants, lifecycle, health, error envelope, qloo-service, workflow)
+- **integration**: **PASS** (51/51 integration tests: repositories, seed, db-invariants, lifecycle, health, error envelope, qloo-service with deterministic fixtures + ambiguous resolution + empty result handling, complete end-to-end workflow)
 - **e2e (Playwright)**: **PASS** (8/8 tests passed across E2E-01..08 including `/integration` screen & live probe)
-- **e2e (Primary Real Scenario)**: **PASS** (12/12 steps passed with real Qloo API in `docs/status/E2E_RESULTS.md`)
-- **security**: **PASS** (`pnpm check:secrets` 0 leaks, `pnpm check:bundle` 0 leaks, git history regex scan 0 leaks)
-- **live-qloo**: **PASS** (`pnpm test:live` 3/3 passed; `pnpm qloo:verify` 12 queries, 4 success affinities, 3/6 proposals supported)
+- **security**: **PASS** (`pnpm check:secrets` 0 leaks, `pnpm check:bundle` 0 leaks, `pnpm audit --prod` 0 vulnerabilities)
+- **live-qloo**: **PASS** (`pnpm test:live` 3/3 passed; live probe, real videogame search, invalid key negative test)
 
-**Total Automated Suite**: 13 test files passed, 79/79 automated unit/integration tests green.
+**Total Automated Suite**: 81/81 unit & integration tests green, 0 skipped, 0 failed. Playwright 8/8 tests green.
 **Failures**: None.

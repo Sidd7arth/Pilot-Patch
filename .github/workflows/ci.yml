@@ -55,10 +55,16 @@ jobs:
       - name: Strict typecheck (TypeScript)
         run: pnpm typecheck
 
+      - name: Apply database migrations (Drizzle)
+        env:
+          DATABASE_URL: postgres://user:password@localhost:5432/patchpilot
+        run: pnpm db:migrate
+
       - name: Run automated test suites (Vitest)
         env:
           DATABASE_URL: postgres://user:password@localhost:5432/patchpilot
           SESSION_SECRET: test-github-actions-ci-secret-32-chars-long!
+          QLOO_API_KEY: test-github-actions-ci-offline-qloo-key
         run: pnpm test
 
       - name: Build applications and packages

@@ -1,5 +1,5 @@
 // packages/qloo-client/test/live.test.ts
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { createQlooClient, QLOO_ENTITY_TYPES, QLOO_HOSTS } from '../src/index.js';
 
 describe('Live Qloo Adapter Integration (P2-08 / live)', () => {
@@ -8,7 +8,15 @@ describe('Live Qloo Adapter Integration (P2-08 / live)', () => {
     apiKey && !apiKey.includes('replace-with') && apiKey.trim().length > 10,
   );
 
-  it.runIf(isKeyConfigured)('Live probe against official hackathon endpoint', async () => {
+  beforeAll(() => {
+    if (!isKeyConfigured) {
+      throw new Error(
+        'QLOO_API_KEY environment variable is required to execute live Qloo integration tests. Please provide a valid hackathon credential in .env or your environment.',
+      );
+    }
+  });
+
+  it('Live probe against official hackathon endpoint', async () => {
     const client = createQlooClient({
       apiKey: apiKey as string,
       baseUrl: QLOO_HOSTS.HACKATHON,
@@ -22,7 +30,7 @@ describe('Live Qloo Adapter Integration (P2-08 / live)', () => {
     }
   });
 
-  it.runIf(isKeyConfigured)('Live searchEntities resolves real videogame', async () => {
+  it('Live searchEntities resolves real videogame', async () => {
     const client = createQlooClient({
       apiKey: apiKey as string,
       baseUrl: QLOO_HOSTS.HACKATHON,
@@ -43,20 +51,17 @@ describe('Live Qloo Adapter Integration (P2-08 / live)', () => {
     }
   });
 
-  it.runIf(isKeyConfigured)(
-    'Live negative test classifies invalid API key as failed_auth',
-    async () => {
-      const client = createQlooClient({
-        apiKey: 'deliberately-invalid-qloo-api-key',
-        baseUrl: QLOO_HOSTS.HACKATHON,
-        maxRetries: 0,
-      });
+  it('Live negative test classifies invalid API key as failed_auth', async () => {
+    const client = createQlooClient({
+      apiKey: 'deliberately-invalid-qloo-api-key',
+      baseUrl: QLOO_HOSTS.HACKATHON,
+      maxRetries: 0,
+    });
 
-      const result = await client.probe();
-      expect(result.ok).toBe(false);
-      if (!result.ok) {
-        expect(result.status).toBe('failed_auth');
-      }
-    },
-  );
+    const result = await client.probe();
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.status).toBe('failed_auth');
+    }
+  });
 });
