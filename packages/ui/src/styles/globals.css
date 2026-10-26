@@ -49,6 +49,22 @@
   --color-ok: var(--ok);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+
+  /* PatchPilot Brand Tokens (Section 3) */
+  --color-ink-950: var(--ink-950);
+  --color-ink-900: var(--ink-900);
+  --color-ink-800: var(--ink-800);
+  --color-violet-500: var(--violet-500);
+  --color-violet-600: var(--violet-600);
+  --color-indigo-400: var(--indigo-400);
+  --color-mint-400: var(--mint-400);
+  --color-surface-50: var(--surface-50);
+  --color-surface-0: var(--surface-0);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border-light: var(--border-light);
+  --color-border-dark: var(--border-dark);
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -104,6 +120,21 @@
   --uncertain: #c92a2a;
   --warn: #b7791f;
   --ok: #2b8a3e;
+
+  /* PatchPilot Brand Core Palette Tokens (Section 3) */
+  --ink-950: #080d1b;
+  --ink-900: #0d1428;
+  --ink-800: #151f38;
+  --violet-500: #7865f5;
+  --violet-600: #6754e8;
+  --indigo-400: #8b9bff;
+  --mint-400: #42d9c5;
+  --surface-50: #f7f8fc;
+  --surface-0: #ffffff;
+  --text-primary: #151a2d;
+  --text-secondary: #626d84;
+  --border-light: #e5e8f1;
+  --border-dark: #27314a;
 }
 
 .dark {

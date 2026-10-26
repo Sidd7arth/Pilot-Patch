@@ -12,17 +12,43 @@ import {
   FileText,
   Sliders,
   Activity,
+  ArrowLeft,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { label: 'Overview', href: '/', icon: Compass },
-  { label: 'Setup', href: '/setup', icon: Sliders },
-  { label: 'Proposals', href: '/proposals', icon: Layers },
-  { label: 'Evidence Explorer', href: '/evidence', icon: Search },
-  { label: 'Decision Workspace', href: '/decision', icon: Sparkles },
-  { label: 'Compare & Replan', href: '/decision/compare', icon: GitCompare },
-  { label: 'Briefs', href: '/briefs', icon: FileText },
-  { label: 'Integration', href: '/integration', icon: Activity },
+  { label: 'Overview', href: '/app', aliases: ['/app'], icon: Compass },
+  { label: 'Game & Setup', href: '/app/game', aliases: ['/app/game', '/setup'], icon: Sliders },
+  {
+    label: 'Proposals',
+    href: '/app/proposals',
+    aliases: ['/app/proposals', '/proposals'],
+    icon: Layers,
+  },
+  {
+    label: 'Evidence Explorer',
+    href: '/app/evidence',
+    aliases: ['/app/evidence', '/evidence'],
+    icon: Search,
+  },
+  {
+    label: 'Decision Workspace',
+    href: '/app/decisions',
+    aliases: ['/app/decisions', '/decision'],
+    icon: Sparkles,
+  },
+  {
+    label: 'Compare & Replan',
+    href: '/app/scenarios',
+    aliases: ['/app/scenarios', '/decision/compare'],
+    icon: GitCompare,
+  },
+  { label: 'Briefs', href: '/briefs', aliases: ['/briefs'], icon: FileText },
+  {
+    label: 'Integration',
+    href: '/app/settings/integrations',
+    aliases: ['/app/settings/integrations', '/integration'],
+    icon: Activity,
+  },
 ];
 
 export function Sidebar() {
@@ -31,21 +57,24 @@ export function Sidebar() {
   return (
     <aside className="w-64 border-r border-border bg-surface flex flex-col shrink-0 min-h-screen">
       <div className="h-14 border-b border-border flex items-center px-4 gap-2.5">
-        <div className="w-7 h-7 rounded-lg bg-cultural text-white flex items-center justify-center font-bold text-sm shadow-sm">
-          P
-        </div>
-        <div>
-          <span className="font-semibold text-sm tracking-tight text-text">PatchPilot</span>
-          <span className="ml-1.5 px-1.5 py-0.5 text-[10px] uppercase font-bold tracking-wider bg-cultural/15 text-cultural rounded">
-            Qloo
-          </span>
-        </div>
+        <Link href="/" className="flex items-center gap-2.5 hover:opacity-90 transition-opacity">
+          <div className="w-7 h-7 rounded-lg bg-cultural text-white flex items-center justify-center font-bold text-sm shadow-sm">
+            P
+          </div>
+          <div>
+            <span className="font-semibold text-sm tracking-tight text-text">PatchPilot</span>
+            <span className="ml-1.5 px-1.5 py-0.5 text-[10px] uppercase font-bold tracking-wider bg-cultural/15 text-cultural rounded">
+              Qloo
+            </span>
+          </div>
+        </Link>
       </div>
 
       <nav className="flex-1 p-3 space-y-1">
         {NAV_ITEMS.map((item) => {
           const Icon = item.icon;
-          const isActive = pathname === item.href;
+          const isActive =
+            pathname === item.href || item.aliases?.some((alias) => pathname.startsWith(alias));
           return (
             <Link
               key={item.href}
@@ -63,9 +92,18 @@ export function Sidebar() {
         })}
       </nav>
 
-      <div className="p-3 border-t border-border text-[11px] text-text-muted leading-relaxed">
-        <p className="font-medium text-text mb-1">Evidence-first engine</p>
-        <p>Cultural signals powered by Qloo API. Pure deterministic prioritization.</p>
+      <div className="p-3 border-t border-border space-y-3">
+        <Link
+          href="/"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium text-text-muted hover:text-text hover:bg-surface-2 transition-colors"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>Back to Landing Page</span>
+        </Link>
+        <div className="text-[11px] text-text-muted leading-relaxed px-1">
+          <p className="font-medium text-text mb-0.5">Evidence-first engine</p>
+          <p>Cultural signals powered by Qloo API. Pure deterministic prioritization.</p>
+        </div>
       </div>
     </aside>
   );

@@ -1,8 +1,7 @@
 import '@workspace/ui/globals.css';
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
-import { Sidebar } from '../components/layout/sidebar';
-import { TopBar } from '../components/layout/top-bar';
+import { AppShell } from '../components/layout/app-shell';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -15,19 +14,16 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'PatchPilot — Cultural Intelligence for Game Prioritization',
-  description: 'Evidence-first live-service game content decision support powered by Qloo',
+  title: 'PatchPilot — Turn Cultural Signals into Smarter Content Investments',
+  description:
+    'Prioritize live-service game updates with Qloo-powered cultural intelligence, production constraints, and explainable decision briefs.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="bg-bg text-text antialiased font-sans flex min-h-screen">
-        <Sidebar />
-        <div className="flex-1 flex flex-col min-w-0">
-          <TopBar />
-          <main className="flex-1 p-6 overflow-y-auto">{children}</main>
-        </div>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}>
+      <body className="antialiased font-sans">
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );
