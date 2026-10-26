@@ -70,7 +70,7 @@ export interface InsightsRequest {
 export interface InsightItem {
   entityId: string;
   name: string;
-  affinity: number; // 0..1
+  affinity: number | null; // 0..1 or null when missing/unavailable
   rank: number; // 1-based position in query
 }
 

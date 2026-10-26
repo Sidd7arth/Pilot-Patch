@@ -22,10 +22,10 @@ const InsightItemSchema = z.object({
   name: z.string().min(1),
   query: z
     .object({
-      affinity: z.number(),
+      affinity: z.number().nullable().optional(),
     })
     .optional(),
-  affinity: z.number().optional(),
+  affinity: z.number().nullable().optional(),
 });
 
 export interface ParseInsightsResult {
@@ -53,7 +53,8 @@ export function parseInsightsResponse(raw: unknown): ParseInsightsResult {
     const rawEntity = rawEntities[i];
     const parsed = InsightItemSchema.safeParse(rawEntity);
     if (parsed.success) {
-      const affinity = parsed.data.query?.affinity ?? parsed.data.affinity ?? 0;
+      const rawAffinity = parsed.data.query?.affinity ?? parsed.data.affinity;
+      const affinity = typeof rawAffinity === 'number' && !isNaN(rawAffinity) ? rawAffinity : null;
       items.push({
         entityId: parsed.data.entity_id,
         name: parsed.data.name,

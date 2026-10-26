@@ -1,7 +1,7 @@
-# PatchPilot Final Report — 2026-10-25 — commit 578d185
+# PatchPilot Final Report — 2026-10-26 — Production & CI Verified
 
 ## 1. Summary
-PatchPilot is a decision-support platform designed for live-service game studios to prioritize roadmaps against real cultural intelligence from the Qloo API. The application integrates real Qloo entity resolution and affinity queries, drives a deterministic multi-criteria decision engine, surfaces strict evidence provenance, and supports interactive budget scenario re-planning with attribution comparisons. All 76 automated unit/integration tests, 7 Playwright browser E2E scenarios, and 12 primary real-Qloo operational steps have passed verification with zero secret leaks.
+PatchPilot is a decision-support platform designed for live-service game studios to prioritize roadmaps against real cultural intelligence from the Qloo API. The application integrates real Qloo entity resolution and affinity queries, drives a deterministic multi-criteria decision engine, surfaces strict evidence provenance, and supports interactive budget scenario re-planning with attribution comparisons. All 84 automated unit/integration tests, 15 Playwright browser E2E scenarios across 2 suites, and 12 primary real-Qloo operational steps have passed verification with zero secret leaks.
 
 ---
 
@@ -37,18 +37,18 @@ PatchPilot is a decision-support platform designed for live-service game studios
 
 ## 4. Automated Test Results (TESTING.md §14)
 
-### Latest Test Run: 2026-10-25 (Phase 9 Final Audit)
+### Latest Test Run: 2026-10-26 (CI Hardening, Missing-Affinity Fix & Comprehensive E2E Reconcile)
 - **typecheck**: **PASS** (6/6 projects, 0 errors, TS 5.7/5.9 strict)
 - **lint**: **PASS** (3/3 packages, 0 errors, 0 warnings; architectural boundary rules enforced)
 - **format:check**: **PASS** (100% Prettier compliant)
-- **unit**: **PASS** (27/27 unit tests: config, validators, decision engine)
-- **integration**: **PASS** (49/49 integration tests: repositories, seed, db-invariants, lifecycle, health, error envelope, qloo-service, workflow)
-- **e2e (Playwright)**: **PASS** (7/7 tests passed in 9.6s across E2E-01..07)
+- **unit**: **PASS** (47/47 unit tests: config, validators, decision engine + knapsack trade-offs + capacity constraints + missing evidence + adapter regression QC-08b)
+- **integration**: **PASS** (37/37 integration tests: repositories, seed, db-invariants, lifecycle, health, error envelope, qloo-service, workflow)
+- **e2e (Playwright)**: **PASS** (15/15 tests passed across 2 suites: `workflow.spec.ts` [E2E-01..08] and `landing-navigation.spec.ts` [NAV-01..07])
 - **e2e (Primary Real Scenario)**: **PASS** (12/12 steps passed with real Qloo API in `docs/status/E2E_RESULTS.md`)
 - **security**: **PASS** (`pnpm check:secrets` 0 leaks, `pnpm check:bundle` 0 leaks, git history regex scan 0 leaks)
 - **live-qloo**: **PASS** (`pnpm test:live` 3/3 passed; `pnpm qloo:verify` 12 queries, 4 success affinities, 3/6 proposals supported)
 
-**Total Automated Suite**: 13 test files passed, 76/76 automated unit/integration tests green.
+**Total Automated Suite**: 12 test files passed, 84/84 automated unit/integration tests green. 15/15 browser E2E tests green.
 
 ---
 

@@ -158,6 +158,67 @@ describe('Qloo Client Adapter (P2-02, P2-03, QC-01..QC-16)', () => {
     }
   });
 
+  it('QC-08b (Regression): Preserves null for missing or unavailable affinity instead of coercing to 0', async () => {
+    // Upstream API provides ranked entities but affinity is omitted or null
+    const missingAffinityFetch: typeof fetch = async () => {
+      return new Response(
+        JSON.stringify({
+          results: {
+            entities: [
+              {
+                entity_id: 'artist-without-affinity-1',
+                name: 'Artist Without Score',
+                // Notice: no query.affinity and no affinity property
+              },
+              {
+                entity_id: 'artist-with-null-affinity-2',
+                name: 'Artist With Explicit Null',
+                query: { affinity: null },
+              },
+              {
+                entity_id: 'artist-with-score-3',
+                name: 'Artist With Valid Score',
+                query: { affinity: 0.88 },
+              },
+            ],
+          },
+        }),
+        {
+          status: 200,
+          headers: { 'Content-Type': 'application/json' },
+        },
+      );
+    };
+
+    const client = createQlooClient({ apiKey: dummyApiKey }, missingAffinityFetch);
+    const result = await client.getInsights({
+      anchorEntities: ['anchor-uuid-1'],
+      targetType: QLOO_ENTITY_TYPES.ARTIST,
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.data).toHaveLength(3);
+
+      // Item 1: omitted affinity must be null, NOT 0
+      expect(result.data[0]?.entityId).toBe('artist-without-affinity-1');
+      expect(result.data[0]?.affinity).toBeNull();
+      expect(result.data[0]?.affinity).not.toBe(0);
+      expect(result.data[0]?.rank).toBe(1);
+
+      // Item 2: explicit null affinity must remain null, NOT 0
+      expect(result.data[1]?.entityId).toBe('artist-with-null-affinity-2');
+      expect(result.data[1]?.affinity).toBeNull();
+      expect(result.data[1]?.affinity).not.toBe(0);
+      expect(result.data[1]?.rank).toBe(2);
+
+      // Item 3: valid affinity is preserved as number
+      expect(result.data[2]?.entityId).toBe('artist-with-score-3');
+      expect(result.data[2]?.affinity).toBe(0.88);
+      expect(result.data[2]?.rank).toBe(3);
+    }
+  });
+
   it('QC-09: Handles empty results cleanly (status empty, data [])', async () => {
     const fixtureFetch = createFixtureFetch();
     const client = createQlooClient({ apiKey: dummyApiKey }, fixtureFetch);
