@@ -848,12 +848,12 @@ export default function LandingPage() {
                 </li>
                 <li>
                   <a
-                    href="https://hackathon.api.qloo.com"
+                    href="https://www.qloo.com"
                     target="_blank"
                     rel="noreferrer"
                     className="hover:text-white transition-colors inline-flex items-center gap-1.5"
                   >
-                    <span>Qloo API Host</span>
+                    <span>Qloo Platform</span>
                     <ArrowRight className="w-3 h-3" />
                   </a>
                 </li>

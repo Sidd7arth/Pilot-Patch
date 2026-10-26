@@ -5,8 +5,10 @@ import { loadConfig, ConfigValidationError } from '../../src/config/env.js';
 describe('Configuration Loader & Security (P1-04 / DEP-01 / SEC-10)', () => {
   it('loads valid configuration with defaults', () => {
     const config = loadConfig({
+      DATABASE_URL: 'postgres://test:test@localhost:5432/test',
       SESSION_SECRET: 'a'.repeat(32),
       ALLOWED_ORIGINS: 'http://localhost:3000',
+      QLOO_API_BASE_URL: 'https://api.example.com',
     });
 
     expect(config.NODE_ENV).toBe('development');

@@ -1,10 +1,13 @@
 // scripts/qloo-verify/insights.mjs
 // Test S1 (Anchor co-affinity) and S2 (Market-conditioned affinity)
 
-const baseUrl = (process.env.QLOO_API_BASE_URL || 'https://hackathon.api.qloo.com')
-  .trim()
-  .replace(/\/+$/, '');
+const baseUrl = (process.env.QLOO_API_BASE_URL || '').trim().replace(/\/+$/, '');
 const apiKey = process.env.QLOO_API_KEY ? process.env.QLOO_API_KEY.trim() : '';
+
+if (!baseUrl) {
+  console.error(JSON.stringify({ ok: false, error: 'QLOO_API_BASE_URL is missing' }));
+  process.exit(1);
+}
 
 if (!apiKey) {
   console.error(JSON.stringify({ ok: false, error: 'QLOO_API_KEY is missing' }));

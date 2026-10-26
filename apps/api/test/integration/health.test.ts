@@ -6,8 +6,10 @@ import { loadConfig } from '../../src/config/env.js';
 
 describe('Health and Readiness Probes (P1-03)', () => {
   const config = loadConfig({
+    DATABASE_URL: 'postgres://test:test@localhost:5432/patchpilot',
     SESSION_SECRET: 'test-session-secret-must-be-32-chars-long!',
     QLOO_API_KEY: 'test-qloo-key',
+    QLOO_API_BASE_URL: 'https://api.example.com',
   });
 
   it('GET /health returns 200 with status ok', async () => {

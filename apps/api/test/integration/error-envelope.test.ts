@@ -7,7 +7,9 @@ import { AppError } from '../../src/http/error-handler.js';
 
 describe('Error Envelope and Security Sanitization (P1-03 / SEC-06)', () => {
   const config = loadConfig({
+    DATABASE_URL: 'postgres://test:test@localhost:5432/patchpilot',
     SESSION_SECRET: 'test-session-secret-must-be-32-chars-long!',
+    QLOO_API_BASE_URL: 'https://api.example.com',
   });
 
   it('returns 404 with structured error envelope for unknown routes', async () => {

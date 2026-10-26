@@ -1,7 +1,16 @@
-# Environment variables
+# Environment variables & Secret credentials
 .env
 .env.*
+.env*.local
 !.env.example
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+credentials.json
+service-account*.json
 
 # Dependencies
 node_modules/

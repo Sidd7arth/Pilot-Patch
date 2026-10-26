@@ -5,17 +5,11 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   PORT: z.coerce.number().default(4000),
   LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace']).default('info'),
-  DATABASE_URL: z
-    .string()
-    .min(1, 'DATABASE_URL is required')
-    .default('postgres://user:password@localhost:5432/patchpilot'),
-  SESSION_SECRET: z
-    .string()
-    .min(32, 'SESSION_SECRET must be at least 32 characters')
-    .default('development-secret-must-be-32-chars-long!'),
+  DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
+  SESSION_SECRET: z.string().min(32, 'SESSION_SECRET must be at least 32 characters'),
   ALLOWED_ORIGINS: z.string().default('http://localhost:3000'),
   QLOO_API_KEY: z.string().optional().default(''),
-  QLOO_API_BASE_URL: z.string().url().default('https://hackathon.api.qloo.com'),
+  QLOO_API_BASE_URL: z.string().url('QLOO_API_BASE_URL must be a valid URL'),
   QLOO_TIMEOUT_MS: z.coerce.number().default(10000),
   QLOO_MAX_RETRIES: z.coerce.number().default(2),
   QLOO_MAX_CONCURRENCY: z.coerce.number().default(3),

@@ -288,7 +288,7 @@ async function runScenario() {
   const timestamp = new Date().toISOString();
   let md = `# PatchPilot Primary E2E Scenario Results (TESTING.md §11)\n\n`;
   md += `**Execution Date**: ${timestamp}  \n`;
-  md += `**Environment**: Node 22.16.0 / PostgreSQL 16 / Official Qloo API (\`hackathon.api.qloo.com\`)  \n`;
+  md += `**Environment**: Node 22.16.0 / PostgreSQL 16 / Official Qloo API  \n`;
   md += `**Execution Mode**: Live Real-Qloo Stack  \n\n`;
   md += `| Step | Scenario Step | Status | Evidence / Notes |\n`;
   md += `|---|---|---|---|\n`;

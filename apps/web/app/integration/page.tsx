@@ -279,7 +279,7 @@ export default function IntegrationPage() {
           <div className="pt-2 border-t border-border space-y-1.5 text-xs text-text-muted">
             <div className="flex justify-between">
               <span>Host:</span>
-              <span className="font-mono text-text">https://hackathon.api.qloo.com</span>
+              <span className="font-mono text-text">Configured via environment</span>
             </div>
             <div className="flex justify-between">
               <span>Latency:</span>
