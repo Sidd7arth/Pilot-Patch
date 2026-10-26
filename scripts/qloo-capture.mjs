@@ -5,13 +5,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const baseUrl = (process.env.QLOO_API_BASE_URL || '').trim().replace(/\/+$/, '');
+const baseUrl = (process.env.QLOO_API_BASE_URL || 'https://hackathon.api.qloo.com')
+  .trim()
+  .replace(/\/+$/, '');
 const apiKey = process.env.QLOO_API_KEY ? process.env.QLOO_API_KEY.trim() : '';
-
-if (!baseUrl) {
-  console.error('Error: QLOO_API_BASE_URL is not configured');
-  process.exit(1);
-}
 
 if (!apiKey) {
   console.error('Error: QLOO_API_KEY is not configured');

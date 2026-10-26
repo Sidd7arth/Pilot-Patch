@@ -65,9 +65,14 @@ jobs:
           DATABASE_URL: postgres://user:password@localhost:5432/patchpilot
           SESSION_SECRET: test-github-actions-ci-secret-32-chars-long!
           QLOO_API_KEY: test-github-actions-ci-offline-qloo-key
+          QLOO_API_BASE_URL: https://hackathon.api.qloo.com
         run: pnpm test
 
       - name: Build applications and packages
+        env:
+          DATABASE_URL: postgres://user:password@localhost:5432/patchpilot
+          SESSION_SECRET: test-github-actions-ci-secret-32-chars-long!
+          QLOO_API_BASE_URL: https://hackathon.api.qloo.com
         run: pnpm build
 
       - name: Client bundle secret scan (SEC-04)

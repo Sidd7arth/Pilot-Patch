@@ -4,17 +4,36 @@ import { loadConfig, ConfigValidationError } from '../../src/config/env.js';
 
 describe('Configuration Loader & Security (P1-04 / DEP-01 / SEC-10)', () => {
   it('loads valid configuration with defaults', () => {
-    const config = loadConfig({
-      DATABASE_URL: 'postgres://test:test@localhost:5432/test',
-      SESSION_SECRET: 'a'.repeat(32),
-      ALLOWED_ORIGINS: 'http://localhost:3000',
-      QLOO_API_BASE_URL: 'https://api.example.com',
-    });
+    const config = loadConfig({});
 
     expect(config.NODE_ENV).toBe('development');
     expect(config.PORT).toBe(4000);
-    expect(config.SESSION_SECRET).toBe('a'.repeat(32));
+    expect(config.DATABASE_URL).toBe('postgres://user:password@localhost:5432/patchpilot');
+    expect(config.SESSION_SECRET).toBe('development-secret-must-be-32-chars-long!');
+    expect(config.QLOO_API_BASE_URL).toBe('https://hackathon.api.qloo.com');
     expect(config.QLOO_CACHE_TTL_HOURS).toBe(24);
+  });
+
+  it('allows custom overrides of defaults', () => {
+    const config = loadConfig({
+      DATABASE_URL: 'postgres://custom:custom@localhost:5432/custom',
+      SESSION_SECRET: 'a'.repeat(32),
+      ALLOWED_ORIGINS: 'http://localhost:3000',
+      QLOO_API_BASE_URL: 'https://custom.api.qloo.com',
+    });
+
+    expect(config.DATABASE_URL).toBe('postgres://custom:custom@localhost:5432/custom');
+    expect(config.SESSION_SECRET).toBe('a'.repeat(32));
+    expect(config.QLOO_API_BASE_URL).toBe('https://custom.api.qloo.com');
+  });
+
+  it('rejects default session secret in production environment', () => {
+    expect(() => {
+      loadConfig({
+        NODE_ENV: 'production',
+        SESSION_SECRET: 'development-secret-must-be-32-chars-long!',
+      });
+    }).toThrow(ConfigValidationError);
   });
 
   it('SEC-10: Throws ConfigValidationError with field names on invalid config and NEVER prints sensitive values', () => {
