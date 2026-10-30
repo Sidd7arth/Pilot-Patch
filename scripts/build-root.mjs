@@ -1,17 +1,23 @@
 // scripts/build-root.mjs
-import { execSync } from 'node:child_process';
 import fs from 'node:fs';
-import path from 'node:path';
 
-console.log('[build-root] Building apps/web...');
-execSync('pnpm --filter web build', { stdio: 'inherit' });
+console.log('[build-root] Generating static redirect to production deployment...');
+fs.mkdirSync('public', { recursive: true });
 
-const srcNext = path.resolve('apps/web/.next');
-const destNext = path.resolve('.next');
+const html = `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url=https://pilot-patch-yauu.vercel.app/" />
+    <title>PatchPilot — Redirecting</title>
+  </head>
+  <body style="font-family: system-ui, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; background: #09090b; color: #fafafa;">
+    <div style="text-align: center;">
+      <h2>PatchPilot Production</h2>
+      <p>Redirecting to <a href="https://pilot-patch-yauu.vercel.app/" style="color: #6366f1;">https://pilot-patch-yauu.vercel.app/</a>...</p>
+    </div>
+  </body>
+</html>`;
 
-if (fs.existsSync(srcNext) && srcNext !== destNext) {
-  console.log('[build-root] Copying apps/web/.next to .next for root deployment...');
-  fs.cpSync(srcNext, destNext, { recursive: true });
-}
-
-console.log('[build-root] Completed successfully.');
+fs.writeFileSync('public/index.html', html, 'utf8');
+console.log('[build-root] Successfully generated public/index.html');
