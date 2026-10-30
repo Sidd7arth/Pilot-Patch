@@ -1,17 +1,17 @@
 # PatchPilot Primary E2E Scenario Results (TESTING.md §11)
 
-**Execution Date**: 2026-10-29T12:56:21.048Z<br/>
+**Execution Date**: 2026-10-30T17:15:16.124Z<br/>
 **Environment**: Node 22.16.0 / PostgreSQL 16 / Official Qloo API<br/>
 **Execution Mode**: Live Real-Qloo Stack  
 
 | Step | Scenario Step | Status | Evidence / Notes |
 |---|---|---|---|
-| 1 | Fresh workspace & seed initialization | **PASS** | Workspace ID: 6daf5a8c-f3f8-4236-9c57-cdf40ed2c7bd, Seeded: true |
+| 1 | Fresh workspace & seed initialization | **PASS** | Workspace ID: acc7955b-e4db-46fe-8a7a-4a4edd9af3a5, Seeded: true |
 | 2 | Six proposals present in workspace | **PASS** | Found 6 proposals. Sample: "Lantern Festival Seasonal Event" |
 | 3 | Resolve references & entity resolution with real Qloo | **PASS** | Qloo client operational with verified candidate resolution |
 | 4 | Evidence refresh & provenance inspection | **PASS** | Audit queries logged: 0. Origin headers preserved. |
-| 5 | Execute deterministic decision run & read shortlist | **PASS** | Run ID: ae874fa4-8950-4b9b-9453-7cc261a77264, InputHash: 7f0c2f52, Shortlist: 3 items |
-| 6 | Reduce budget & replan with diff inspection | **PASS** | Child Run: 98a09d2e-a188-4710-9cac-bb8a5d84ca7f, Diff: Re-plan adjusted budget allocation by $-170000.00, with 1 proposals entering and 2 leaving the funded shortlist. |
+| 5 | Execute deterministic decision run & read shortlist | **PASS** | Run ID: b353cb16-f039-4147-9966-1687c9f22f93, InputHash: 1bfc8c75, Shortlist: 3 items |
+| 6 | Reduce budget & replan with diff inspection | **PASS** | Child Run: 140ae45c-3699-45a1-9698-cb32a5395da0, Diff: Re-plan adjusted budget allocation by $-170000.00, with 1 proposals entering and 2 leaving the funded shortlist. |
 | 7 | Hard constraint variation and cascade evaluation | **PASS** | Capacity constrained run created with HC_CAPACITY_EXCEEDED enforcement |
 | 8 | Baseline vs Qloo-informed portfolio attribution comparison | **PASS** | Compared 6 proposals. Attribution drivers mapped. |
 | 9 | Empty / unsupported entity handling verified | **PASS** | Unmatched references produce status=unsupported with cultural_relevance=null (not zero) |
