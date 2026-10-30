@@ -13,7 +13,14 @@ const connectionString =
 
 async function main() {
   console.log('Connecting to database for migrations...');
-  const client = new pg.Client({ connectionString });
+  const isCloud =
+    connectionString.includes('sslmode=') ||
+    (!connectionString.includes('localhost') && !connectionString.includes('127.0.0.1'));
+
+  const client = new pg.Client({
+    connectionString,
+    ssl: isCloud ? { rejectUnauthorized: false } : undefined,
+  });
 
   try {
     await client.connect();

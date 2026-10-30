@@ -8,12 +8,18 @@ let pool: pg.Pool | null = null;
 
 export function getDbPool(connectionString?: string): pg.Pool {
   if (!pool) {
+    const connStr =
+      connectionString ||
+      process.env.DATABASE_URL ||
+      'postgres://user:password@localhost:5432/patchpilot';
+    const isCloud =
+      connStr.includes('sslmode=') ||
+      (!connStr.includes('localhost') && !connStr.includes('127.0.0.1'));
+
     pool = new pg.Pool({
-      connectionString:
-        connectionString ||
-        process.env.DATABASE_URL ||
-        'postgres://user:password@localhost:5432/patchpilot',
+      connectionString: connStr,
       max: 10,
+      ssl: isCloud ? { rejectUnauthorized: false } : undefined,
     });
   }
   return pool;
