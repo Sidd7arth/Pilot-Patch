@@ -2,6 +2,10 @@
 
 > **Turn cultural signals into smarter content investments.**<br/>
 > An evidence-first decision-intelligence platform for live-service and free-to-play game studios, combining Qloo-powered cultural intelligence with production constraints and explainable content-investment prioritization.
+>
+> 🚀 **Live Production Deployment**: [https://pilot-patch-yauu.vercel.app/](https://pilot-patch-yauu.vercel.app/)
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-pilot--patch--yauu.vercel.app-blueviolet?logo=vercel)](https://pilot-patch-yauu.vercel.app/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7%20Strict-3178c6.svg)](tsconfig.base.json)

@@ -73,6 +73,7 @@ PatchPilot is a decision-support platform designed for live-service game studios
 ## 6. Build & Deployment
 
 - **Build Status**: **PASS** (`turbo build` compiled `@patchpilot/api` into `dist/` and `web` into Next.js optimized production bundles in 54.4s).
+- **Production Deployment**: **LIVE** at [https://pilot-patch-yauu.vercel.app/](https://pilot-patch-yauu.vercel.app/)
 - **Deployment Smoke Check**: **PASS** (`pnpm smoke:deployed` verified `/health`, `/ready`, security headers, session cookies, and Qloo status).
 - **Database Migrations**: **PASS** (19 Drizzle schema tables applied to PostgreSQL 16 container on port 5432).
 
