@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
-    "vercel-build": "pnpm --filter web build",
+    "vercel-build": "node scripts/build-root.mjs",
     "typecheck": "turbo typecheck",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md,css}\"",
